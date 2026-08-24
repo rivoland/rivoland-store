@@ -2,16 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Rivoland.store | Shop Everything You Love</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>RIVOLAND® — Sport • Street • Culture</title>
 
   <meta
     name="description"
-    content="Rivoland.store - Discover premium products, great prices and a seamless shopping experience."
+    content="RIVOLAND® — Sport, streetwear and culture. Move beyond."
   >
 
   <style>
+
+    /* =====================================================
+       RIVOLAND — GLOBAL
+    ===================================================== */
+
+    :root {
+      --black: #080808;
+      --dark: #101010;
+      --dark-2: #171717;
+      --white: #ffffff;
+      --off-white: #f4f3ef;
+      --grey: #9b9b9b;
+      --line: rgba(255,255,255,0.12);
+      --accent: #d9ff00;
+      --max-width: 1400px;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -23,10 +44,22 @@
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f7f7f5;
-      color: #111;
-      line-height: 1.5;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
     }
 
     a {
@@ -34,76 +67,122 @@
       text-decoration: none;
     }
 
-    button {
+    button,
+    input {
       font: inherit;
+    }
+
+    button {
       cursor: pointer;
     }
 
-    /* HEADER */
+
+    /* =====================================================
+       ANNOUNCEMENT BAR
+    ===================================================== */
+
+    .announcement {
+      background: var(--accent);
+      color: #000;
+      text-align: center;
+      padding: 9px 15px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
 
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.96);
-      border-bottom: 1px solid #e8e8e8;
-      backdrop-filter: blur(12px);
+      background: rgba(8,8,8,0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
     }
 
-    .navbar {
-      max-width: 1280px;
-      margin: auto;
+    .nav {
+      max-width: var(--max-width);
       height: 76px;
-      padding: 0 24px;
+      margin: auto;
+      padding: 0 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 30px;
     }
 
-    .logo {
+    .brand {
       font-size: 25px;
-      font-weight: 800;
-      letter-spacing: -1px;
+      font-weight: 1000;
+      letter-spacing: -1.8px;
+      white-space: nowrap;
     }
 
-    .logo span {
-      color: #e5a900;
+    .brand span {
+      color: var(--accent);
     }
 
-    nav {
+    .nav-links {
       display: flex;
-      gap: 28px;
-      font-size: 14px;
-      font-weight: 600;
+      align-items: center;
+      gap: 30px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
     }
 
-    nav a {
-      transition: 0.2s ease;
+    .nav-links a {
+      position: relative;
+      padding: 5px 0;
     }
 
-    nav a:hover {
-      color: #c58f00;
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
     }
 
-    .icon-button {
+    .nav-icon {
       width: 42px;
       height: 42px;
-      border: 1px solid #ddd;
-      background: white;
+      border: 1px solid var(--line);
       border-radius: 50%;
+      background: transparent;
+      color: white;
       display: grid;
       place-items: center;
       font-size: 17px;
+      transition: 0.25s;
     }
 
-    .cart-button {
+    .nav-icon:hover {
+      background: white;
+      color: black;
+    }
+
+    .cart-icon {
       position: relative;
     }
 
@@ -111,214 +190,406 @@
       position: absolute;
       top: -3px;
       right: -2px;
-      width: 19px;
-      height: 19px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      background: #111;
-      color: white;
-      font-size: 11px;
+      background: var(--accent);
+      color: #000;
+      font-size: 10px;
+      font-weight: 900;
       display: grid;
       place-items: center;
     }
 
-    /* HERO */
+    .menu-button {
+      display: none;
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
 
     .hero {
-      max-width: 1280px;
-      margin: 24px auto 0;
-      min-height: 570px;
-      border-radius: 28px;
-      overflow: hidden;
+      min-height: calc(100vh - 110px);
       position: relative;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
+      overflow: hidden;
+
       background:
         linear-gradient(
           90deg,
-          rgba(12, 12, 12, 0.94) 0%,
-          rgba(12, 12, 12, 0.72) 42%,
-          rgba(12, 12, 12, 0.10) 100%
+          rgba(0,0,0,0.82) 0%,
+          rgba(0,0,0,0.45) 45%,
+          rgba(0,0,0,0.05) 100%
         ),
-        url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1800&q=90")
+        url("https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=2200&q=90")
         center / cover;
     }
 
-    .hero-content {
-      max-width: 610px;
-      padding: 70px;
-      color: white;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          transparent 55%,
+          rgba(0,0,0,0.85)
+        );
+      pointer-events: none;
     }
 
-    .eyebrow {
-      color: #e8b52a;
-      text-transform: uppercase;
-      letter-spacing: 3px;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max-width);
+      width: 100%;
+      margin: auto;
+      padding: 80px 28px;
+    }
+
+    .hero-kicker {
+      color: var(--accent);
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
       margin-bottom: 18px;
     }
 
-    .hero h1 {
-      font-size: clamp(44px, 6vw, 78px);
-      line-height: 0.98;
-      letter-spacing: -4px;
-      margin-bottom: 25px;
+    .hero-title {
+      max-width: 850px;
+      font-size: clamp(58px, 10vw, 145px);
+      line-height: 0.82;
+      font-weight: 1000;
+      letter-spacing: -8px;
+      text-transform: uppercase;
     }
 
-    .hero p {
-      color: #dedede;
-      max-width: 500px;
-      font-size: 17px;
-      margin-bottom: 32px;
+    .hero-title span {
+      color: var(--accent);
     }
 
-    .primary-button {
+    .hero-description {
+      max-width: 470px;
+      margin-top: 30px;
+      color: #d5d5d5;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .btn {
       border: none;
-      background: #e5aa00;
-      color: #111;
-      padding: 15px 26px;
-      border-radius: 7px;
-      font-weight: 800;
-      transition: 0.2s ease;
+      padding: 15px 24px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: 0.25s;
     }
 
-    .primary-button:hover {
-      background: #ffc62e;
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: white;
       transform: translateY(-2px);
     }
 
-    /* FEATURES */
-
-    .features {
-      max-width: 1280px;
-      margin: 35px auto;
-      padding: 0 24px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.5);
+      color: white;
     }
 
-    .feature {
+    .btn-outline:hover {
       background: white;
-      border: 1px solid #e8e8e8;
-      border-radius: 14px;
-      padding: 22px;
+      color: black;
     }
 
-    .feature strong {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 14px;
+
+    /* =====================================================
+       TICKER
+    ===================================================== */
+
+    .ticker {
+      overflow: hidden;
+      background: var(--accent);
+      color: #000;
+      border-bottom: 1px solid #000;
+      white-space: nowrap;
     }
 
-    .feature span {
-      color: #777;
-      font-size: 13px;
+    .ticker-track {
+      display: inline-flex;
+      gap: 35px;
+      padding: 13px 0;
+      animation: ticker 25s linear infinite;
     }
 
-    /* SECTION */
+    .ticker-item {
+      font-size: 12px;
+      font-weight: 1000;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+
+    /* =====================================================
+       COMMON SECTION
+    ===================================================== */
 
     .section {
-      max-width: 1280px;
-      margin: 90px auto;
-      padding: 0 24px;
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 110px 28px;
     }
 
-    .section-heading {
+    .section-top {
       display: flex;
-      align-items: end;
+      align-items: flex-end;
       justify-content: space-between;
-      margin-bottom: 30px;
+      gap: 30px;
+      margin-bottom: 38px;
     }
 
-    .section-heading h2 {
-      font-size: 38px;
-      letter-spacing: -1.5px;
+    .section-kicker {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
     }
 
-    .section-heading p {
-      color: #777;
-      margin-top: 5px;
+    .section-title {
+      font-size: clamp(38px, 5vw, 72px);
+      line-height: 0.95;
+      letter-spacing: -4px;
+      text-transform: uppercase;
     }
 
-    .view-all {
-      font-weight: 700;
+    .section-description {
+      max-width: 400px;
+      color: var(--grey);
       font-size: 14px;
-      border-bottom: 1px solid #111;
-      padding-bottom: 4px;
+      line-height: 1.7;
     }
 
-    /* CATEGORIES */
+    .text-link {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-bottom: 1px solid white;
+      padding-bottom: 5px;
+      white-space: nowrap;
+    }
 
-    .categories {
+    .text-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+
+    /* =====================================================
+       DROP 001
+    ===================================================== */
+
+    .drop-banner {
+      min-height: 480px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,0.9),
+          rgba(0,0,0,0.15)
+        ),
+        url("https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=2000&q=90")
+        center / cover;
+    }
+
+    .drop-content {
+      padding: 55px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .drop-number {
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 3px;
+      margin-bottom: 15px;
+    }
+
+    .drop-title {
+      font-size: clamp(45px, 7vw, 95px);
+      font-weight: 1000;
+      line-height: 0.85;
+      letter-spacing: -5px;
+      text-transform: uppercase;
+    }
+
+    .drop-subtitle {
+      max-width: 400px;
+      color: #ddd;
+      margin-top: 22px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+
+    /* =====================================================
+       CATEGORY GRID
+    ===================================================== */
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .category-card {
+      min-height: 420px;
+      position: relative;
+      overflow: hidden;
+      background: #222;
+    }
+
+    .category-card img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .category-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .category-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 25px;
+      background:
+        linear-gradient(
+          transparent 45%,
+          rgba(0,0,0,0.85)
+        );
+    }
+
+    .category-name {
+      font-size: 27px;
+      font-weight: 1000;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+    }
+
+    .category-small {
+      margin-top: 5px;
+      color: #bbb;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+
+    /* =====================================================
+       PRODUCTS
+    ===================================================== */
+
+    .product-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 18px;
     }
 
-    .category {
-      height: 250px;
-      border-radius: 18px;
+    .product-card {
+      background: #111;
+      border: 1px solid var(--line);
       overflow: hidden;
-      position: relative;
-      background-size: cover;
-      background-position: center;
+      transition: 0.3s;
     }
 
-    .category::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        transparent 35%,
-        rgba(0, 0, 0, 0.8)
-      );
-    }
-
-    .category-content {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      color: white;
-      z-index: 2;
-    }
-
-    .category-content h3 {
-      font-size: 22px;
-      margin-bottom: 3px;
-    }
-
-    .category-content span {
-      font-size: 13px;
-      color: #ddd;
-    }
-
-    /* PRODUCTS */
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .product {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid #e7e7e7;
-      transition: 0.25s ease;
-    }
-
-    .product:hover {
+    .product-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+      border-color: rgba(217,255,0,0.35);
     }
 
     .product-image {
-      height: 280px;
-      background: #f0f0ee;
-      background-size: cover;
-      background-position: center;
+      height: 400px;
+      position: relative;
+      background: #1a1a1a;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.04);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      background: var(--accent);
+      color: #000;
+      padding: 7px 9px;
+      font-size: 9px;
+      font-weight: 1000;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .wishlist {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.4);
+      background: rgba(0,0,0,0.45);
+      color: white;
+      z-index: 3;
+    }
+
+    .wishlist:hover {
+      background: white;
+      color: black;
     }
 
     .product-info {
@@ -326,92 +597,152 @@
     }
 
     .product-category {
-      color: #888;
-      font-size: 11px;
+      color: #777;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 6px;
-    }
-
-    .product h3 {
-      font-size: 16px;
       margin-bottom: 8px;
     }
 
-    .rating {
-      color: #e2a600;
-      font-size: 13px;
-      margin-bottom: 12px;
-    }
-
-    .price {
-      font-size: 18px;
+    .product-name {
+      font-size: 16px;
       font-weight: 800;
+      text-transform: uppercase;
     }
 
-    .add-button {
-      width: 100%;
-      margin-top: 15px;
-      border: 1px solid #111;
-      background: #111;
-      color: white;
-      padding: 11px;
-      border-radius: 7px;
-      font-weight: 700;
-    }
-
-    .add-button:hover {
-      background: #333;
-    }
-
-    /* PROMO */
-
-    .promo {
-      min-height: 330px;
-      border-radius: 22px;
-      padding: 60px;
+    .product-bottom {
+      margin-top: 16px;
       display: flex;
       align-items: center;
-      background:
-        linear-gradient(90deg, rgba(0,0,0,.90), rgba(0,0,0,.2)),
-        url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1600&q=90")
-        center / cover;
-      color: white;
+      justify-content: space-between;
+      gap: 10px;
     }
 
-    .promo-content {
-      max-width: 500px;
+    .product-price {
+      font-size: 16px;
+      font-weight: 900;
     }
 
-    .promo h2 {
-      font-size: 42px;
-      line-height: 1.05;
-      margin-bottom: 14px;
+    .add-cart {
+      border: 1px solid white;
+      background: white;
+      color: black;
+      padding: 9px 12px;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: 0.2s;
     }
 
-    .promo p {
-      color: #ddd;
+    .add-cart:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+
+    /* =====================================================
+       BRAND STATEMENT
+    ===================================================== */
+
+    .statement {
+      background: var(--off-white);
+      color: #000;
+      text-align: center;
+      padding: 120px 25px;
+    }
+
+    .statement-kicker {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 4px;
       margin-bottom: 25px;
     }
 
-    /* NEWSLETTER */
+    .statement-title {
+      max-width: 1100px;
+      margin: auto;
+      font-size: clamp(45px, 8vw, 110px);
+      font-weight: 1000;
+      line-height: 0.9;
+      letter-spacing: -6px;
+      text-transform: uppercase;
+    }
+
+    .statement-title span {
+      color: #888;
+    }
+
+
+    /* =====================================================
+       STORY
+    ===================================================== */
+
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 650px;
+    }
+
+    .story-image {
+      background:
+        url("https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1600&q=90")
+        center / cover;
+    }
+
+    .story-content {
+      display: flex;
+      align-items: center;
+      padding: 80px;
+      background: #111;
+    }
+
+    .story-inner {
+      max-width: 530px;
+    }
+
+    .story-title {
+      font-size: clamp(40px, 5vw, 70px);
+      font-weight: 1000;
+      line-height: 0.9;
+      letter-spacing: -4px;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    .story-text {
+      color: #aaa;
+      font-size: 14px;
+      line-height: 1.9;
+      margin-bottom: 30px;
+    }
+
+
+    /* =====================================================
+       NEWSLETTER
+    ===================================================== */
 
     .newsletter {
+      background: var(--accent);
+      color: #000;
+      padding: 85px 28px;
       text-align: center;
-      background: white;
-      border: 1px solid #e8e8e8;
-      border-radius: 22px;
-      padding: 60px 25px;
     }
 
-    .newsletter h2 {
-      font-size: 36px;
-      margin-bottom: 10px;
+    .newsletter-title {
+      font-size: clamp(38px, 6vw, 72px);
+      font-weight: 1000;
+      line-height: 0.9;
+      letter-spacing: -4px;
+      text-transform: uppercase;
     }
 
-    .newsletter p {
-      color: #777;
-      margin-bottom: 25px;
+    .newsletter-text {
+      margin: 20px auto 30px;
+      max-width: 500px;
+      font-size: 14px;
+      line-height: 1.6;
     }
 
     .newsletter-form {
@@ -421,179 +752,476 @@
       gap: 8px;
     }
 
-    .newsletter-form input {
+    .newsletter-input {
       flex: 1;
-      padding: 14px;
-      border: 1px solid #ddd;
-      border-radius: 7px;
+      border: 1px solid #000;
+      background: transparent;
+      color: #000;
+      padding: 15px;
       outline: none;
     }
 
-    /* FOOTER */
+    .newsletter-input::placeholder {
+      color: #333;
+    }
+
+    .newsletter-button {
+      border: 1px solid #000;
+      background: #000;
+      color: white;
+      padding: 15px 22px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
 
     footer {
-      background: #111;
-      color: white;
-      margin-top: 80px;
+      background: #050505;
+      border-top: 1px solid var(--line);
     }
 
-    .footer-inner {
-      max-width: 1280px;
+    .footer {
+      max-width: var(--max-width);
       margin: auto;
-      padding: 60px 24px;
+      padding: 75px 28px 30px;
+    }
+
+    .footer-top {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px;
+      gap: 60px;
+      padding-bottom: 60px;
     }
 
-    .footer-brand p {
-      color: #aaa;
-      max-width: 350px;
-      margin-top: 15px;
-      font-size: 14px;
+    .footer-brand {
+      max-width: 360px;
     }
 
-    .footer-column h4 {
-      margin-bottom: 15px;
+    .footer-brand .brand {
+      font-size: 30px;
     }
 
-    .footer-column a {
+    .footer-description {
+      color: #777;
+      font-size: 13px;
+      line-height: 1.8;
+      margin-top: 18px;
+    }
+
+    .footer-title {
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .footer-links a {
       display: block;
-      color: #aaa;
-      font-size: 14px;
-      margin-bottom: 9px;
+      color: #888;
+      font-size: 12px;
+      margin-bottom: 11px;
     }
 
-    .footer-column a:hover {
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #666;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+
+    /* =====================================================
+       CART DRAWER
+    ===================================================== */
+
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0,0,0,0.7);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+    }
+
+    .cart-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: min(440px, 100%);
+      background: #111;
+      border-left: 1px solid var(--line);
+      transform: translateX(100%);
+      transition: 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-overlay.active .cart-drawer {
+      transform: translateX(0);
+    }
+
+    .cart-header {
+      height: 75px;
+      padding: 0 22px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cart-header h3 {
+      font-size: 16px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .close-cart {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--line);
+      background: transparent;
       color: white;
+      border-radius: 50%;
     }
 
-    .copyright {
-      border-top: 1px solid #292929;
+    .cart-body {
+      flex: 1;
+      padding: 25px;
+      overflow-y: auto;
+    }
+
+    .empty-cart {
+      height: 100%;
+      display: grid;
+      place-items: center;
       text-align: center;
       color: #777;
-      padding: 20px;
-      font-size: 12px;
+      font-size: 13px;
     }
 
-    /* MOBILE */
+    .cart-footer {
+      padding: 22px;
+      border-top: 1px solid var(--line);
+    }
 
-    @media (max-width: 900px) {
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
 
-      nav {
+    .checkout-button {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      background: var(--accent);
+      color: #000;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+
+    /* =====================================================
+       TOAST
+    ===================================================== */
+
+    .toast {
+      position: fixed;
+      z-index: 3000;
+      left: 50%;
+      bottom: 25px;
+      transform: translate(-50%, 120px);
+      background: white;
+      color: black;
+      padding: 13px 18px;
+      font-size: 11px;
+      font-weight: 800;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media (max-width: 1000px) {
+
+      .nav-links {
         display: none;
       }
 
-      .hero {
-        margin: 12px;
-        min-height: 500px;
+      .menu-button {
+        display: grid;
       }
 
-      .hero-content {
-        padding: 35px;
-      }
-
-      .features,
-      .categories,
-      .products {
+      .category-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .footer-inner {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .story {
+        grid-template-columns: 1fr;
+      }
+
+      .story-image {
+        min-height: 500px;
+      }
+
+      .footer-top {
         grid-template-columns: 1fr 1fr;
       }
     }
 
-    @media (max-width: 600px) {
 
-      .navbar {
-        padding: 0 15px;
+    @media (max-width: 650px) {
+
+      .announcement {
+        font-size: 9px;
+        letter-spacing: 1px;
       }
 
-      .logo {
-        font-size: 21px;
+      .nav {
+        height: 65px;
+        padding: 0 16px;
+      }
+
+      .brand {
+        font-size: 20px;
+      }
+
+      .nav-icon {
+        width: 37px;
+        height: 37px;
+      }
+
+      .hero {
+        min-height: 680px;
       }
 
       .hero-content {
-        padding: 28px;
+        padding: 50px 20px;
       }
 
-      .hero h1 {
-        font-size: 46px;
+      .hero-title {
+        font-size: 62px;
+        letter-spacing: -4px;
       }
 
-      .features,
-      .categories,
-      .products {
-        grid-template-columns: 1fr;
+      .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       .section {
-        margin: 60px auto;
+        padding: 75px 18px;
       }
 
-      .section-heading {
+      .section-top {
         display: block;
       }
 
-      .view-all {
+      .section-description {
+        margin-top: 18px;
+      }
+
+      .section-top .text-link {
         display: inline-block;
-        margin-top: 15px;
+        margin-top: 20px;
+      }
+
+      .drop-banner {
+        min-height: 550px;
+      }
+
+      .drop-content {
+        padding: 30px;
+      }
+
+      .category-grid,
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-card {
+        min-height: 430px;
+      }
+
+      .product-image {
+        height: 430px;
+      }
+
+      .statement {
+        padding: 85px 20px;
+      }
+
+      .story-content {
+        padding: 55px 25px;
+      }
+
+      .story-image {
+        min-height: 420px;
+      }
+
+      .newsletter {
+        padding: 70px 20px;
       }
 
       .newsletter-form {
         flex-direction: column;
       }
 
-      .promo {
-        padding: 35px;
+      .newsletter-button {
+        width: 100%;
       }
 
-      .promo h2 {
-        font-size: 34px;
+      .footer {
+        padding: 60px 20px 25px;
       }
 
-      .footer-inner {
+      .footer-top {
         grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
       }
     }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- HEADER -->
+
+  <!-- ===================================================
+       ANNOUNCEMENT
+  ==================================================== -->
+
+  <div class="announcement">
+    FREE SHIPPING ON ORDERS ABOVE ₹1,999
+  </div>
+
+
+  <!-- ===================================================
+       HEADER
+  ==================================================== -->
 
   <header>
-    <div class="navbar">
 
-      <a href="#" class="logo">
-        RIVOLAND<span>.</span>
+    <div class="nav">
+
+      <a href="#" class="brand">
+        RIVOLAND<span>®</span>
       </a>
 
-      <nav>
+
+      <nav class="nav-links">
+
         <a href="#">Home</a>
-        <a href="#shop">Shop</a>
-        <a href="#categories">Categories</a>
-        <a href="#offers">Offers</a>
-        <a href="#contact">Contact</a>
+
+        <a href="#drop">
+          Drop 001
+        </a>
+
+        <a href="#shop">
+          Shop
+        </a>
+
+        <a href="#story">
+          Our Story
+        </a>
+
+        <a href="#contact">
+          Contact
+        </a>
+
       </nav>
 
-      <div class="nav-actions">
-        <button class="icon-button">⌕</button>
-        <button class="icon-button">♙</button>
 
-        <button class="icon-button cart-button">
-          🛒
-          <span class="cart-count">0</span>
+      <div class="nav-actions">
+
+        <button
+          class="nav-icon"
+          onclick="showMessage('Search coming soon')"
+          aria-label="Search"
+        >
+          ⌕
         </button>
+
+
+        <button
+          class="nav-icon"
+          onclick="showMessage('Account coming soon')"
+          aria-label="Account"
+        >
+          ♙
+        </button>
+
+
+        <button
+          class="nav-icon cart-icon"
+          onclick="openCart()"
+          aria-label="Shopping cart"
+        >
+
+          🛒
+
+          <span
+            class="cart-count"
+            id="cartCount"
+          >
+            0
+          </span>
+
+        </button>
+
       </div>
 
     </div>
+
   </header>
 
 
-  <!-- HERO -->
+  <!-- ===================================================
+       HERO
+  ==================================================== -->
 
   <main>
 
@@ -601,447 +1229,1124 @@
 
       <div class="hero-content">
 
-        <div class="eyebrow">
-          Welcome to Rivoland
+        <div class="hero-kicker">
+          RIVOLAND® / 001
         </div>
 
-        <h1>
-          Discover<br>
-          Your Style.
+        <h1 class="hero-title">
+          Move<br>
+          <span>Beyond.</span>
         </h1>
 
-        <p>
-          Premium products, exceptional quality and a
-          shopping experience designed around you.
+        <p class="hero-description">
+          Built for the ones who don't follow the game.
+          RIVOLAND blends sport, street and culture into
+          a new generation of everyday movement.
         </p>
 
-        <a href="#shop">
-          <button class="primary-button">
-            SHOP NOW →
-          </button>
-        </a>
 
-      </div>
+        <div class="hero-buttons">
 
-    </section>
-
-
-    <!-- FEATURES -->
-
-    <section class="features">
-
-      <div class="feature">
-        <strong>🚚 Fast Delivery</strong>
-        <span>Quick and reliable shipping.</span>
-      </div>
-
-      <div class="feature">
-        <strong>🔒 Secure Payments</strong>
-        <span>Safe and trusted checkout.</span>
-      </div>
-
-      <div class="feature">
-        <strong>↩ Easy Returns</strong>
-        <span>Simple and hassle-free returns.</span>
-      </div>
-
-      <div class="feature">
-        <strong>★ Premium Quality</strong>
-        <span>Products selected for you.</span>
-      </div>
-
-    </section>
-
-
-    <!-- CATEGORIES -->
-
-    <section class="section" id="categories">
-
-      <div class="section-heading">
-
-        <div>
-          <h2>Shop by Category</h2>
-          <p>Explore our collections.</p>
-        </div>
-
-        <a href="#shop" class="view-all">
-          View All
-        </a>
-
-      </div>
-
-
-      <div class="categories">
-
-        <a
-          href="#shop"
-          class="category"
-          style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85')"
-        >
-          <div class="category-content">
-            <h3>Fashion</h3>
-            <span>Explore collection →</span>
-          </div>
-        </a>
-
-
-        <a
-          href="#shop"
-          class="category"
-          style="background-image:url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85')"
-        >
-          <div class="category-content">
-            <h3>Watches</h3>
-            <span>Explore collection →</span>
-          </div>
-        </a>
-
-
-        <a
-          href="#shop"
-          class="category"
-          style="background-image:url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85')"
-        >
-          <div class="category-content">
-            <h3>Accessories</h3>
-            <span>Explore collection →</span>
-          </div>
-        </a>
-
-
-        <a
-          href="#shop"
-          class="category"
-          style="background-image:url('https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=85')"
-        >
-          <div class="category-content">
-            <h3>Essentials</h3>
-            <span>Explore collection →</span>
-          </div>
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- PRODUCTS -->
-
-    <section class="section" id="shop">
-
-      <div class="section-heading">
-
-        <div>
-          <h2>Featured Products</h2>
-          <p>Our handpicked favorites.</p>
-        </div>
-
-        <a href="#shop" class="view-all">
-          Shop All
-        </a>
-
-      </div>
-
-
-      <div class="products">
-
-
-        <article class="product">
-
-          <div
-            class="product-image"
-            style="background-image:url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85')"
-          ></div>
-
-          <div class="product-info">
-
-            <div class="product-category">
-              Fashion
-            </div>
-
-            <h3>Premium Classic T-Shirt</h3>
-
-            <div class="rating">
-              ★★★★★
-            </div>
-
-            <div class="price">
-              ₹999
-            </div>
-
-            <button class="add-button" onclick="addToCart()">
-              Add to Cart
-            </button>
-
-          </div>
-
-        </article>
-
-
-        <article class="product">
-
-          <div
-            class="product-image"
-            style="background-image:url('https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=85')"
-          ></div>
-
-          <div class="product-info">
-
-            <div class="product-category">
-              Watches
-            </div>
-
-            <h3>Classic Premium Watch</h3>
-
-            <div class="rating">
-              ★★★★★
-            </div>
-
-            <div class="price">
-              ₹2,499
-            </div>
-
-            <button class="add-button" onclick="addToCart()">
-              Add to Cart
-            </button>
-
-          </div>
-
-        </article>
-
-
-        <article class="product">
-
-          <div
-            class="product-image"
-            style="background-image:url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85')"
-          ></div>
-
-          <div class="product-info">
-
-            <div class="product-category">
-              Accessories
-            </div>
-
-            <h3>Urban Travel Backpack</h3>
-
-            <div class="rating">
-              ★★★★★
-            </div>
-
-            <div class="price">
-              ₹1,799
-            </div>
-
-            <button class="add-button" onclick="addToCart()">
-              Add to Cart
-            </button>
-
-          </div>
-
-        </article>
-
-
-        <article class="product">
-
-          <div
-            class="product-image"
-            style="background-image:url('https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=85')"
-          ></div>
-
-          <div class="product-info">
-
-            <div class="product-category">
-              Accessories
-            </div>
-
-            <h3>Premium Sunglasses</h3>
-
-            <div class="rating">
-              ★★★★★
-            </div>
-
-            <div class="price">
-              ₹1,299
-            </div>
-
-            <button class="add-button" onclick="addToCart()">
-              Add to Cart
-            </button>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- PROMOTION -->
-
-    <section class="section" id="offers">
-
-      <div class="promo">
-
-        <div class="promo-content">
-
-          <div class="eyebrow">
-            Limited Collection
-          </div>
-
-          <h2>
-            Premium products.<br>
-            Better prices.
-          </h2>
-
-          <p>
-            Discover selected products available for a
-            limited time at special prices.
-          </p>
-
-          <button class="primary-button">
-            EXPLORE OFFERS →
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- NEWSLETTER -->
-
-    <section class="section">
-
-      <div class="newsletter">
-
-        <h2>Stay in the loop.</h2>
-
-        <p>
-          Get new arrivals, exclusive offers and updates
-          directly in your inbox.
-        </p>
-
-        <form
-          class="newsletter-form"
-          onsubmit="subscribe(event)"
-        >
-
-          <input
-            type="email"
-            placeholder="Enter your email address"
-            required
+          <a
+            href="#drop"
+            class="btn btn-primary"
           >
+            Explore Drop 001
+          </a>
 
-          <button class="primary-button">
-            Subscribe
-          </button>
 
-        </form>
+          <a
+            href="#shop"
+            class="btn btn-outline"
+          >
+            Shop Collection
+          </a>
+
+        </div>
 
       </div>
 
     </section>
 
-  </main>
 
+    <!-- =================================================
+         TICKER
+    ================================================== -->
 
-  <!-- FOOTER -->
+    <div class="ticker">
 
-  <footer id="contact">
+      <div class="ticker-track">
 
-    <div class="footer-inner">
+        <span class="ticker-item">
+          RIVOLAND®
+        </span>
 
-      <div class="footer-brand">
+        <span class="ticker-item">
+          SPORT
+        </span>
 
-        <div class="logo">
-          RIVOLAND<span>.</span>
-        </div>
+        <span class="ticker-item">
+          STREET
+        </span>
 
-        <p>
-          A modern shopping destination built around
-          quality, style and a better customer experience.
-        </p>
+        <span class="ticker-item">
+          CULTURE
+        </span>
 
-      </div>
+        <span class="ticker-item">
+          MOVE BEYOND
+        </span>
 
+        <span class="ticker-item">
+          RIVOLAND®
+        </span>
 
-      <div class="footer-column">
+        <span class="ticker-item">
+          SPORT
+        </span>
 
-        <h4>Shop</h4>
+        <span class="ticker-item">
+          STREET
+        </span>
 
-        <a href="#shop">All Products</a>
-        <a href="#categories">Categories</a>
-        <a href="#offers">Offers</a>
+        <span class="ticker-item">
+          CULTURE
+        </span>
 
-      </div>
-
-
-      <div class="footer-column">
-
-        <h4>Help</h4>
-
-        <a href="#">Contact Us</a>
-        <a href="#">Shipping</a>
-        <a href="#">Returns</a>
-        <a href="#">FAQ</a>
-
-      </div>
-
-
-      <div class="footer-column">
-
-        <h4>Legal</h4>
-
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms & Conditions</a>
-        <a href="#">Refund Policy</a>
+        <span class="ticker-item">
+          MOVE BEYOND
+        </span>
 
       </div>
 
     </div>
 
 
-    <div class="copyright">
+    <!-- =================================================
+         DROP 001
+    ================================================== -->
 
-      © 2026 Rivoland.store. All rights reserved.
+    <section
+      class="section"
+      id="drop"
+    >
+
+      <div class="section-top">
+
+        <div>
+
+          <div class="section-kicker">
+            The First Collection
+          </div>
+
+          <h2 class="section-title">
+            Drop 001
+          </h2>
+
+        </div>
+
+
+        <p class="section-description">
+          The beginning of RIVOLAND.
+          Designed around movement, identity and
+          the culture that lives beyond the pitch.
+        </p>
+
+      </div>
+
+
+      <div class="drop-banner">
+
+        <div class="drop-content">
+
+          <div class="drop-number">
+            RIVOLAND / DROP 001
+          </div>
+
+          <div class="drop-title">
+            Built<br>
+            Different.
+          </div>
+
+          <p class="drop-subtitle">
+            A limited first collection created for
+            those who play their own game.
+          </p>
+
+          <br>
+
+          <a
+            href="#shop"
+            class="btn btn-primary"
+          >
+            Shop Drop 001
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+         CATEGORIES
+    ================================================== -->
+
+    <section class="section">
+
+      <div class="section-top">
+
+        <div>
+
+          <div class="section-kicker">
+            Explore
+          </div>
+
+          <h2 class="section-title">
+            Categories
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="category-grid">
+
+
+        <a
+          href="#shop"
+          class="category-card"
+        >
+
+          <img
+            src="https://images.unsplash.com/photo-1553778263-73a83bab9b0c?auto=format&fit=crop&w=1000&q=90"
+            alt="Football"
+          >
+
+          <div class="category-overlay">
+
+            <div class="category-name">
+              Jerseys
+            </div>
+
+            <div class="category-small">
+              Explore collection →
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <a
+          href="#shop"
+          class="category-card"
+        >
+
+          <img
+            src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1000&q=90"
+            alt="Sportswear"
+          >
+
+          <div class="category-overlay">
+
+            <div class="category-name">
+              Sportswear
+            </div>
+
+            <div class="category-small">
+              Explore collection →
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <a
+          href="#shop"
+          class="category-card"
+        >
+
+          <img
+            src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1000&q=90"
+            alt="Training"
+          >
+
+          <div class="category-overlay">
+
+            <div class="category-name">
+              Training
+            </div>
+
+            <div class="category-small">
+              Explore collection →
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <a
+          href="#shop"
+          class="category-card"
+        >
+
+          <img
+            src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=1000&q=90"
+            alt="Streetwear"
+          >
+
+          <div class="category-overlay">
+
+            <div class="category-name">
+              Street
+            </div>
+
+            <div class="category-small">
+              Explore collection →
+            </div>
+
+          </div>
+
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+         PRODUCTS
+    ================================================== -->
+
+    <section
+      class="section"
+      id="shop"
+    >
+
+      <div class="section-top">
+
+        <div>
+
+          <div class="section-kicker">
+            Featured
+          </div>
+
+          <h2 class="section-title">
+            Shop The Drop
+          </h2>
+
+        </div>
+
+
+        <a
+          href="#shop"
+          class="text-link"
+        >
+          View All Products →
+        </a>
+
+      </div>
+
+
+      <div class="product-grid">
+
+
+        <!-- PRODUCT 01 -->
+
+        <article class="product-card">
+
+          <div class="product-image">
+
+            <div class="product-tag">
+              New
+            </div>
+
+            <button
+              class="wishlist"
+              onclick="showMessage('Added to wishlist')"
+            >
+              ♡
+            </button>
+
+            <img
+              src="https://images.unsplash.com/photo-1580087433295-ab2600c1030d?auto=format&fit=crop&w=900&q=90"
+              alt="Rivoland football jersey"
+            >
+
+          </div>
+
+
+          <div class="product-info">
+
+            <div class="product-category">
+              Jersey / Drop 001
+            </div>
+
+            <h3 class="product-name">
+              RIVOLAND Match Jersey
+            </h3>
+
+
+            <div class="product-bottom">
+
+              <div class="product-price">
+                ₹1,499
+              </div>
+
+              <button
+                class="add-cart"
+                onclick="addToCart('RIVOLAND Match Jersey',1499)"
+              >
+                Add
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- PRODUCT 02 -->
+
+        <article class="product-card">
+
+          <div class="product-image">
+
+            <div class="product-tag">
+              Drop 001
+            </div>
+
+            <button
+              class="wishlist"
+              onclick="showMessage('Added to wishlist')"
+            >
+              ♡
+            </button>
+
+            <img
+              src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=90"
+              alt="Rivoland streetwear"
+            >
+
+          </div>
+
+
+          <div class="product-info">
+
+            <div class="product-category">
+              Streetwear
+            </div>
+
+            <h3 class="product-name">
+              RIVOLAND Oversized Tee
+            </h3>
+
+
+            <div class="product-bottom">
+
+              <div class="product-price">
+                ₹999
+              </div>
+
+              <button
+                class="add-cart"
+                onclick="addToCart('RIVOLAND Oversized Tee',999)"
+              >
+                Add
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- PRODUCT 03 -->
+
+        <article class="product-card">
+
+          <div class="product-image">
+
+            <div class="product-tag">
+              Essential
+            </div>
+
+            <button
+              class="wishlist"
+              onclick="showMessage('Added to wishlist')"
+            >
+              ♡
+            </button>
+
+            <img
+              src="https://images.unsplash.com/photo-1506629905607-d9b1f2d6f4b6?auto=format&fit=crop&w=900&q=90"
+              alt="Rivoland sports pants"
+            >
+
+          </div>
+
+
+          <div class="product-info">
+
+            <div class="product-category">
+              Pants
+            </div>
+
+            <h3 class="product-name">
+              RIVOLAND Training Pants
+            </h3>
+
+
+            <div class="product-bottom">
+
+              <div class="product-price">
+                ₹1,299
+              </div>
+
+              <button
+                class="add-cart"
+                onclick="addToCart('RIVOLAND Training Pants',1299)"
+              >
+                Add
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- PRODUCT 04 -->
+
+        <article class="product-card">
+
+          <div class="product-image">
+
+            <div class="product-tag">
+              Limited
+            </div>
+
+            <button
+              class="wishlist"
+              onclick="showMessage('Added to wishlist')"
+            >
+              ♡
+            </button>
+
+            <img
+              src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=90"
+              alt="Rivoland performance wear"
+            >
+
+          </div>
+
+
+          <div class="product-info">
+
+            <div class="product-category">
+              Performance
+            </div>
+
+            <h3 class="product-name">
+              RIVOLAND Performance Top
+            </h3>
+
+
+            <div class="product-bottom">
+
+              <div class="product-price">
+                ₹1,199
+              </div>
+
+              <button
+                class="add-cart"
+                onclick="addToCart('RIVOLAND Performance Top',1199)"
+              >
+                Add
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+         BRAND STATEMENT
+    ================================================== -->
+
+    <section class="statement">
+
+      <div class="statement-kicker">
+        RIVOLAND®
+      </div>
+
+      <h2 class="statement-title">
+        Sport is<br>
+        <span>more than</span><br>
+        a game.
+      </h2>
+
+    </section>
+
+
+    <!-- =================================================
+         STORY
+    ================================================== -->
+
+    <section
+      class="story"
+      id="story"
+    >
+
+      <div class="story-image"></div>
+
+
+      <div class="story-content">
+
+        <div class="story-inner">
+
+          <div class="section-kicker">
+            Our Story
+          </div>
+
+          <h2 class="story-title">
+            Move<br>
+            Beyond.
+          </h2>
+
+          <p class="story-text">
+
+            RIVOLAND was created around a simple idea:
+            sport is not limited to the field.
+
+            <br><br>
+
+            It is in the way we move, the way we dress,
+            the people we meet and the culture we create.
+
+            <br><br>
+
+            RIVOLAND brings sport and street culture
+            together through modern, functional and
+            expressive apparel.
+
+          </p>
+
+          <a
+            href="#contact"
+            class="btn btn-outline"
+          >
+            Discover RIVOLAND
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+         NEWSLETTER
+    ================================================== -->
+
+    <section class="newsletter">
+
+      <div class="newsletter-title">
+        Stay In The Game.
+      </div>
+
+      <p class="newsletter-text">
+        Join the RIVOLAND community for new drops,
+        product launches and exclusive updates.
+      </p>
+
+
+      <form
+        class="newsletter-form"
+        onsubmit="subscribe(event)"
+      >
+
+        <input
+          class="newsletter-input"
+          type="email"
+          placeholder="Your email address"
+          required
+        >
+
+        <button
+          class="newsletter-button"
+          type="submit"
+        >
+          Join RIVOLAND
+        </button>
+
+      </form>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- ===================================================
+       FOOTER
+  ==================================================== -->
+
+  <footer id="contact">
+
+    <div class="footer">
+
+      <div class="footer-top">
+
+
+        <div class="footer-brand">
+
+          <div class="brand">
+            RIVOLAND<span>®</span>
+          </div>
+
+          <p class="footer-description">
+            Sport • Street • Culture.
+            Built for those who move beyond.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <div class="footer-title">
+            Shop
+          </div>
+
+          <div class="footer-links">
+
+            <a href="#shop">
+              Jerseys
+            </a>
+
+            <a href="#shop">
+              Sportswear
+            </a>
+
+            <a href="#shop">
+              Pants
+            </a>
+
+            <a href="#shop">
+              Accessories
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <div class="footer-title">
+            Help
+          </div>
+
+          <div class="footer-links">
+
+            <a href="#">
+              Contact
+            </a>
+
+            <a href="#">
+              Size Guide
+            </a>
+
+            <a href="#">
+              Shipping
+            </a>
+
+            <a href="#">
+              Returns
+            </a>
+
+            <a href="#">
+              FAQ
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <div class="footer-title">
+            Follow
+          </div>
+
+          <div class="footer-links">
+
+            <a href="#">
+              Instagram
+            </a>
+
+            <a href="#">
+              Facebook
+            </a>
+
+            <a href="#">
+              YouTube
+            </a>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <div>
+          © 2026 RIVOLAND®. All rights reserved.
+        </div>
+
+        <div>
+          Sport • Street • Culture
+        </div>
+
+      </div>
 
     </div>
 
   </footer>
 
 
-  <!-- BASIC CART FUNCTION -->
+  <!-- ===================================================
+       CART DRAWER
+  ==================================================== -->
+
+  <div
+    class="cart-overlay"
+    id="cartOverlay"
+    onclick="closeCartOutside(event)"
+  >
+
+    <div class="cart-drawer">
+
+
+      <div class="cart-header">
+
+        <h3>
+          Your Cart
+        </h3>
+
+        <button
+          class="close-cart"
+          onclick="closeCart()"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div
+        class="cart-body"
+        id="cartBody"
+      >
+
+        <div class="empty-cart">
+          Your cart is currently empty.
+        </div>
+
+      </div>
+
+
+      <div class="cart-footer">
+
+        <div class="cart-total">
+
+          <span>
+            Total
+          </span>
+
+          <span id="cartTotal">
+            ₹0
+          </span>
+
+        </div>
+
+        <button
+          class="checkout-button"
+          onclick="showMessage('Checkout will be connected later')"
+        >
+          Proceed to Checkout
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================
+       TOAST
+  ==================================================== -->
+
+  <div
+    class="toast"
+    id="toast"
+  ></div>
+
+
+  <!-- ===================================================
+       JAVASCRIPT
+  ==================================================== -->
 
   <script>
 
-    let cartCount = 0;
+    let cart = [];
 
-    function addToCart() {
 
-      cartCount++;
+    /* -----------------------------------------------
+       ADD TO CART
+    ------------------------------------------------ */
 
-      document.querySelector(".cart-count").textContent =
-        cartCount;
+    function addToCart(name, price) {
 
-      alert("Product added to cart!");
+      cart.push({
+        name: name,
+        price: price
+      });
+
+      updateCart();
+
+      showMessage(
+        name + " added to cart"
+      );
 
     }
 
+
+    /* -----------------------------------------------
+       UPDATE CART
+    ------------------------------------------------ */
+
+    function updateCart() {
+
+      const count =
+        document.getElementById("cartCount");
+
+      const total =
+        document.getElementById("cartTotal");
+
+      const body =
+        document.getElementById("cartBody");
+
+
+      count.textContent = cart.length;
+
+
+      const cartTotal =
+        cart.reduce(
+          (sum, item) => sum + item.price,
+          0
+        );
+
+
+      total.textContent =
+        "₹" + cartTotal.toLocaleString("en-IN");
+
+
+      if (cart.length === 0) {
+
+        body.innerHTML = `
+          <div class="empty-cart">
+            Your cart is currently empty.
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      body.innerHTML = cart.map(
+        (item, index) => `
+
+          <div
+            style="
+              display:flex;
+              justify-content:space-between;
+              gap:15px;
+              padding:18px 0;
+              border-bottom:1px solid rgba(255,255,255,.1);
+            "
+          >
+
+            <div>
+
+              <div
+                style="
+                  font-size:12px;
+                  font-weight:800;
+                  text-transform:uppercase;
+                "
+              >
+                ${item.name}
+              </div>
+
+              <div
+                style="
+                  color:#888;
+                  font-size:11px;
+                  margin-top:6px;
+                "
+              >
+                ₹${item.price.toLocaleString("en-IN")}
+              </div>
+
+            </div>
+
+
+            <button
+              onclick="removeFromCart(${index})"
+              style="
+                background:none;
+                border:0;
+                color:#888;
+                cursor:pointer;
+              "
+            >
+              Remove
+            </button>
+
+          </div>
+
+        `
+      ).join("");
+
+    }
+
+
+    /* -----------------------------------------------
+       REMOVE FROM CART
+    ------------------------------------------------ */
+
+    function removeFromCart(index) {
+
+      cart.splice(index, 1);
+
+      updateCart();
+
+    }
+
+
+    /* -----------------------------------------------
+       OPEN CART
+    ------------------------------------------------ */
+
+    function openCart() {
+
+      document
+        .getElementById("cartOverlay")
+        .classList.add("active");
+
+      document.body.classList.add("no-scroll");
+
+    }
+
+
+    /* -----------------------------------------------
+       CLOSE CART
+    ------------------------------------------------ */
+
+    function closeCart() {
+
+      document
+        .getElementById("cartOverlay")
+        .classList.remove("active");
+
+      document.body.classList.remove("no-scroll");
+
+    }
+
+
+    /* -----------------------------------------------
+       CLOSE CART OUTSIDE
+    ------------------------------------------------ */
+
+    function closeCartOutside(event) {
+
+      if (
+        event.target.id === "cartOverlay"
+      ) {
+
+        closeCart();
+
+      }
+
+    }
+
+
+    /* -----------------------------------------------
+       TOAST MESSAGE
+    ------------------------------------------------ */
+
+    function showMessage(message) {
+
+      const toast =
+        document.getElementById("toast");
+
+      toast.textContent = message;
+
+      toast.classList.add("show");
+
+
+      setTimeout(() => {
+
+        toast.classList.remove("show");
+
+      }, 2200);
+
+    }
+
+
+    /* -----------------------------------------------
+       NEWSLETTER
+    ------------------------------------------------ */
 
     function subscribe(event) {
 
       event.preventDefault();
 
-      alert("Thank you for subscribing to Rivoland!");
+      showMessage(
+        "Welcome to RIVOLAND®"
+      );
 
       event.target.reset();
 
     }
 
   </script>
+
 
 </body>
 </html>
