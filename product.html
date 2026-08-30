@@ -10,9 +10,15 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>
-    Portugal Football Jersey | RIVOLAND®
+  <title id="pageTitle">
+    RIVOLAND® — Product
   </title>
+
+  <meta
+    name="description"
+    id="pageDescription"
+    content="Shop RIVOLAND®."
+  >
 
   <style>
 
@@ -49,12 +55,8 @@
       text-decoration: none;
     }
 
-    button,
-    select {
-      font: inherit;
-    }
-
     button {
+      font: inherit;
       cursor: pointer;
     }
 
@@ -77,15 +79,18 @@
       height: 76px;
       margin: auto;
       padding: 0 28px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 30px;
     }
 
     .logo {
       font-size: 25px;
       font-weight: 1000;
       letter-spacing: -2px;
+      white-space: nowrap;
     }
 
     .logo span {
@@ -95,6 +100,7 @@
     .nav-links {
       display: flex;
       gap: 30px;
+
       font-size: 12px;
       font-weight: 800;
       letter-spacing: 1px;
@@ -119,7 +125,7 @@
 
 
     /* =========================
-       PRODUCT SECTION
+       PRODUCT AREA
     ========================== */
 
     .product-page {
@@ -186,10 +192,12 @@
       background: var(--accent);
       color: #000;
       padding: 7px 10px;
+
       font-size: 9px;
       font-weight: 1000;
       letter-spacing: 1px;
       text-transform: uppercase;
+
       margin-bottom: 18px;
     }
 
@@ -226,7 +234,7 @@
 
 
     /* =========================
-       PRODUCT OPTIONS
+       OPTIONS
     ========================== */
 
     .option {
@@ -235,10 +243,12 @@
 
     .option-label {
       display: block;
+
       font-size: 10px;
       font-weight: 900;
       letter-spacing: 1.5px;
       text-transform: uppercase;
+
       margin-bottom: 12px;
     }
 
@@ -251,9 +261,11 @@
     .size-button {
       min-width: 54px;
       padding: 13px 15px;
+
       border: 1px solid #444;
       background: transparent;
       color: white;
+
       font-size: 11px;
       font-weight: 900;
     }
@@ -273,16 +285,20 @@
     .quantity {
       display: flex;
       align-items: center;
+
       width: 145px;
+
       border: 1px solid #444;
     }
 
     .quantity button {
       width: 45px;
       height: 45px;
+
       border: none;
       background: transparent;
       color: white;
+
       font-size: 18px;
     }
 
@@ -293,17 +309,19 @@
     .quantity-value {
       flex: 1;
       text-align: center;
+
       font-weight: 800;
       font-size: 13px;
     }
 
 
     /* =========================
-       BUTTONS
+       ACTIONS
     ========================== */
 
     .actions {
       margin-top: 35px;
+
       display: grid;
       gap: 10px;
     }
@@ -311,9 +329,12 @@
     .add-button {
       width: 100%;
       padding: 17px;
+
       background: transparent;
       color: white;
+
       border: 1px solid white;
+
       font-size: 11px;
       font-weight: 1000;
       letter-spacing: 1.5px;
@@ -328,9 +349,12 @@
     .buy-button {
       width: 100%;
       padding: 18px;
+
       border: none;
+
       background: var(--accent);
       color: #000;
+
       font-size: 11px;
       font-weight: 1000;
       letter-spacing: 1.5px;
@@ -353,17 +377,22 @@
 
     .detail-row {
       padding: 18px 0;
+
       border-bottom: 1px solid var(--line);
+
       display: flex;
       justify-content: space-between;
       gap: 20px;
+
       font-size: 12px;
     }
 
     .detail-label {
       color: #777;
+
       text-transform: uppercase;
       letter-spacing: 1px;
+
       font-size: 10px;
       font-weight: 800;
     }
@@ -375,20 +404,27 @@
 
 
     /* =========================
-       CART TOAST
+       TOAST
     ========================== */
 
     .toast {
       position: fixed;
+
       left: 50%;
       bottom: 25px;
+
       transform: translate(-50%, 100px);
+
       background: white;
       color: black;
+
       padding: 14px 20px;
+
       font-size: 11px;
       font-weight: 900;
+
       z-index: 999;
+
       transition: 0.3s;
     }
 
@@ -444,9 +480,12 @@
 
     .copyright {
       border-top: 1px solid var(--line);
+
       margin-top: 40px;
       padding-top: 20px;
+
       color: #555;
+
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -529,7 +568,9 @@
 <body>
 
 
-  <!-- HEADER -->
+  <!-- =========================
+       HEADER
+  ========================== -->
 
   <header>
 
@@ -572,37 +613,53 @@
   </header>
 
 
-  <!-- PRODUCT -->
+  <!-- =========================
+       PRODUCT
+  ========================== -->
 
   <main class="product-page">
 
     <div class="breadcrumbs">
-      RIVOLAND® / SHOP / <span>PORTUGAL FOOTBALL JERSEY</span>
+
+      RIVOLAND® /
+      SHOP /
+      <span id="breadcrumbProduct">
+        PRODUCT
+      </span>
+
     </div>
 
 
     <div class="product-layout">
 
 
-      <!-- GALLERY -->
+      <!-- =====================
+           GALLERY
+      ====================== -->
 
       <div class="gallery">
+
 
         <div class="gallery-image">
 
           <img
-            src="portugal-jersey-front.jpeg"
-            alt="Portugal Football Jersey Front"
+            id="productImage1"
+            src=""
+            alt=""
           >
 
         </div>
 
 
-        <div class="gallery-image">
+        <div
+          class="gallery-image"
+          id="galleryImage2"
+        >
 
           <img
-            src="portugal-jersey-back.jpeg"
-            alt="Portugal Football Jersey Back"
+            id="productImage2"
+            src=""
+            alt=""
           >
 
         </div>
@@ -610,32 +667,50 @@
       </div>
 
 
-      <!-- INFORMATION -->
+      <!-- =====================
+           INFO
+      ====================== -->
 
       <div class="product-info">
 
-        <div class="tag">
+
+        <div
+          class="tag"
+          id="productTag"
+        >
           DROP 001
         </div>
 
-        <div class="category">
-          Jerseys / Football
+
+        <div
+          class="category"
+          id="productCategory"
+        >
+          PRODUCT
         </div>
 
-        <h1 class="product-title">
-          Portugal<br>
-          Football Jersey
+
+        <h1
+          class="product-title"
+          id="productName"
+        >
+          Product
         </h1>
 
-        <div class="product-price">
-          ₹799
+
+        <div
+          class="product-price"
+          id="productPrice"
+        >
+          ₹0
         </div>
 
 
-        <p class="product-description">
-          A classic red football jersey inspired by
-          Portugal's football identity. Designed for
-          everyday wear, match days and football culture.
+        <p
+          class="product-description"
+          id="productDescription"
+        >
+          Product description.
         </p>
 
 
@@ -647,8 +722,8 @@
             Color
           </span>
 
-          <div>
-            Red
+          <div id="productColor">
+            -
           </div>
 
         </div>
@@ -663,7 +738,10 @@
           </span>
 
 
-          <div class="sizes">
+          <div
+            class="sizes"
+            id="sizeOptions"
+          >
 
             <button
               class="size-button"
@@ -766,14 +844,18 @@
 
         <div class="details">
 
+
           <div class="detail-row">
 
             <div class="detail-label">
               Product
             </div>
 
-            <div class="detail-value">
-              Portugal Football Jersey
+            <div
+              class="detail-value"
+              id="detailProduct"
+            >
+              -
             </div>
 
           </div>
@@ -785,8 +867,11 @@
               Color
             </div>
 
-            <div class="detail-value">
-              Red
+            <div
+              class="detail-value"
+              id="detailColor"
+            >
+              -
             </div>
 
           </div>
@@ -798,8 +883,11 @@
               Price
             </div>
 
-            <div class="detail-value">
-              ₹799
+            <div
+              class="detail-value"
+              id="detailPrice"
+            >
+              -
             </div>
 
           </div>
@@ -811,8 +899,11 @@
               Category
             </div>
 
-            <div class="detail-value">
-              Football Jerseys
+            <div
+              class="detail-value"
+              id="detailCategory"
+            >
+              -
             </div>
 
           </div>
@@ -830,6 +921,7 @@
 
           </div>
 
+
         </div>
 
       </div>
@@ -839,13 +931,16 @@
   </main>
 
 
-  <!-- FOOTER -->
+  <!-- =========================
+       FOOTER
+  ========================== -->
 
   <footer>
 
     <div class="footer">
 
       <div class="footer-top">
+
 
         <div>
 
@@ -871,11 +966,12 @@
             Shop
           </a>
 
-          <a href="#">
+          <a href="index.html#contact">
             Contact
           </a>
 
         </div>
+
 
       </div>
 
@@ -899,51 +995,410 @@
   ></div>
 
 
-  <!-- JAVASCRIPT -->
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
 
   <script>
 
-    let selectedSize = "";
 
-    let quantity = 1;
+    /* ==========================================
+       PRODUCT DATABASE
+    ========================================== */
+
+    const products = {
+
+
+      "portugal-jersey": {
+
+        name: "Portugal Football Jersey",
+
+        price: 799,
+
+        color: "Red",
+
+        category: "Jerseys / Football",
+
+        tag: "DROP 001",
+
+        description:
+          "A classic red football jersey inspired by Portugal's football identity. Designed for everyday wear, match days and football culture.",
+
+        image1:
+          "portugal-jersey-front.jpeg",
+
+        image2:
+          "portugal-jersey-back.jpeg"
+
+      },
+
+
+      "oversized-tee": {
+
+        name: "RIVOLAND Oversized Tee",
+
+        price: 999,
+
+        color: "Red",
+
+        category: "Streetwear",
+
+        tag: "DROP 001",
+
+        description:
+          "A relaxed oversized silhouette designed for everyday streetwear, movement and modern sport culture.",
+
+        image1:
+          "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=90",
+
+        image2:
+          "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=90"
+
+      },
+
+
+      "training-pants": {
+
+        name: "RIVOLAND Training Pants",
+
+        price: 1299,
+
+        color: "Black",
+
+        category: "Pants",
+
+        tag: "ESSENTIAL",
+
+        description:
+          "Functional training pants made for movement, training sessions and everyday active wear.",
+
+        image1:
+          "https://images.unsplash.com/photo-1506629905607-d9b1f2d6f4b6?auto=format&fit=crop&w=900&q=90",
+
+        image2:
+          "https://images.unsplash.com/photo-1506629905607-d9b1f2d6f4b6?auto=format&fit=crop&w=900&q=90"
+
+      },
+
+
+      "performance-top": {
+
+        name: "RIVOLAND Performance Top",
+
+        price: 1199,
+
+        color: "Red",
+
+        category: "Performance",
+
+        tag: "LIMITED",
+
+        description:
+          "A lightweight performance-inspired top designed for training, movement and active everyday wear.",
+
+        image1:
+          "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=90",
+
+        image2:
+          "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=90"
+
+      }
+
+    };
+
+
+    /* ==========================================
+       READ PRODUCT FROM URL
+    ========================================== */
+
+    const urlParams =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const productId =
+      urlParams.get("product");
+
+
+    const product =
+      products[productId]
+      || products["portugal-jersey"];
+
+
+    /* ==========================================
+       LOAD PRODUCT
+    ========================================== */
+
+    function loadProduct() {
+
+
+      document.title =
+        product.name +
+        " | RIVOLAND®";
+
+
+      document
+        .getElementById("pageTitle")
+        .textContent =
+          product.name +
+          " | RIVOLAND®";
+
+
+      document
+        .getElementById("pageDescription")
+        .setAttribute(
+          "content",
+          product.name +
+          " — RIVOLAND®."
+        );
+
+
+      document
+        .getElementById("breadcrumbProduct")
+        .textContent =
+          product.name;
+
+
+      document
+        .getElementById("productTag")
+        .textContent =
+          product.tag;
+
+
+      document
+        .getElementById("productCategory")
+        .textContent =
+          product.category;
+
+
+      document
+        .getElementById("productName")
+        .innerHTML =
+          formatTitle(product.name);
+
+
+      document
+        .getElementById("productPrice")
+        .textContent =
+          formatPrice(product.price);
+
+
+      document
+        .getElementById("productDescription")
+        .textContent =
+          product.description;
+
+
+      document
+        .getElementById("productColor")
+        .textContent =
+          product.color;
+
+
+      document
+        .getElementById("detailProduct")
+        .textContent =
+          product.name;
+
+
+      document
+        .getElementById("detailColor")
+        .textContent =
+          product.color;
+
+
+      document
+        .getElementById("detailPrice")
+        .textContent =
+          formatPrice(product.price);
+
+
+      document
+        .getElementById("detailCategory")
+        .textContent =
+          product.category;
+
+
+      const image1 =
+        document.getElementById(
+          "productImage1"
+        );
+
+
+      const image2 =
+        document.getElementById(
+          "productImage2"
+        );
+
+
+      image1.src =
+        product.image1;
+
+      image1.alt =
+        product.name +
+        " - Image 1";
+
+
+      image2.src =
+        product.image2;
+
+      image2.alt =
+        product.name +
+        " - Image 2";
+
+
+      if (
+        product.image1 ===
+        product.image2
+      ) {
+
+        document
+          .getElementById(
+            "galleryImage2"
+          )
+          .style.display = "none";
+
+      } else {
+
+        document
+          .getElementById(
+            "galleryImage2"
+          )
+          .style.display = "";
+
+      }
+
+    }
+
+
+    /* ==========================================
+       FORMAT TITLE
+    ========================================== */
+
+    function formatTitle(name) {
+
+      const words =
+        name.split(" ");
+
+
+      if (words.length <= 1) {
+
+        return name;
+
+      }
+
+
+      const middle =
+        Math.ceil(
+          words.length / 2
+        );
+
+
+      return (
+        words
+          .slice(0, middle)
+          .join(" ") +
+        "<br>" +
+        words
+          .slice(middle)
+          .join(" ")
+      );
+
+    }
+
+
+    /* ==========================================
+       FORMAT PRICE
+    ========================================== */
+
+    function formatPrice(price) {
+
+      return (
+        "₹" +
+        Number(price)
+          .toLocaleString("en-IN")
+      );
+
+    }
+
+
+    /* ==========================================
+       SIZE
+    ========================================== */
+
+    let selectedSize = "";
 
 
     function selectSize(button) {
 
+
       document
-        .querySelectorAll(".size-button")
+        .querySelectorAll(
+          ".size-button"
+        )
         .forEach(
-          item => item.classList.remove("active")
+          item =>
+            item.classList.remove(
+              "active"
+            )
         );
 
-      button.classList.add("active");
 
-      selectedSize = button.textContent.trim();
+      button.classList.add(
+        "active"
+      );
+
+
+      selectedSize =
+        button.textContent.trim();
 
     }
+
+
+    /* ==========================================
+       QUANTITY
+    ========================================== */
+
+    let quantity = 1;
 
 
     function changeQuantity(amount) {
 
       quantity += amount;
 
+
       if (quantity < 1) {
+
         quantity = 1;
+
       }
+
 
       if (quantity > 10) {
+
         quantity = 10;
+
       }
 
+
       document
-        .getElementById("quantity")
-        .textContent = quantity;
+        .getElementById(
+          "quantity"
+        )
+        .textContent =
+          quantity;
 
     }
 
+
+    /* ==========================================
+       ADD TO CART
+    ========================================== */
 
     function addProductToCart() {
 
+
       if (!selectedSize) {
 
         showToast(
@@ -954,23 +1409,89 @@
 
       }
 
+
+      const cartItem = {
+
+        productId:
+          productId
+          || "portugal-jersey",
+
+        name:
+          product.name,
+
+        price:
+          product.price,
+
+        size:
+          selectedSize,
+
+        quantity:
+          quantity,
+
+        color:
+          product.color,
+
+        image:
+          product.image1
+
+      };
+
+
+      let cart = [];
+
+
+      try {
+
+        cart =
+          JSON.parse(
+            localStorage.getItem(
+              "rivolandCart"
+            )
+          ) || [];
+
+      } catch (error) {
+
+        cart = [];
+
+      }
+
+
+      cart.push(cartItem);
+
+
+      localStorage.setItem(
+        "rivolandCart",
+        JSON.stringify(cart)
+      );
+
+
       const total =
-        799 * quantity;
+        product.price *
+        quantity;
+
 
       showToast(
-        "Added " +
+
         quantity +
-        " × Portugal Jersey (" +
+        " × " +
+        product.name +
+        " (" +
         selectedSize +
-        ") — ₹" +
-        total
+        ") added — " +
+        formatPrice(total)
+
       );
 
     }
 
+
+    /* ==========================================
+       BUY NOW
+    ========================================== */
 
     function buyNow() {
 
+
       if (!selectedSize) {
 
         showToast(
@@ -981,31 +1502,90 @@
 
       }
 
+
+      localStorage.setItem(
+
+        "rivolandBuyNow",
+
+        JSON.stringify({
+
+          productId:
+            productId
+            || "portugal-jersey",
+
+          name:
+            product.name,
+
+          price:
+            product.price,
+
+          size:
+            selectedSize,
+
+          quantity:
+            quantity,
+
+          color:
+            product.color,
+
+          image:
+            product.image1
+
+        })
+
+      );
+
+
       showToast(
-        "Checkout will be connected soon."
+        "Buy Now will be connected to checkout next."
       );
 
     }
 
 
+    /* ==========================================
+       TOAST
+    ========================================== */
+
     function showToast(message) {
 
+
       const toast =
-        document.getElementById("toast");
+        document.getElementById(
+          "toast"
+        );
 
-      toast.textContent = message;
 
-      toast.classList.add("show");
+      toast.textContent =
+        message;
+
+
+      toast.classList.add(
+        "show"
+      );
 
 
       setTimeout(
         () => {
-          toast.classList.remove("show");
+
+          toast.classList.remove(
+            "show"
+          );
+
         },
+
         2500
+
       );
 
     }
+
+
+    /* ==========================================
+       START
+    ========================================== */
+
+    loadProduct();
 
   </script>
 
