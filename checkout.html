@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Checkout | RIVOLAND®</title>
+
+  <style>
+
+    :root {
+      --black: #080808;
+      --dark: #111111;
+      --white: #ffffff;
+      --grey: #888888;
+      --line: rgba(255,255,255,0.12);
+      --accent: #d9ff00;
+      --max: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--black);
+      color: white;
+      line-height: 1.5;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,8,8,0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(15px);
+    }
+
+    .nav {
+      max-width: var(--max);
+      height: 76px;
+      margin: auto;
+      padding: 0 28px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 1000;
+      letter-spacing: -2px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .back {
+      color: #aaa;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .back:hover {
+      color: white;
+    }
+
+    /* PAGE */
+
+    .page {
+      max-width: var(--max);
+      margin: auto;
+      padding: 70px 28px 120px;
+    }
+
+    .kicker {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 80px);
+      line-height: .9;
+      letter-spacing: -5px;
+      text-transform: uppercase;
+    }
+
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 50px;
+      margin-top: 55px;
+      align-items: start;
+    }
+
+    /* FORM */
+
+    .form-section {
+      border-top: 1px solid var(--line);
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 25px 0 20px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .field {
+      margin-bottom: 15px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      color: #aaa;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      background: #111;
+      color: white;
+      border: 1px solid #333;
+      padding: 14px;
+      outline: none;
+      border-radius: 0;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: white;
+    }
+
+    .submit-button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 17px;
+      border: none;
+      background: var(--accent);
+      color: #000;
+      font-size: 10px;
+      font-weight: 1000;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .submit-button:hover {
+      background: white;
+    }
+
+    /* SUMMARY */
+
+    .summary {
+      position: sticky;
+      top: 105px;
+      border: 1px solid var(--line);
+      padding: 25px;
+    }
+
+    .summary-title {
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .summary-item {
+      display: grid;
+      grid-template-columns: 65px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .summary-image {
+      width: 65px;
+      height: 75px;
+      background: #eee;
+      overflow: hidden;
+    }
+
+    .summary-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .summary-name {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .summary-meta {
+      color: #777;
+      font-size: 10px;
+      margin-top: 5px;
+    }
+
+    .summary-price {
+      font-size: 11px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 18px 0 0;
+      margin-top: 5px;
+      border-top: 1px solid var(--line);
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    /* NOTICE */
+
+    .notice {
+      color: #777;
+      font-size: 11px;
+      line-height: 1.7;
+      margin-top: 20px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--line);
+      background: #050505;
+    }
+
+    .footer {
+      max-width: var(--max);
+      margin: auto;
+      padding: 40px 28px;
+      color: #555;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 850px) {
+
+      .checkout-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        position: static;
+        order: -1;
+      }
+
+    }
+
+    @media (max-width: 550px) {
+
+      .nav {
+        padding: 0 16px;
+      }
+
+      .page {
+        padding: 50px 16px 80px;
+      }
+
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .summary-item {
+        grid-template-columns: 55px 1fr auto;
+      }
+
+      .summary-image {
+        width: 55px;
+        height: 65px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="nav">
+
+      <a
+        href="index.html"
+        class="logo"
+      >
+        RIVOLAND<span>®</span>
+      </a>
+
+      <a
+        href="cart.html"
+        class="back"
+      >
+        ← Back to Cart
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- PAGE -->
+
+  <main class="page">
+
+    <div class="kicker">
+      RIVOLAND® / CHECKOUT
+    </div>
+
+    <h1>
+      Checkout
+    </h1>
+
+
+    <div class="checkout-grid">
+
+
+      <!-- FORM -->
+
+      <div>
+
+
+        <section class="form-section">
+
+          <div class="section-title">
+            Contact Information
+          </div>
+
+
+          <div class="field-grid">
+
+
+            <div class="field">
+
+              <label for="firstName">
+                First Name
+              </label>
+
+              <input
+                id="firstName"
+                type="text"
+                required
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="lastName">
+                Last Name
+              </label>
+
+              <input
+                id="lastName"
+                type="text"
+                required
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="email">
+                Email Address
+              </label>
+
+              <input
+                id="email"
+                type="email"
+                required
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="phone">
+                Phone Number
+              </label>
+
+              <input
+                id="phone"
+                type="tel"
+                required
+              >
+
+            </div>
+
+
+          </div>
+
+        </section>
+
+
+        <section class="form-section">
+
+          <div class="section-title">
+            Shipping Address
+          </div>
+
+
+          <div class="field-grid">
+
+
+            <div class="field full">
+
+              <label for="address">
+                Address
+              </label>
+
+              <textarea
+                id="address"
+                required
+              ></textarea>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="city">
+                City
+              </label>
+
+              <input
+                id="city"
+                type="text"
+                required
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="state">
+                State
+              </label>
+
+              <input
+                id="state"
+                type="text"
+                required
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="pincode">
+                PIN Code
+              </label>
+
+              <input
+                id="pincode"
+                type="text"
+                inputmode="numeric"
+                required
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="country">
+                Country
+              </label>
+
+              <input
+                id="country"
+                type="text"
+                value="India"
+                required
+              >
+
+            </div>
+
+
+          </div>
+
+        </section>
+
+
+        <button
+          class="submit-button"
+          onclick="continueToPayment()"
+        >
+          Continue to Payment
+        </button>
+
+
+        <div class="notice">
+
+          Your information will be used to process your
+          order and arrange delivery. Payment processing
+          will be connected after this checkout stage is tested.
+
+        </div>
+
+
+      </div>
+
+
+      <!-- SUMMARY -->
+
+      <aside class="summary">
+
+        <div class="summary-title">
+          Your Order
+        </div>
+
+
+        <div id="summaryItems"></div>
+
+
+        <div class="total-row">
+
+          <span>
+            Total
+          </span>
+
+          <span id="summaryTotal">
+            ₹0
+          </span>
+
+        </div>
+
+      </aside>
+
+
+    </div>
+
+  </main>
+
+
+  <footer>
+
+    <div class="footer">
+
+      © 2026 RIVOLAND®. All rights reserved.
+
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    let cart = [];
+
+
+    /* ==========================================
+       LOAD CART
+    ========================================== */
+
+    try {
+
+      cart =
+        JSON.parse(
+          localStorage.getItem("rivolandCart")
+        ) || [];
+
+    } catch (error) {
+
+      cart = [];
+
+    }
+
+
+    /* ==========================================
+       FORMAT PRICE
+    ========================================== */
+
+    function formatPrice(price) {
+
+      return (
+        "₹" +
+        Number(price)
+          .toLocaleString("en-IN")
+      );
+
+    }
+
+
+    /* ==========================================
+       LOAD SUMMARY
+    ========================================== */
+
+    function renderSummary() {
+
+      const container =
+        document.getElementById(
+          "summaryItems"
+        );
+
+
+      const totalElement =
+        document.getElementById(
+          "summaryTotal"
+        );
+
+
+      if (cart.length === 0) {
+
+        container.innerHTML = `
+
+          <p
+            style="
+              color:#777;
+              font-size:12px;
+              padding:25px 0;
+            "
+          >
+            Your cart is empty.
+          </p>
+
+          <a
+            href="index.html#shop"
+            style="
+              display:block;
+              border:1px solid white;
+              text-align:center;
+              padding:13px;
+              font-size:10px;
+              font-weight:900;
+              letter-spacing:1px;
+              text-transform:uppercase;
+            "
+          >
+            Shop Now
+          </a>
+
+        `;
+
+        totalElement.textContent = "₹0";
+
+        return;
+
+      }
+
+
+      let total = 0;
+
+
+      container.innerHTML =
+        cart.map(
+          item => {
+
+            const quantity =
+              item.quantity || 1;
+
+            const itemTotal =
+              Number(item.price) *
+              quantity;
+
+            total += itemTotal;
+
+
+            return `
+
+              <div class="summary-item">
+
+                <div class="summary-image">
+
+                  ${
+                    item.image
+
+                    ?
+
+                    `<img
+                      src="${item.image}"
+                      alt="${item.name}"
+                    >`
+
+                    :
+
+                    ""
+                  }
+
+                </div>
+
+
+                <div>
+
+                  <div class="summary-name">
+                    ${item.name}
+                  </div>
+
+                  <div class="summary-meta">
+
+                    ${
+                      item.size
+                      ? "Size: " + item.size
+                      : ""
+                    }
+
+                    <br>
+
+                    Qty: ${quantity}
+
+                  </div>
+
+                </div>
+
+
+                <div class="summary-price">
+
+                  ${formatPrice(itemTotal)}
+
+                </div>
+
+              </div>
+
+            `;
+
+          }
+        ).join("");
+
+
+      totalElement.textContent =
+        formatPrice(total);
+
+    }
+
+
+    /* ==========================================
+       CONTINUE TO PAYMENT
+    ========================================== */
+
+    function continueToPayment() {
+
+
+      if (cart.length === 0) {
+
+        alert(
+          "Your cart is empty."
+        );
+
+        return;
+
+      }
+
+
+      const fields = [
+
+        "firstName",
+        "lastName",
+        "email",
+        "phone",
+        "address",
+        "city",
+        "state",
+        "pincode",
+        "country"
+
+      ];
+
+
+      for (
+        const fieldId of fields
+      ) {
+
+        const field =
+          document.getElementById(
+            fieldId
+          );
+
+
+        if (!field.value.trim()) {
+
+          field.focus();
+
+          alert(
+            "Please complete all required fields."
+          );
+
+          return;
+
+        }
+
+      }
+
+
+      const checkoutData = {
+
+        customer: {
+
+          firstName:
+            document.getElementById(
+              "firstName"
+            ).value.trim(),
+
+          lastName:
+            document.getElementById(
+              "lastName"
+            ).value.trim(),
+
+          email:
+            document.getElementById(
+              "email"
+            ).value.trim(),
+
+          phone:
+            document.getElementById(
+              "phone"
+            ).value.trim()
+
+        },
+
+
+        shipping: {
+
+          address:
+            document.getElementById(
+              "address"
+            ).value.trim(),
+
+          city:
+            document.getElementById(
+              "city"
+            ).value.trim(),
+
+          state:
+            document.getElementById(
+              "state"
+            ).value.trim(),
+
+          pincode:
+            document.getElementById(
+              "pincode"
+            ).value.trim(),
+
+          country:
+            document.getElementById(
+              "country"
+            ).value.trim()
+
+        },
+
+
+        items: cart,
+
+        total:
+          cart.reduce(
+            (sum, item) =>
+              sum +
+              (
+                Number(item.price) *
+                (item.quantity || 1)
+              ),
+            0
+          )
+
+      };
+
+
+      localStorage.setItem(
+        "rivolandCheckout",
+        JSON.stringify(
+          checkoutData
+        )
+      );
+
+
+      alert(
+        "Checkout details saved. Payment will be connected next."
+      );
+
+    }
+
+
+    renderSummary();
+
+  </script>
+
+
+</body>
+
+</html>
