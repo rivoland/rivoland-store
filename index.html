@@ -2144,6 +2144,17 @@
 
     let cart = [];
 
+    try {
+      cart =
+        JSON.parse(
+          localStorage.getItem("rivolandCart")
+        ) || [];
+   } catch (error) {
+     cart = [];
+   }
+
+   updateCart();
+
 
     /* -----------------------------------------------
        ADD TO CART
@@ -2151,18 +2162,22 @@
 
     function addToCart(name, price) {
 
-      cart.push({
-        name: name,
-        price: price
-      });
+  cart.push({
+    name: name,
+    price: price
+  });
 
-      updateCart();
+  localStorage.setItem(
+    "rivolandCart",
+    JSON.stringify(cart)
+  );
 
-      showMessage(
-        name + " added to cart"
-      );
+  updateCart();
 
-    }
+  showMessage(
+    name + " added to cart"
+  );
+}
 
 
     /* -----------------------------------------------
@@ -2272,12 +2287,15 @@
 
     function removeFromCart(index) {
 
-      cart.splice(index, 1);
+  cart.splice(index, 1);
 
-      updateCart();
+  localStorage.setItem(
+    "rivolandCart",
+    JSON.stringify(cart)
+  );
 
-    }
-
+  updateCart();
+}
 
     /* -----------------------------------------------
        OPEN CART
