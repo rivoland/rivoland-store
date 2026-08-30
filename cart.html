@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Cart | RIVOLAND®</title>
+
+  <style>
+
+    :root {
+      --black: #080808;
+      --dark: #111111;
+      --white: #ffffff;
+      --grey: #888888;
+      --line: rgba(255,255,255,0.12);
+      --accent: #d9ff00;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--black);
+      color: white;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,8,8,0.95);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(15px);
+    }
+
+    .nav {
+      max-width: 1400px;
+      height: 76px;
+      margin: auto;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 1000;
+      letter-spacing: -2px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .back-link {
+      font-size: 11px;
+      font-weight: 800;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .back-link:hover {
+      color: white;
+    }
+
+    /* PAGE */
+
+    .page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 80px 28px 120px;
+    }
+
+    .kicker {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 80px);
+      line-height: .9;
+      letter-spacing: -5px;
+      text-transform: uppercase;
+    }
+
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 45px;
+      margin-top: 55px;
+      align-items: start;
+    }
+
+    /* ITEMS */
+
+    .items {
+      border-top: 1px solid var(--line);
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 130px 1fr auto;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+    }
+
+    .item-image {
+      width: 130px;
+      height: 150px;
+      background: #f1f1f1;
+      overflow: hidden;
+    }
+
+    .item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .item-category {
+      color: #777;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .item-name {
+      font-size: 16px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .item-meta {
+      color: #888;
+      font-size: 11px;
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+
+    .item-price {
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .quantity {
+      display: flex;
+      width: 120px;
+      border: 1px solid #444;
+      height: 40px;
+    }
+
+    .quantity button {
+      width: 38px;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 17px;
+    }
+
+    .quantity button:hover {
+      background: #222;
+    }
+
+    .quantity-value {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .remove {
+      display: block;
+      margin-top: 12px;
+      border: none;
+      background: transparent;
+      color: #777;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .remove:hover {
+      color: white;
+    }
+
+    /* SUMMARY */
+
+    .summary {
+      border: 1px solid var(--line);
+      padding: 25px;
+      position: sticky;
+      top: 105px;
+    }
+
+    .summary-title {
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 15px 0;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      border-top: 1px solid var(--line);
+      margin-top: 5px;
+      padding-top: 18px;
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .checkout {
+      width: 100%;
+      border: none;
+      background: var(--accent);
+      color: #000;
+      padding: 17px;
+      margin-top: 20px;
+      font-size: 10px;
+      font-weight: 1000;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .checkout:hover {
+      background: white;
+    }
+
+    .continue {
+      display: block;
+      text-align: center;
+      border: 1px solid white;
+      padding: 15px;
+      margin-top: 10px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .continue:hover {
+      background: white;
+      color: black;
+    }
+
+    /* EMPTY */
+
+    .empty {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 60px 20px;
+      text-align: center;
+      color: #777;
+    }
+
+    .empty h2 {
+      color: white;
+      font-size: 28px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--line);
+      background: #050505;
+    }
+
+    .footer {
+      max-width: 1400px;
+      margin: auto;
+      padding: 50px 28px 30px;
+    }
+
+    .footer-bottom {
+      color: #555;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .cart-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        position: static;
+      }
+
+    }
+
+    @media (max-width: 560px) {
+
+      .nav {
+        padding: 0 16px;
+      }
+
+      .page {
+        padding: 55px 16px 80px;
+      }
+
+      .item {
+        grid-template-columns: 90px 1fr;
+      }
+
+      .item-image {
+        width: 90px;
+        height: 115px;
+      }
+
+      .item-side {
+        grid-column: 2;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <header>
+
+    <div class="nav">
+
+      <a
+        href="index.html"
+        class="logo"
+      >
+        RIVOLAND<span>®</span>
+      </a>
+
+      <a
+        href="index.html#shop"
+        class="back-link"
+      >
+        ← Continue Shopping
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <main class="page">
+
+    <div class="kicker">
+      RIVOLAND® / CART
+    </div>
+
+    <h1>
+      Your Cart
+    </h1>
+
+
+    <div id="cartArea"></div>
+
+  </main>
+
+
+  <footer>
+
+    <div class="footer">
+
+      <div class="footer-bottom">
+        © 2026 RIVOLAND®. All rights reserved.
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    /* ==========================================
+       CART DATA
+    ========================================== */
+
+    let cart = [];
+
+    try {
+
+      cart =
+        JSON.parse(
+          localStorage.getItem("rivolandCart")
+        ) || [];
+
+    } catch (error) {
+
+      cart = [];
+
+    }
+
+
+    /* ==========================================
+       SAVE
+    ========================================== */
+
+    function saveCart() {
+
+      localStorage.setItem(
+        "rivolandCart",
+        JSON.stringify(cart)
+      );
+
+    }
+
+
+    /* ==========================================
+       FORMAT PRICE
+    ========================================== */
+
+    function formatPrice(price) {
+
+      return (
+        "₹" +
+        Number(price)
+          .toLocaleString("en-IN")
+      );
+
+    }
+
+
+    /* ==========================================
+       CHANGE QUANTITY
+    ========================================== */
+
+    function changeQuantity(index, amount) {
+
+      if (!cart[index]) {
+        return;
+      }
+
+      cart[index].quantity =
+        cart[index].quantity || 1;
+
+      cart[index].quantity += amount;
+
+      if (cart[index].quantity < 1) {
+
+        cart[index].quantity = 1;
+
+      }
+
+      saveCart();
+
+      renderCart();
+
+    }
+
+
+    /* ==========================================
+       REMOVE
+    ========================================== */
+
+    function removeItem(index) {
+
+      cart.splice(index, 1);
+
+      saveCart();
+
+      renderCart();
+
+    }
+
+
+    /* ==========================================
+       TOTAL
+    ========================================== */
+
+    function getSubtotal() {
+
+      return cart.reduce(
+        (total, item) => {
+
+          const quantity =
+            item.quantity || 1;
+
+          return total +
+            (Number(item.price) * quantity);
+
+        },
+
+        0
+      );
+
+    }
+
+
+    /* ==========================================
+       RENDER CART
+    ========================================== */
+
+    function renderCart() {
+
+      const area =
+        document.getElementById("cartArea");
+
+
+      if (cart.length === 0) {
+
+        area.innerHTML = `
+
+          <div class="empty">
+
+            <h2>
+              Your cart is empty.
+            </h2>
+
+            <p>
+              Discover the latest RIVOLAND collection.
+            </p>
+
+            <br>
+
+            <a
+              href="index.html#shop"
+              class="continue"
+            >
+              Shop Now
+            </a>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      const subtotal =
+        getSubtotal();
+
+
+      let itemsHTML = "";
+
+
+      cart.forEach(
+        (item, index) => {
+
+          const quantity =
+            item.quantity || 1;
+
+          const itemTotal =
+            Number(item.price) * quantity;
+
+
+          itemsHTML += `
+
+            <div class="item">
+
+
+              <div class="item-image">
+
+                ${
+                  item.image
+
+                  ?
+
+                  `<img
+                    src="${item.image}"
+                    alt="${item.name}"
+                  >`
+
+                  :
+
+                  ``
+                }
+
+              </div>
+
+
+              <div>
+
+                <div class="item-category">
+                  ${item.color || "RIVOLAND"}
+                </div>
+
+                <div class="item-name">
+                  ${item.name}
+                </div>
+
+                <div class="item-meta">
+
+                  ${
+                    item.size
+                    ? "Size: " + item.size
+                    : ""
+                  }
+
+                </div>
+
+                <button
+                  class="remove"
+                  onclick="removeItem(${index})"
+                >
+                  Remove
+                </button>
+
+              </div>
+
+
+              <div class="item-side">
+
+                <div class="item-price">
+                  ${formatPrice(itemTotal)}
+                </div>
+
+
+                <div class="quantity">
+
+                  <button
+                    onclick="changeQuantity(${index},-1)"
+                  >
+                    −
+                  </button>
+
+                  <div class="quantity-value">
+                    ${quantity}
+                  </div>
+
+                  <button
+                    onclick="changeQuantity(${index},1)"
+                  >
+                    +
+                  </button>
+
+                </div>
+
+              </div>
+
+
+            </div>
+
+          `;
+
+        }
+      );
+
+
+      area.innerHTML = `
+
+        <div class="cart-layout">
+
+
+          <div class="items">
+
+            ${itemsHTML}
+
+          </div>
+
+
+          <aside class="summary">
+
+            <div class="summary-title">
+              Order Summary
+            </div>
+
+
+            <div class="summary-row">
+
+              <span>
+                Subtotal
+              </span>
+
+              <span>
+                ${formatPrice(subtotal)}
+              </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+              <span>
+                Shipping
+              </span>
+
+              <span>
+                Calculated at checkout
+              </span>
+
+            </div>
+
+
+            <div class="summary-total">
+
+              <span>
+                Total
+              </span>
+
+              <span>
+                ${formatPrice(subtotal)}
+              </span>
+
+            </div>
+
+
+            <button
+              class="checkout"
+              onclick="goToCheckout()"
+            >
+              Proceed to Checkout
+            </button>
+
+
+            <a
+              href="index.html#shop"
+              class="continue"
+            >
+              Continue Shopping
+            </a>
+
+          </aside>
+
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* ==========================================
+       CHECKOUT
+    ========================================== */
+
+    function goToCheckout() {
+
+      if (cart.length === 0) {
+
+        return;
+
+      }
+
+      window.location.href =
+        "checkout.html";
+
+    }
+
+
+    /* ==========================================
+       START
+    ========================================== */
+
+    renderCart();
+
+  </script>
+
+
+</body>
+
+</html>
