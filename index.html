@@ -11,7 +11,7 @@
       content="RIVOLAND® — Sport. Street. Culture. Launching 11 September 2026.">
 
 <meta name="theme-color"
-      content="#070707">
+      content="#080808">
 
 <title>RIVOLAND® — Coming Soon</title>
 
@@ -28,62 +28,111 @@
     box-sizing: border-box;
 }
 
-html,
-body {
+html {
     width: 100%;
     min-height: 100%;
+    background: #080808;
 }
 
 body {
-    background: #070707;
+    width: 100%;
+    min-height: 100vh;
+
+    background: #080808;
+
     color: #f5f5f0;
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     overflow-x: hidden;
 }
 
 
 /* =====================================================
-   BACKGROUND
+   MAIN PAGE
 ===================================================== */
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
+.page {
 
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            rgba(255,255,255,0.075),
-            transparent 35%
-        );
+    min-height: 100vh;
 
-    pointer-events: none;
-    z-index: -3;
+    display: flex;
+
+    flex-direction: column;
+
+    position: relative;
+
+    overflow: hidden;
+
+    isolation: isolate;
 }
 
 
-body::after {
+/* =====================================================
+   CINEMATIC LIGHT
+===================================================== */
+
+.page::before {
+
     content: "";
-    position: fixed;
-    inset: 0;
+
+    position: absolute;
+
+    width: 900px;
+    height: 900px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
 
     background:
-        linear-gradient(
-            120deg,
-            transparent 35%,
-            rgba(255,255,255,0.025),
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.075),
             transparent 65%
         );
 
-    animation: backgroundMove 12s ease-in-out infinite;
-
     pointer-events: none;
+
     z-index: -2;
 }
 
 
-@keyframes backgroundMove {
+/* =====================================================
+   MOVING CINEMATIC LIGHT
+===================================================== */
+
+.page::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -50%;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 40%,
+            rgba(255,255,255,0.025),
+            transparent 60%
+        );
+
+    animation:
+        lightMove 12s ease-in-out infinite;
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+@keyframes lightMove {
 
     0% {
         transform: translateX(-15%);
@@ -101,18 +150,54 @@ body::after {
 
 
 /* =====================================================
-   PAGE
+   FILM GRAIN
 ===================================================== */
 
-.page {
-    min-height: 100vh;
+.grain {
 
-    display: flex;
-    flex-direction: column;
+    position: fixed;
 
-    position: relative;
+    inset: -50%;
 
-    overflow: hidden;
+    width: 200%;
+    height: 200%;
+
+    pointer-events: none;
+
+    opacity: 0.035;
+
+    z-index: 20;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.6'/%3E%3C/svg%3E");
+
+    animation:
+        grain 0.25s steps(2) infinite;
+}
+
+
+@keyframes grain {
+
+    0% {
+        transform: translate(0,0);
+    }
+
+    25% {
+        transform: translate(2%,-1%);
+    }
+
+    50% {
+        transform: translate(-1%,2%);
+    }
+
+    75% {
+        transform: translate(1%,1%);
+    }
+
+    100% {
+        transform: translate(-2%,-1%);
+    }
+
 }
 
 
@@ -124,37 +209,80 @@ header {
 
     width: 100%;
 
-    padding: 28px 42px;
+    padding:
+        25px 42px;
 
     display: flex;
 
-    justify-content: space-between;
+    justify-content:
+        space-between;
 
-    align-items: center;
+    align-items:
+        center;
 
     position: relative;
 
-    z-index: 10;
+    z-index: 5;
 }
 
 
-.logo {
+/* =====================================================
+   RIVOLAND LOGO
+===================================================== */
 
-    font-size: 21px;
+.brand-logo {
 
-    font-weight: 900;
+    display: inline-flex;
 
-    letter-spacing: 0.22em;
+    align-items: center;
+
+    justify-content: center;
+
+    text-decoration: none;
+
+    perspective: 800px;
 }
 
 
-.logo sup {
+.brand-logo img {
 
-    font-size: 8px;
+    width: 82px;
 
-    margin-left: 2px;
+    height: auto;
 
-    vertical-align: top;
+    max-height: 55px;
+
+    object-fit: contain;
+
+    display: block;
+
+    animation:
+        logo360 9s linear infinite;
+
+    transform-style: preserve-3d;
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(255,255,255,0.08)
+        );
+}
+
+
+/* Slowly rotate the logo */
+
+@keyframes logo360 {
+
+    from {
+        transform:
+            rotateY(0deg);
+    }
+
+    to {
+        transform:
+            rotateY(360deg);
+    }
+
 }
 
 
@@ -162,14 +290,21 @@ header {
 
     font-size: 9px;
 
-    letter-spacing: 0.25em;
+    font-weight: 600;
 
-    opacity: 0.4;
+    letter-spacing:
+        0.25em;
+
+    text-transform:
+        uppercase;
+
+    opacity:
+        0.45;
 }
 
 
 /* =====================================================
-   MAIN
+   CONTENT
 ===================================================== */
 
 main {
@@ -180,24 +315,33 @@ main {
 
     display: flex;
 
-    justify-content: center;
+    align-items:
+        center;
 
-    align-items: center;
+    justify-content:
+        center;
 
-    padding: 30px 20px 60px;
+    padding:
+        35px 20px 60px;
+
+    position: relative;
+
+    z-index: 2;
 }
 
 
 .content {
 
-    width: min(1100px, 100%);
+    width:
+        min(1100px, 100%);
 
-    text-align: center;
+    text-align:
+        center;
 }
 
 
 /* =====================================================
-   EYEBROW
+   SMALL TOP TEXT
 ===================================================== */
 
 .eyebrow {
@@ -206,33 +350,50 @@ main {
 
     font-weight: 600;
 
-    letter-spacing: 0.38em;
+    letter-spacing:
+        0.38em;
 
-    opacity: 0.45;
+    text-transform:
+        uppercase;
 
-    margin-bottom: 25px;
+    opacity:
+        0.45;
 
-    animation: fadeUp 1s ease forwards;
+    margin-bottom:
+        28px;
+
+    animation:
+        fadeUp 1s ease forwards;
 }
 
 
 /* =====================================================
-   TITLE
+   MAIN TITLE
 ===================================================== */
 
 .title {
 
-    font-size: clamp(60px, 13vw, 175px);
+    font-size:
+        clamp(
+            64px,
+            14vw,
+            185px
+        );
 
-    line-height: 0.82;
+    line-height:
+        0.82;
 
-    font-weight: 900;
+    font-weight:
+        900;
 
-    letter-spacing: -0.075em;
+    letter-spacing:
+        -0.075em;
 
-    text-transform: uppercase;
+    text-transform:
+        uppercase;
 
-    animation: fadeUp 1s ease 0.15s forwards;
+    animation:
+        fadeUp 1s ease 0.15s forwards;
 
     opacity: 0;
 }
@@ -240,30 +401,33 @@ main {
 
 .title span {
 
-    display: block;
+    display:
+        block;
 }
 
 
 .outline {
 
-    color: transparent;
+    color:
+        transparent;
 
     -webkit-text-stroke:
-        1px rgba(245,245,240,0.7);
+        1px rgba(
+            245,
+            245,
+            240,
+            0.75
+        );
 }
 
 
 /* =====================================================
-   ROTATING MODEL AREA
+   MODEL AREA
 ===================================================== */
 
-.model-area {
+.model-section {
 
     width: 100%;
-
-    height: 410px;
-
-    margin-top: 35px;
 
     display: flex;
 
@@ -271,119 +435,145 @@ main {
 
     align-items: center;
 
-    perspective: 1100px;
+    margin-top: 35px;
 
-    position: relative;
+    margin-bottom: 10px;
+
+    perspective: 1000px;
+
+    animation:
+        fadeUp 1s ease 0.35s forwards;
+
+    opacity: 0;
 }
 
 
-/* Circular studio ring */
+/* Circular cinematic ring */
 
 .model-ring {
 
-    position: absolute;
+    width: 370px;
 
-    width: 350px;
-    height: 350px;
+    height: 370px;
 
-    border: 1px solid rgba(255,255,255,0.13);
+    max-width: 80vw;
+
+    max-height: 80vw;
 
     border-radius: 50%;
 
-    box-shadow:
-        0 0 80px rgba(255,255,255,0.035);
+    border:
+        1px solid
+        rgba(245,245,240,0.14);
 
-    animation:
-        ringPulse 5s ease-in-out infinite;
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    box-shadow:
+        0 0 80px
+        rgba(255,255,255,0.035);
+
+    overflow: visible;
 }
 
 
-@keyframes ringPulse {
+/* Second subtle ring */
 
-    0% {
-        transform: scale(0.98);
-        opacity: 0.45;
-    }
+.model-ring::before {
 
-    50% {
-        transform: scale(1.03);
-        opacity: 0.75;
-    }
+    content: "";
 
-    100% {
-        transform: scale(0.98);
-        opacity: 0.45;
-    }
+    position: absolute;
+
+    inset: 20px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(245,245,240,0.045);
 
 }
 
 
 /* =====================================================
-   MODEL
+   HUMAN MODEL
 ===================================================== */
 
 .model {
 
-    width: 180px;
+    width: 190px;
 
-    height: 365px;
+    height: 330px;
 
     position: relative;
 
     transform-style: preserve-3d;
 
     animation:
-        modelRotate 14s linear infinite;
+        model360 14s linear infinite;
 
-    z-index: 3;
+    transform-origin:
+        center center;
+
 }
 
 
-@keyframes modelRotate {
+/* Full slow 360-degree rotation */
 
-    from {
-        transform: rotateY(0deg);
+@keyframes model360 {
+
+    0% {
+        transform:
+            rotateY(0deg);
     }
 
-    to {
-        transform: rotateY(360deg);
+    100% {
+        transform:
+            rotateY(360deg);
     }
 
 }
 
 
 /* =====================================================
-   HEAD
+   MODEL HEAD
 ===================================================== */
 
 .head {
 
     position: absolute;
 
-    width: 72px;
+    width: 65px;
 
-    height: 85px;
+    height: 78px;
 
-    left: 54px;
+    left: 50%;
 
     top: 0;
 
+    transform:
+        translateX(-50%);
+
     background:
         linear-gradient(
-            90deg,
-            #8d8880,
-            #d0cbc1,
-            #8d8880
+            145deg,
+            #d7d0c5,
+            #8d887f
         );
 
     border-radius:
-        48% 48% 45% 45%;
-
-    transform:
-        translateZ(5px);
+        45% 45% 48% 48%;
 
     box-shadow:
-        inset -12px 0 15px rgba(0,0,0,0.25);
+        inset -12px -10px 20px
+        rgba(0,0,0,0.35);
+
 }
 
 
@@ -395,40 +585,41 @@ main {
 
     position: absolute;
 
-    width: 76px;
+    width: 66px;
 
-    height: 28px;
+    height: 30px;
 
-    left: -2px;
+    left: -1px;
 
     top: -4px;
 
-    background: #090909;
+    background:
+        #111;
 
     border-radius:
         50% 50% 20% 20%;
 }
 
 
-/* =====================================================
-   NECK
-===================================================== */
+/* Neck */
 
 .neck {
 
     position: absolute;
 
-    width: 35px;
+    width: 32px;
 
-    height: 35px;
+    height: 30px;
 
-    left: 72px;
+    left: 50%;
 
-    top: 72px;
+    top: 66px;
 
-    background: #aaa59c;
+    transform:
+        translateX(-50%);
 
-    transform: translateZ(4px);
+    background:
+        #a9a299;
 }
 
 
@@ -440,41 +631,45 @@ main {
 
     position: absolute;
 
-    width: 150px;
+    width: 145px;
 
-    height: 155px;
+    height: 145px;
 
-    left: 15px;
+    left: 50%;
 
-    top: 95px;
+    top: 82px;
+
+    transform:
+        translateX(-50%);
 
     background:
         linear-gradient(
-            90deg,
-            #101010,
-            #202020,
+            110deg,
+            #151515,
+            #292929,
             #101010
         );
 
     clip-path:
         polygon(
-            20% 0,
-            80% 0,
+            20% 0%,
+            38% 0%,
+            50% 10%,
+            62% 0%,
+            80% 0%,
             100% 25%,
             88% 100%,
             12% 100%,
-            0 25%
+            0% 25%
         );
 
-    transform:
-        translateZ(10px);
-
     box-shadow:
-        inset 0 0 30px rgba(255,255,255,0.025);
+        0 15px 35px
+        rgba(0,0,0,0.5);
 }
 
 
-/* Jersey collar */
+/* Jersey shoulders */
 
 .jersey::before {
 
@@ -482,92 +677,79 @@ main {
 
     position: absolute;
 
-    width: 45px;
+    width: 32px;
 
-    height: 18px;
+    height: 85px;
 
-    left: 52px;
+    left: -18px;
 
-    top: 2px;
-
-    border-bottom:
-        2px solid rgba(255,255,255,0.35);
-
-    border-radius: 50%;
-}
-
-
-/* RIVOLAND branding */
-
-.jersey::after {
-
-    content: "RIVOLAND";
-
-    position: absolute;
-
-    left: 0;
-
-    right: 0;
-
-    top: 62px;
-
-    text-align: center;
-
-    font-size: 13px;
-
-    font-weight: 800;
-
-    letter-spacing: 0.18em;
-
-    color: #f5f5f0;
-}
-
-
-/* =====================================================
-   ARMS
-===================================================== */
-
-.arm {
-
-    position: absolute;
-
-    width: 42px;
-
-    height: 145px;
-
-    top: 102px;
+    top: 8px;
 
     background:
         linear-gradient(
             90deg,
-            #0b0b0b,
-            #222,
-            #0b0b0b
+            #101010,
+            #252525
         );
 
-    border-radius: 30px;
-
-    transform-origin: top center;
+    border-radius:
+        20px;
 }
 
 
-.arm.left {
+.jersey::after {
 
-    left: -10px;
+    content: "";
 
-    transform:
-        rotate(8deg)
-        translateZ(0);
+    position: absolute;
+
+    width: 32px;
+
+    height: 85px;
+
+    right: -18px;
+
+    top: 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #252525,
+            #101010
+        );
+
+    border-radius:
+        20px;
 }
 
 
-.arm.right {
+/* =====================================================
+   BRANDING ON JERSEY
+===================================================== */
 
-    right: -10px;
+.jersey-brand {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 60px;
 
     transform:
-        rotate(-8deg)
-        translateZ(0);
+        translateX(-50%);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing:
+        0.18em;
+
+    color:
+        #f5f5f0;
+
+    white-space:
+        nowrap;
 }
 
 
@@ -579,69 +761,126 @@ main {
 
     position: absolute;
 
-    top: 242px;
-
-    left: 20px;
-
     width: 140px;
 
-    height: 120px;
+    height: 150px;
+
+    left: 50%;
+
+    top: 220px;
+
+    transform:
+        translateX(-50%);
 
     display: flex;
 
     justify-content: center;
 
-    gap: 5px;
-
-    transform:
-        translateZ(5px);
+    gap: 4px;
 }
 
 
 .leg {
 
-    width: 67px;
+    width: 68px;
 
-    height: 120px;
+    height: 145px;
 
     background:
         linear-gradient(
             90deg,
-            #0c0c0c,
-            #1c1c1c,
-            #0b0b0b
+            #101010,
+            #222222,
+            #111111
         );
 
     border-radius:
-        5px 5px 20px 20px;
+        0 0 20px 20px;
 
     box-shadow:
-        inset 0 0 20px rgba(255,255,255,0.02);
+        inset -10px 0 20px
+        rgba(0,0,0,0.3);
 }
 
 
 /* =====================================================
-   MODEL SHADOW
+   FLOATING BRAND TEXT AROUND MODEL
 ===================================================== */
 
-.model-shadow {
+.orbit-text {
 
     position: absolute;
 
-    width: 190px;
+    width: 100%;
 
-    height: 25px;
+    height: 100%;
 
-    bottom: 5px;
+    left: 0;
 
-    border-radius: 50%;
+    top: 0;
 
-    background:
-        rgba(0,0,0,0.8);
+    pointer-events: none;
 
-    filter: blur(12px);
+    animation:
+        orbitRotate 18s linear infinite;
+}
 
-    z-index: 1;
+
+.orbit-text span {
+
+    position: absolute;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing:
+        0.35em;
+
+    color:
+        rgba(245,245,240,0.28);
+
+    text-transform:
+        uppercase;
+}
+
+
+.orbit-one {
+
+    top: 50%;
+
+    left: -15px;
+
+    transform:
+        translateY(-50%)
+        rotate(-90deg);
+}
+
+
+.orbit-two {
+
+    top: 50%;
+
+    right: -15px;
+
+    transform:
+        translateY(-50%)
+        rotate(90deg);
+}
+
+
+@keyframes orbitRotate {
+
+    from {
+        transform:
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+
 }
 
 
@@ -651,21 +890,31 @@ main {
 
 .description {
 
-    margin: 10px auto 0;
+    max-width:
+        520px;
 
-    max-width: 500px;
+    margin:
+        25px auto 0;
 
-    font-size: 13px;
+    font-size:
+        14px;
 
-    line-height: 1.7;
+    line-height:
+        1.7;
 
-    letter-spacing: 0.08em;
+    letter-spacing:
+        0.05em;
 
     color:
-        rgba(245,245,240,0.58);
+        rgba(
+            245,
+            245,
+            240,
+            0.62
+        );
 
     animation:
-        fadeUp 1s ease 0.3s forwards;
+        fadeUp 1s ease 0.5s forwards;
 
     opacity: 0;
 }
@@ -677,18 +926,27 @@ main {
 
 .countdown {
 
-    display: flex;
+    display:
+        flex;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    align-items: flex-start;
+    align-items:
+        flex-start;
 
-    gap: clamp(10px,4vw,50px);
+    gap:
+        clamp(
+            12px,
+            4vw,
+            55px
+        );
 
-    margin-top: 48px;
+    margin-top:
+        50px;
 
     animation:
-        fadeUp 1s ease 0.45s forwards;
+        fadeUp 1s ease 0.65s forwards;
 
     opacity: 0;
 }
@@ -696,22 +954,31 @@ main {
 
 .time {
 
-    min-width: 70px;
+    min-width:
+        75px;
 }
 
 
 .number {
 
-    display: block;
+    display:
+        block;
 
     font-size:
-        clamp(35px,6vw,70px);
+        clamp(
+            38px,
+            6vw,
+            72px
+        );
 
-    line-height: 1;
+    line-height:
+        1;
 
-    font-weight: 700;
+    font-weight:
+        700;
 
-    letter-spacing: -0.05em;
+    letter-spacing:
+        -0.05em;
 
     font-variant-numeric:
         tabular-nums;
@@ -720,27 +987,42 @@ main {
 
 .label {
 
-    display: block;
+    display:
+        block;
 
-    margin-top: 11px;
+    margin-top:
+        12px;
 
-    font-size: 8px;
+    font-size:
+        8px;
 
-    letter-spacing: 0.25em;
+    font-weight:
+        600;
 
-    text-transform: uppercase;
+    letter-spacing:
+        0.25em;
 
-    opacity: 0.35;
+    text-transform:
+        uppercase;
+
+    opacity:
+        0.35;
 }
 
 
 .colon {
 
-    font-size: 28px;
+    font-size:
+        30px;
 
-    opacity: 0.2;
+    line-height:
+        1;
 
-    padding-top: 5px;
+    opacity:
+        0.18;
+
+    padding-top:
+        4px;
 }
 
 
@@ -750,95 +1032,179 @@ main {
 
 .launch {
 
-    display: inline-flex;
+    display:
+        inline-flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 15px;
+    gap:
+        15px;
 
-    margin-top: 35px;
+    margin-top:
+        42px;
 
-    padding: 13px 20px;
+    padding:
+        13px 20px;
 
     border:
-        1px solid rgba(245,245,240,0.13);
+        1px solid
+        rgba(
+            245,
+            245,
+            240,
+            0.13
+        );
 
     background:
-        rgba(255,255,255,0.025);
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+    animation:
+        fadeUp 1s ease 0.8s forwards;
+
+    opacity: 0;
 }
 
 
 .launch-label {
 
-    font-size: 8px;
+    font-size:
+        8px;
 
-    letter-spacing: 0.25em;
+    font-weight:
+        600;
 
-    opacity: 0.35;
+    letter-spacing:
+        0.25em;
+
+    text-transform:
+        uppercase;
+
+    opacity:
+        0.35;
 }
 
 
 .launch-date {
 
-    font-size: 12px;
+    font-size:
+        12px;
 
-    font-weight: 700;
+    font-weight:
+        700;
 
-    letter-spacing: 0.16em;
+    letter-spacing:
+        0.16em;
 }
 
 
 /* =====================================================
-   CONTACT
+   SOCIAL BUTTONS
 ===================================================== */
 
-.contact {
+.socials {
 
-    display: flex;
+    display:
+        flex;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    gap: 15px;
+    align-items:
+        center;
 
-    margin-top: 28px;
+    gap:
+        20px;
 
-    flex-wrap: wrap;
+    margin-top:
+        28px;
+
+    animation:
+        fadeUp 1s ease 0.9s forwards;
+
+    opacity: 0;
 }
 
 
-.contact a {
+.social-button {
 
-    color: #f5f5f0;
+    display:
+        inline-flex;
 
-    text-decoration: none;
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-width:
+        130px;
+
+    padding:
+        13px 18px;
 
     border:
-        1px solid rgba(245,245,240,0.15);
+        1px solid
+        rgba(
+            245,
+            245,
+            240,
+            0.16
+        );
 
-    padding: 13px 20px;
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
 
-    font-size: 9px;
+    color:
+        #f5f5f0;
 
-    font-weight: 700;
+    text-decoration:
+        none;
 
-    letter-spacing: 0.18em;
+    font-size:
+        9px;
 
-    text-transform: uppercase;
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.15em;
+
+    text-transform:
+        uppercase;
 
     transition:
-        background 0.3s,
-        border 0.3s,
-        transform 0.3s;
+        all 0.3s ease;
 }
 
 
-.contact a:hover {
+.social-button:hover {
 
     background:
-        rgba(255,255,255,0.08);
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
 
     border-color:
-        rgba(255,255,255,0.4);
+        rgba(
+            245,
+            245,
+            240,
+            0.35
+        );
 
     transform:
         translateY(-2px);
@@ -846,34 +1212,47 @@ main {
 
 
 /* =====================================================
-   LIVE
+   LIVE MESSAGE
 ===================================================== */
 
 .live {
 
-    display: none;
+    display:
+        none;
 
-    margin-top: 45px;
+    margin-top:
+        55px;
 
     font-size:
-        clamp(40px,7vw,80px);
+        clamp(
+            38px,
+            7vw,
+            80px
+        );
 
-    font-weight: 900;
+    font-weight:
+        900;
 
-    letter-spacing: -0.05em;
+    letter-spacing:
+        -0.05em;
+
+    text-transform:
+        uppercase;
 }
 
 
 body.is-live .countdown,
 body.is-live .launch {
 
-    display: none;
+    display:
+        none;
 }
 
 
 body.is-live .live {
 
-    display: block;
+    display:
+        block;
 
     animation:
         fadeUp 1s ease forwards;
@@ -886,21 +1265,42 @@ body.is-live .live {
 
 footer {
 
-    padding: 25px 20px 28px;
+    width: 100%;
 
-    text-align: center;
+    padding:
+        25px 20px 30px;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    position: relative;
+
+    z-index: 5;
 }
 
 
 .footer-text {
 
-    font-size: 8px;
+    font-size:
+        8px;
 
-    font-weight: 600;
+    font-weight:
+        600;
 
-    letter-spacing: 0.3em;
+    letter-spacing:
+        0.3em;
 
-    opacity: 0.28;
+    text-transform:
+        uppercase;
+
+    opacity:
+        0.3;
+
+    text-align:
+        center;
 }
 
 
@@ -937,134 +1337,200 @@ footer {
 
     header {
 
-        padding: 22px 20px;
+        padding:
+            20px 20px;
     }
 
 
-    .logo {
+    .brand-logo img {
 
-        font-size: 17px;
+        width:
+            58px;
 
-        letter-spacing: 0.18em;
+        max-height:
+            42px;
     }
 
 
     .established {
 
-        font-size: 7px;
+        font-size:
+            7px;
 
-        letter-spacing: 0.18em;
+        letter-spacing:
+            0.18em;
     }
 
 
     main {
 
         padding:
-            25px 15px 45px;
+            25px 16px 50px;
     }
 
 
     .eyebrow {
 
-        font-size: 8px;
+        font-size:
+            8px;
 
-        letter-spacing: 0.25em;
+        letter-spacing:
+            0.25em;
 
-        margin-bottom: 22px;
+        margin-bottom:
+            23px;
     }
 
 
     .title {
 
         font-size:
-            clamp(52px,17vw,105px);
+            clamp(
+                55px,
+                17vw,
+                105px
+            );
     }
 
 
-    .model-area {
+    .model-section {
 
-        height: 360px;
-
-        margin-top: 25px;
+        margin-top:
+            28px;
     }
 
 
     .model-ring {
 
-        width: 300px;
+        width:
+            310px;
 
-        height: 300px;
+        height:
+            310px;
+    }
+
+
+    .model {
+
+        transform:
+            scale(0.82);
     }
 
 
     .description {
 
-        font-size: 11px;
+        font-size:
+            12px;
 
-        max-width: 320px;
+        max-width:
+            330px;
+
+        margin-top:
+            20px;
     }
 
 
     .countdown {
 
-        gap: 5px;
+        gap:
+            7px;
 
-        margin-top: 40px;
+        margin-top:
+            42px;
     }
 
 
     .time {
 
-        min-width: 55px;
+        min-width:
+            57px;
     }
 
 
     .number {
 
         font-size:
-            clamp(27px,9vw,43px);
+            clamp(
+                28px,
+                9vw,
+                45px
+            );
     }
 
 
     .label {
 
-        font-size: 6px;
+        font-size:
+            6px;
 
-        letter-spacing: 0.12em;
+        letter-spacing:
+            0.14em;
+
+        margin-top:
+            9px;
     }
 
 
     .colon {
 
-        font-size: 20px;
+        font-size:
+            21px;
 
-        padding-top: 3px;
+        padding-top:
+            2px;
     }
 
 
     .launch {
 
-        margin-top: 30px;
+        margin-top:
+            32px;
 
-        padding: 11px 14px;
+        padding:
+            11px 14px;
 
-        gap: 10px;
+        gap:
+            10px;
     }
 
 
-    .contact {
+    .launch-label {
 
-        margin-top: 22px;
-
-        gap: 10px;
+        font-size:
+            6px;
     }
 
 
-    .contact a {
+    .launch-date {
 
-        padding: 12px 14px;
+        font-size:
+            9px;
+    }
 
-        font-size: 7px;
+
+    .socials {
+
+        gap:
+            10px;
+
+        margin-top:
+            24px;
+    }
+
+
+    .social-button {
+
+        min-width:
+            0;
+
+        padding:
+            12px 13px;
+
+        font-size:
+            7px;
+
+        letter-spacing:
+            0.1em;
     }
 
 
@@ -1074,20 +1540,14 @@ footer {
             20px 15px 25px;
     }
 
-}
 
+    .footer-text {
 
-/* =====================================================
-   ACCESSIBILITY
-===================================================== */
+        font-size:
+            6px;
 
-@media (prefers-reduced-motion: reduce) {
-
-    .model,
-    .model-ring,
-    body::after {
-
-        animation: none;
+        letter-spacing:
+            0.2em;
     }
 
 }
@@ -1099,364 +1559,31 @@ footer {
 
 <body>
 
+
+<!-- =====================================================
+     FILM GRAIN
+===================================================== -->
+
+<div class="grain"></div>
+
+
 <div class="page">
 
 
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header>
 
-    <div class="logo">
-        RIVOLAND<sup>®</sup>
-    </div>
 
-    <div class="established">
-        EST. 2026
-    </div>
-
-</header>
-
-
-<main>
-
-<section class="content">
-
-
-<div class="eyebrow">
-    A NEW ERA IS APPROACHING
-</div>
-
-
-<h1 class="title">
-
-    <span>
-        MOVE
-    </span>
-
-    <span class="outline">
-        BEYOND.
-    </span>
-
-</h1>
-
-
-<!-- =================================================
-     ROTATING FASHION MODEL
-================================================== -->
-
-<div class="model-area">
-
-    <div class="model-ring"></div>
-
-    <div class="model-shadow"></div>
-
-    <div class="model">
-
-        <!-- HEAD -->
-        <div class="head"></div>
-
-        <!-- NECK -->
-        <div class="neck"></div>
-
-        <!-- ARMS -->
-        <div class="arm left"></div>
-
-        <div class="arm right"></div>
-
-        <!-- JERSEY -->
-        <div class="jersey"></div>
-
-        <!-- BAGGY PANTS -->
-        <div class="pants">
-
-            <div class="leg"></div>
-
-            <div class="leg"></div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<p class="description">
-
-    SPORT. STREET. CULTURE.
-
-    <br>
-
-    RIVOLAND® IS COMING.
-
-</p>
-
-
-<!-- =================================================
-     COUNTDOWN
-================================================== -->
-
-<div class="countdown">
-
-
-    <div class="time">
-
-        <span
-            class="number"
-            id="days">
-            00
-        </span>
-
-        <span class="label">
-            Days
-        </span>
-
-    </div>
-
-
-    <div class="colon">
-        :
-    </div>
-
-
-    <div class="time">
-
-        <span
-            class="number"
-            id="hours">
-            00
-        </span>
-
-        <span class="label">
-            Hours
-        </span>
-
-    </div>
-
-
-    <div class="colon">
-        :
-    </div>
-
-
-    <div class="time">
-
-        <span
-            class="number"
-            id="minutes">
-            00
-        </span>
-
-        <span class="label">
-            Minutes
-        </span>
-
-    </div>
-
-
-    <div class="colon">
-        :
-    </div>
-
-
-    <div class="time">
-
-        <span
-            class="number"
-            id="seconds">
-            00
-        </span>
-
-        <span class="label">
-            Seconds
-        </span>
-
-    </div>
-
-</div>
-
-
-<!-- =================================================
-     LAUNCH DATE
-================================================== -->
-
-<div class="launch">
-
-    <span class="launch-label">
-        LAUNCHING
-    </span>
-
-    <span class="launch-date">
-        11.09.2026
-    </span>
-
-</div>
-
-
-<!-- =================================================
-     CONTACT
-================================================== -->
-
-<div class="contact">
+    <!-- YOUR RIVOLAND LOGO -->
 
     <a
-        href="https://wa.me/916392860701"
-        target="_blank"
-        rel="noopener noreferrer">
-
-        WHATSAPP
-        6392860701
-
-    </a>
-
-
-    <a
-        href="https://www.instagram.com/rivo.land?igsi=MXc5Z3ZvNDBmYWt4aQ=="
-        target="_blank"
-        rel="noopener noreferrer">
-
-        INSTAGRAM @RIVO.LAND
-
-    </a>
-
-</div>
-
-
-<!-- =================================================
-     LIVE MESSAGE
-================================================== -->
-
-<div class="live">
-    WE ARE LIVE.
-</div>
-
-
-</section>
-
-</main>
-
-
-<footer>
-
-    <div class="footer-text">
-
-        RIVOLAND® &nbsp; • &nbsp;
-        SPORT • STREET • CULTURE
-
-    </div>
-
-</footer>
-
-
-</div>
-
-
-<!-- =================================================
-     COUNTDOWN JAVASCRIPT
-================================================== -->
-
-<script>
-
-/*
-=======================================================
-RIVOLAND LAUNCH DATE
-11 SEPTEMBER 2026
-12:00 AM IST
-=======================================================
-*/
-
-const launchDate =
-    new Date("2026-09-11T00:00:00+05:30").getTime();
-
-
-function updateCountdown() {
-
-    const now =
-        new Date().getTime();
-
-
-    const difference =
-        launchDate - now;
-
-
-    /* Launch time reached */
-
-    if (difference <= 0) {
-
-        document.body.classList.add("is-live");
-
-        return;
-    }
-
-
-    /* Calculate time */
-
-    const days =
-        Math.floor(
-            difference /
-            (1000 * 60 * 60 * 24)
-        );
-
-
-    const hours =
-        Math.floor(
-            (difference %
-            (1000 * 60 * 60 * 24)) /
-            (1000 * 60 * 60)
-        );
-
-
-    const minutes =
-        Math.floor(
-            (difference %
-            (1000 * 60 * 60)) /
-            (1000 * 60)
-        );
-
-
-    const seconds =
-        Math.floor(
-            (difference %
-            (1000 * 60)) /
-            1000
-        );
-
-
-    /* Display */
-
-    document.getElementById("days")
-        .textContent =
-        String(days).padStart(2, "0");
-
-
-    document.getElementById("hours")
-        .textContent =
-        String(hours).padStart(2, "0");
-
-
-    document.getElementById("minutes")
-        .textContent =
-        String(minutes).padStart(2, "0");
-
-
-    document.getElementById("seconds")
-        .textContent =
-        String(seconds).padStart(2, "0");
-
-}
-
-
-/* Run immediately */
-
-updateCountdown();
-
-
-/* Update every second */
-
-setInterval(
-    updateCountdown,
-    1000
-);
-
-</script>
-
-
-</body>
-</html>
+        href="/"
+        class="brand-logo"
+        aria-label="RIVOLAND Home"
+    >
+
+        <img
+            src="rivoland-logo.png"
