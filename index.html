@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+      content="width=device-width, initial-scale=1.0">
 
 <meta name="description"
       content="RIVOLAND® — Sport. Street. Culture. Launching 11 September 2026.">
@@ -17,6 +18,12 @@
 
 
 <style>
+
+/* =====================================================
+   RIVOLAND® — COMING SOON
+   SPORT • STREET • CULTURE
+===================================================== */
+
 
 /* =====================================================
    RESET
@@ -35,24 +42,34 @@ body {
 }
 
 body {
+
     background: #080808;
+
     color: #f5f5f0;
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     overflow-x: hidden;
 }
 
 
 /* =====================================================
-   PAGE
+   MAIN PAGE
 ===================================================== */
 
 .page {
-    width: 100%;
-    min-height: 100svh;
 
     position: relative;
 
+    width: 100%;
+
+    min-height: 100svh;
+
     display: flex;
+
     flex-direction: column;
 
     overflow: hidden;
@@ -71,116 +88,78 @@ body {
    CINEMATIC LIGHT
 ===================================================== */
 
-.page::before {
-    content: "";
+.light {
 
     position: absolute;
 
-    width: 900px;
-    height: 900px;
+    width: 70vw;
+    height: 70vw;
+
+    max-width: 850px;
+    max-height: 850px;
 
     left: 50%;
-    top: 42%;
+    top: 45%;
 
-    transform: translate(-50%, -50%);
+    transform:
+        translate(-50%, -50%);
 
     background:
         radial-gradient(
             circle,
             rgba(255,255,255,0.045),
-            transparent 65%
+            transparent 68%
         );
-
-    pointer-events: none;
-    z-index: 0;
-}
-
-
-.page::after {
-    content: "";
-
-    position: absolute;
-
-    inset: -50%;
-
-    background:
-        linear-gradient(
-            120deg,
-            transparent 40%,
-            rgba(255,255,255,0.018),
-            transparent 60%
-        );
-
-    animation: lightMove 14s ease-in-out infinite;
 
     pointer-events: none;
 
     z-index: 0;
+
+    animation:
+        breathing 7s ease-in-out infinite;
 }
 
 
-@keyframes lightMove {
+@keyframes breathing {
 
     0% {
-        transform: translateX(-12%);
+        opacity: 0.65;
+        transform:
+            translate(-50%, -50%) scale(0.95);
     }
 
     50% {
-        transform: translateX(12%);
+        opacity: 1;
+        transform:
+            translate(-50%, -50%) scale(1.05);
     }
 
     100% {
-        transform: translateX(-12%);
+        opacity: 0.65;
+        transform:
+            translate(-50%, -50%) scale(0.95);
     }
 }
 
 
 /* =====================================================
-   GRAIN
+   SUBTLE GRAIN
 ===================================================== */
 
 .grain {
+
     position: fixed;
 
-    inset: -50%;
-
-    width: 200%;
-    height: 200%;
+    inset: 0;
 
     pointer-events: none;
 
+    z-index: 50;
+
     opacity: 0.025;
 
-    z-index: 30;
-
     background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-
-    animation: grain 0.25s steps(2) infinite;
-}
-
-
-@keyframes grain {
-
-    0% {
-        transform: translate(0,0);
-    }
-
-    25% {
-        transform: translate(2%,-1%);
-    }
-
-    50% {
-        transform: translate(-1%,2%);
-    }
-
-    75% {
-        transform: translate(1%,1%);
-    }
-
-    100% {
-        transform: translate(-2%,-1%);
-    }
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
 }
 
 
@@ -188,12 +167,9 @@ body {
    HEADER
 ===================================================== */
 
-header {
+.header {
 
     width: 100%;
-
-    padding:
-        25px 42px;
 
     display: flex;
 
@@ -201,82 +177,103 @@ header {
 
     align-items: center;
 
+    padding:
+        25px 34px;
+
     position: relative;
 
-    z-index: 5;
+    z-index: 10;
 
     flex-shrink: 0;
 }
 
 
-/* LOGO IMAGE */
+/* =====================================================
+   TOP LOGO
+===================================================== */
 
-.brand-logo {
+.logo-wrap {
 
-    width: 72px;
+    display: flex;
 
-    height: auto;
+    align-items: center;
 
-    display: block;
-
-    object-fit: contain;
+    gap: 10px;
 }
 
 
-/* EST */
+.logo-image {
+
+    width: 48px;
+
+    height: 48px;
+
+    object-fit: contain;
+
+    display: block;
+
+    animation:
+        logoRotate 8s linear infinite;
+}
+
+
+/* 360 DEGREE LOGO ROTATION */
+
+@keyframes logoRotate {
+
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
 
 .established {
 
     font-size: 9px;
 
-    font-weight: 600;
+    font-weight: 700;
 
-    letter-spacing: 0.25em;
+    letter-spacing: 0.28em;
+
+    color:
+        rgba(245,245,240,0.42);
 
     text-transform: uppercase;
-
-    opacity: 0.42;
 }
 
 
 /* =====================================================
-   MAIN
+   MAIN CONTENT
 ===================================================== */
 
-main {
-
-    width: 100%;
-
-    flex: 1;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
+.main {
 
     position: relative;
 
-    z-index: 2;
+    z-index: 5;
 
-    padding:
-        10px 20px 25px;
+    flex: 1;
 
-    min-height: 0;
-}
-
-
-.content {
-
-    width: min(1050px, 100%);
-
-    text-align: center;
+    width: 100%;
 
     display: flex;
 
     flex-direction: column;
 
     align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding:
+        10px 20px 20px;
+
+    min-height: 0;
 }
 
 
@@ -288,15 +285,16 @@ main {
 
     font-size: 10px;
 
-    font-weight: 600;
+    font-weight: 700;
 
-    letter-spacing: 0.38em;
+    letter-spacing: 0.36em;
+
+    color:
+        rgba(245,245,240,0.55);
 
     text-transform: uppercase;
 
-    opacity: 0.48;
-
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 
     animation:
         fadeUp 0.9s ease forwards;
@@ -309,16 +307,17 @@ main {
 
 .title {
 
-    font-size:
-        clamp(65px, 13vw, 175px);
+    width: 100%;
 
-    line-height: 0.82;
+    line-height: 0.78;
+
+    text-transform: uppercase;
 
     font-weight: 900;
 
     letter-spacing: -0.075em;
 
-    text-transform: uppercase;
+    margin: 0;
 
     animation:
         fadeUp 0.9s ease 0.1s forwards;
@@ -327,36 +326,50 @@ main {
 }
 
 
-.title span {
+.title .move {
+
     display: block;
+
+    font-size:
+        clamp(70px, 12vw, 160px);
+
+    color: #f5f5f0;
+
+    /* NO TEXTURE */
 }
 
 
-.outline {
+.title .beyond {
+
+    display: block;
+
+    font-size:
+        clamp(65px, 11vw, 145px);
 
     color: transparent;
 
     -webkit-text-stroke:
-        1px rgba(245,245,240,0.72);
+        1px rgba(245,245,240,0.65);
+
+    text-stroke:
+        1px rgba(245,245,240,0.65);
 }
 
 
 /* =====================================================
-   MODEL / VIDEO PLACEHOLDER AREA
-   WE WILL PUT THE 360° MODEL HERE LATER
+   MODEL AREA
 ===================================================== */
 
-.model-area {
-
-    width: min(420px, 80vw);
-
-    height: clamp(170px, 25vh, 280px);
-
-    margin-top: 12px;
-
-    margin-bottom: 5px;
+.model-stage {
 
     position: relative;
+
+    width: min(390px, 75vw);
+
+    height: min(380px, 38vh);
+
+    margin:
+        5px auto 0;
 
     display: flex;
 
@@ -366,24 +379,299 @@ main {
 }
 
 
-/* cinematic circle behind future model */
+/* Circular cinematic ring */
 
 .model-ring {
 
     position: absolute;
 
-    width: 85%;
+    width: 330px;
 
-    aspect-ratio: 1 / 1;
+    height: 330px;
+
+    max-width: 80vw;
+
+    max-height: 80vw;
 
     border-radius: 50%;
 
     border:
-        1px solid rgba(245,245,240,0.12);
+        1px solid
+        rgba(245,245,240,0.13);
 
     box-shadow:
         0 0 80px rgba(255,255,255,0.025);
 
+    animation:
+        ringPulse 5s ease-in-out infinite;
+}
+
+
+.model-ring::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 18px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(245,245,240,0.055);
+}
+
+
+@keyframes ringPulse {
+
+    0%,
+    100% {
+        transform: scale(0.96);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.02);
+        opacity: 1;
+    }
+}
+
+
+/* =====================================================
+   360 MODEL VIDEO
+===================================================== */
+
+.model-video {
+
+    position: relative;
+
+    z-index: 3;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    display: none;
+
+    background: transparent;
+
+    mix-blend-mode: screen;
+}
+
+
+/*
+   When you add the model video,
+   JavaScript will automatically display it.
+*/
+
+
+/* =====================================================
+   MODEL PLACEHOLDER
+===================================================== */
+
+.model-placeholder {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 120px;
+
+    height: 250px;
+
+    opacity: 0.08;
+
+    filter: blur(0.2px);
+
+}
+
+
+/* Head */
+
+.model-head {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 54px;
+
+    height: 70px;
+
+    border-radius:
+        48% 48% 45% 45%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #777,
+            #d4d0c7,
+            #777
+        );
+}
+
+
+/* Body */
+
+.model-body {
+
+    position: absolute;
+
+    top: 65px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 95px;
+
+    height: 110px;
+
+    border-radius:
+        30px 30px 8px 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #101010,
+            #303030,
+            #101010
+        );
+}
+
+
+/* Left arm */
+
+.model-arm-left {
+
+    position: absolute;
+
+    top: 72px;
+
+    left: 2px;
+
+    width: 25px;
+
+    height: 115px;
+
+    border-radius: 30px;
+
+    background: #181818;
+
+    transform:
+        rotate(7deg);
+}
+
+
+/* Right arm */
+
+.model-arm-right {
+
+    position: absolute;
+
+    top: 72px;
+
+    right: 2px;
+
+    width: 25px;
+
+    height: 115px;
+
+    border-radius: 30px;
+
+    background: #181818;
+
+    transform:
+        rotate(-7deg);
+}
+
+
+/* Left baggy pant */
+
+.model-leg-left {
+
+    position: absolute;
+
+    top: 168px;
+
+    left: 25px;
+
+    width: 43px;
+
+    height: 125px;
+
+    border-radius:
+        4px 4px 20px 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0b0b0b,
+            #202020,
+            #0b0b0b
+        );
+}
+
+
+/* Right baggy pant */
+
+.model-leg-right {
+
+    position: absolute;
+
+    top: 168px;
+
+    right: 25px;
+
+    width: 43px;
+
+    height: 125px;
+
+    border-radius:
+        4px 4px 20px 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0b0b0b,
+            #202020,
+            #0b0b0b
+        );
+}
+
+
+/* =====================================================
+   BRANDING ON PLACEHOLDER
+===================================================== */
+
+.model-brand {
+
+    position: absolute;
+
+    top: 112px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.22em;
+
+    color:
+        rgba(245,245,240,0.75);
+
+    white-space: nowrap;
 }
 
 
@@ -393,18 +681,16 @@ main {
 
 .description {
 
-    max-width: 520px;
+    margin-top: 0;
 
-    margin-top: 5px;
+    font-size: 13px;
 
-    font-size: 14px;
+    line-height: 1.7;
 
-    line-height: 1.65;
-
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
 
     color:
-        rgba(245,245,240,0.62);
+        rgba(245,245,240,0.57);
 
     animation:
         fadeUp 0.9s ease 0.25s forwards;
@@ -426,9 +712,9 @@ main {
     align-items: flex-start;
 
     gap:
-        clamp(10px, 3.5vw, 50px);
+        clamp(10px, 3vw, 38px);
 
-    margin-top: 32px;
+    margin-top: 25px;
 
     animation:
         fadeUp 0.9s ease 0.35s forwards;
@@ -439,9 +725,8 @@ main {
 
 .time {
 
-    min-width: 65px;
-
-    text-align: center;
+    min-width:
+        clamp(55px, 7vw, 90px);
 }
 
 
@@ -450,15 +735,16 @@ main {
     display: block;
 
     font-size:
-        clamp(35px, 5.5vw, 68px);
+        clamp(31px, 5vw, 62px);
+
+    font-weight: 800;
 
     line-height: 1;
 
-    font-weight: 700;
+    letter-spacing: -0.06em;
 
-    letter-spacing: -0.05em;
-
-    font-variant-numeric: tabular-nums;
+    font-variant-numeric:
+        tabular-nums;
 }
 
 
@@ -466,27 +752,30 @@ main {
 
     display: block;
 
-    margin-top: 9px;
+    margin-top: 8px;
 
     font-size: 7px;
 
-    font-weight: 600;
+    font-weight: 700;
 
-    letter-spacing: 0.23em;
+    letter-spacing: 0.22em;
+
+    color:
+        rgba(245,245,240,0.30);
 
     text-transform: uppercase;
-
-    opacity: 0.34;
 }
 
 
 .colon {
 
-    font-size: 27px;
+    font-size:
+        clamp(20px, 3vw, 35px);
+
+    color:
+        rgba(245,245,240,0.20);
 
     line-height: 1;
-
-    opacity: 0.18;
 
     padding-top: 3px;
 }
@@ -498,22 +787,25 @@ main {
 
 .launch {
 
+    margin-top: 20px;
+
     display: inline-flex;
 
     align-items: center;
 
+    justify-content: center;
+
     gap: 18px;
 
-    margin-top: 25px;
-
     padding:
-        12px 19px;
+        10px 18px;
 
     border:
-        1px solid rgba(245,245,240,0.13);
+        1px solid
+        rgba(245,245,240,0.13);
 
     background:
-        rgba(255,255,255,0.02);
+        rgba(255,255,255,0.015);
 
     animation:
         fadeUp 0.9s ease 0.45s forwards;
@@ -524,30 +816,31 @@ main {
 
 .launch-label {
 
-    font-size: 8px;
+    font-size: 7px;
 
-    font-weight: 600;
+    font-weight: 700;
 
     letter-spacing: 0.25em;
 
-    text-transform: uppercase;
+    color:
+        rgba(245,245,240,0.35);
 
-    opacity: 0.35;
+    text-transform: uppercase;
 }
 
 
 .launch-date {
 
-    font-size: 12px;
+    font-size: 11px;
 
-    font-weight: 700;
+    font-weight: 800;
 
     letter-spacing: 0.16em;
 }
 
 
 /* =====================================================
-   CONTACT BUTTONS
+   CONTACT
 ===================================================== */
 
 .contact {
@@ -556,9 +849,11 @@ main {
 
     justify-content: center;
 
-    gap: 15px;
+    align-items: center;
 
-    margin-top: 18px;
+    gap: 10px;
+
+    margin-top: 12px;
 
     animation:
         fadeUp 0.9s ease 0.55s forwards;
@@ -569,30 +864,36 @@ main {
 
 .contact a {
 
-    min-width: 150px;
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 38px;
 
     padding:
-        12px 18px;
+        0 18px;
 
     border:
-        1px solid rgba(245,245,240,0.16);
+        1px solid
+        rgba(245,245,240,0.14);
 
-    color: #f5f5f0;
+    color:
+        rgba(245,245,240,0.75);
 
     text-decoration: none;
 
-    font-size: 9px;
+    font-size: 8px;
 
-    font-weight: 700;
+    font-weight: 800;
 
-    letter-spacing: 0.18em;
+    letter-spacing: 0.16em;
 
     text-transform: uppercase;
 
     transition:
-        background 0.25s ease,
-        color 0.25s ease,
-        border 0.25s ease;
+        0.3s ease;
 }
 
 
@@ -607,23 +908,105 @@ main {
 
 
 /* =====================================================
-   LIVE
+   BOTTOM LOGO
+===================================================== */
+
+.bottom-brand {
+
+    margin-top: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+}
+
+
+.bottom-brand img {
+
+    width: 25px;
+
+    height: 25px;
+
+    object-fit: contain;
+
+    animation:
+        logoRotate 8s linear infinite;
+}
+
+
+.bottom-brand span {
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.25em;
+
+    color:
+        rgba(245,245,240,0.28);
+
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+
+    position: relative;
+
+    z-index: 10;
+
+    width: 100%;
+
+    text-align: center;
+
+    padding:
+        10px 20px 18px;
+
+    flex-shrink: 0;
+}
+
+
+.footer-text {
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.28em;
+
+    color:
+        rgba(245,245,240,0.22);
+
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   LIVE STATE
 ===================================================== */
 
 .live {
 
     display: none;
 
-    margin-top: 30px;
-
     font-size:
-        clamp(38px, 7vw, 80px);
+        clamp(35px, 7vw, 75px);
 
     font-weight: 900;
 
     letter-spacing: -0.05em;
 
     text-transform: uppercase;
+
+    margin-top: 25px;
 }
 
 
@@ -637,48 +1020,6 @@ body.is-live .launch {
 body.is-live .live {
 
     display: block;
-
-    animation:
-        fadeUp 1s ease forwards;
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-footer {
-
-    width: 100%;
-
-    padding:
-        16px 20px 22px;
-
-    display: flex;
-
-    justify-content: center;
-
-    position: relative;
-
-    z-index: 5;
-
-    flex-shrink: 0;
-}
-
-
-.footer-text {
-
-    font-size: 7px;
-
-    font-weight: 600;
-
-    letter-spacing: 0.28em;
-
-    text-transform: uppercase;
-
-    opacity: 0.27;
-
-    text-align: center;
 }
 
 
@@ -712,24 +1053,27 @@ footer {
 
 @media (max-width: 650px) {
 
+
     .page {
 
         min-height: 100svh;
 
-        height: 100svh;
+        height: auto;
     }
 
 
-    header {
+    .header {
 
         padding:
-            22px 20px 10px;
+            18px 20px;
     }
 
 
-    .brand-logo {
+    .logo-image {
 
-        width: 64px;
+        width: 42px;
+
+        height: 42px;
     }
 
 
@@ -741,10 +1085,13 @@ footer {
     }
 
 
-    main {
+    .main {
+
+        justify-content:
+            flex-start;
 
         padding:
-            5px 15px 8px;
+            25px 15px 12px;
     }
 
 
@@ -754,42 +1101,56 @@ footer {
 
         letter-spacing: 0.25em;
 
-        margin-bottom: 18px;
+        margin-bottom: 17px;
     }
 
 
-    .title {
+    .title .move {
 
         font-size:
-            clamp(54px, 16.5vw, 100px);
+            clamp(62px, 18vw, 100px);
     }
 
 
-    .model-area {
+    .title .beyond {
 
-        width: 72vw;
+        font-size:
+            clamp(57px, 16.5vw, 94px);
+    }
 
-        height: 23vh;
 
-        min-height: 150px;
+    .model-stage {
 
-        max-height: 215px;
+        width: 270px;
 
-        margin-top: 8px;
+        height: 275px;
 
-        margin-bottom: 2px;
+        margin-top: 0;
+    }
+
+
+    .model-ring {
+
+        width: 245px;
+
+        height: 245px;
+    }
+
+
+    .model-placeholder {
+
+        transform:
+            scale(0.86);
     }
 
 
     .description {
 
-        font-size: 12px;
+        font-size: 11px;
 
-        line-height: 1.55;
+        margin-top: -3px;
 
-        margin-top: 3px;
-
-        max-width: 330px;
+        line-height: 1.6;
     }
 
 
@@ -797,30 +1158,30 @@ footer {
 
         gap: 5px;
 
-        margin-top: 27px;
+        margin-top: 20px;
     }
 
 
     .time {
 
-        min-width: 55px;
+        min-width: 58px;
     }
 
 
     .number {
 
         font-size:
-            clamp(27px, 8.5vw, 44px);
+            clamp(28px, 9vw, 40px);
     }
 
 
     .label {
 
-        font-size: 6px;
+        font-size: 5px;
 
         letter-spacing: 0.13em;
 
-        margin-top: 8px;
+        margin-top: 7px;
     }
 
 
@@ -828,18 +1189,18 @@ footer {
 
         font-size: 20px;
 
-        padding-top: 2px;
+        padding-top: 1px;
     }
 
 
     .launch {
 
-        margin-top: 22px;
+        margin-top: 16px;
 
         padding:
-            10px 13px;
+            9px 13px;
 
-        gap: 10px;
+        gap: 12px;
     }
 
 
@@ -857,42 +1218,59 @@ footer {
 
     .contact {
 
-        width: 100%;
+        margin-top: 10px;
 
-        gap: 10px;
-
-        margin-top: 14px;
+        gap: 7px;
     }
 
 
     .contact a {
 
-        min-width: 0;
-
-        width: 45%;
+        min-height: 35px;
 
         padding:
-            11px 8px;
+            0 12px;
 
         font-size: 7px;
 
-        letter-spacing: 0.13em;
+        letter-spacing: 0.11em;
     }
 
 
-    footer {
+    .bottom-brand {
+
+        margin-top: 10px;
+    }
+
+
+    .bottom-brand img {
+
+        width: 21px;
+
+        height: 21px;
+    }
+
+
+    .bottom-brand span {
+
+        font-size: 6px;
+    }
+
+
+    .footer {
 
         padding:
-            12px 15px 17px;
+            8px 15px 13px;
     }
 
 
     .footer-text {
 
-        font-size: 6px;
+        font-size: 5px;
 
-        letter-spacing: 0.18em;
+        letter-spacing: 0.19em;
     }
+
 }
 
 
@@ -902,54 +1280,70 @@ footer {
 
 @media (max-height: 700px) and (max-width: 650px) {
 
-    header {
+    .main {
 
-        padding-top: 16px;
+        padding-top: 15px;
     }
 
 
-    .brand-logo {
+    .model-stage {
 
-        width: 55px;
+        height: 220px;
     }
 
 
-    .eyebrow {
+    .model-ring {
 
-        margin-bottom: 13px;
+        width: 200px;
+
+        height: 200px;
     }
 
 
-    .model-area {
+    .model-placeholder {
 
-        height: 18vh;
-
-        min-height: 120px;
+        transform:
+            scale(0.70);
     }
 
 
     .countdown {
 
-        margin-top: 20px;
+        margin-top: 13px;
     }
 
 
     .launch {
 
-        margin-top: 17px;
+        margin-top: 10px;
     }
 
 
     .contact {
 
-        margin-top: 11px;
+        margin-top: 7px;
     }
 
+}
 
-    footer {
 
-        padding-bottom: 12px;
+/* =====================================================
+   REDUCE MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        scroll-behavior: auto !important;
     }
+
 }
 
 </style>
@@ -960,30 +1354,42 @@ footer {
 <body>
 
 
-<div class="grain"></div>
-
-
 <div class="page">
+
+
+    <!-- Cinematic light -->
+
+    <div class="light"></div>
+
+    <div class="grain"></div>
 
 
     <!-- =================================================
          HEADER
     ================================================== -->
 
-    <header>
+    <header class="header">
 
-        <!-- YOUR REAL RIVOLAND LOGO -->
 
-        <img
-            src="rivoland-logo.png"
-            alt="RIVOLAND"
-            class="brand-logo"
-        >
+        <div class="logo-wrap">
+
+            <!-- YOUR LOGO -->
+
+            <img
+                src="rivoland-logo.png"
+                alt="RIVOLAND"
+                class="logo-image"
+            >
+
+        </div>
 
 
         <div class="established">
+
             EST. 2026
+
         </div>
+
 
     </header>
 
@@ -993,104 +1399,608 @@ footer {
          MAIN
     ================================================== -->
 
-    <main>
-
-        <section class="content">
+    <main class="main">
 
 
-            <div class="eyebrow">
-                A NEW ERA IS APPROACHING
-            </div>
+        <!-- Small heading -->
 
+        <div class="eyebrow">
 
-            <h1 class="title">
+            A NEW ERA IS APPROACHING
 
-                <span>
-                    MOVE
-                </span>
-
-                <span class="outline">
-                    BEYOND.
-                </span>
-
-            </h1>
+        </div>
 
 
 
-            <!-- =================================================
-                 FUTURE 360° MODEL AREA
-                 WE WILL ADD THE MODEL VIDEO HERE
-            ================================================== -->
+        <!-- Main title -->
 
-            <div class="model-area">
+        <h1 class="title">
 
-                <div class="model-ring"></div>
+            <span class="move">
 
-            </div>
+                MOVE
 
+            </span>
 
 
-            <p class="description">
+            <span class="beyond">
 
-                Sport. Street. Culture.
+                BEYOND.
 
-                <br>
+            </span>
 
-                RIVOLAND® is coming.
+        </h1>
 
-            </p>
+
+
+        <!-- =================================================
+             MODEL SECTION
+        ================================================== -->
+
+        <div class="model-stage">
+
+
+            <!-- Cinematic ring -->
+
+            <div class="model-ring"></div>
 
 
 
             <!-- =================================================
-                 COUNTDOWN
+                 REAL MODEL VIDEO
+
+                 Later put:
+                 rivoland-model-360.mp4
+
+                 in the same folder as index.html.
             ================================================== -->
 
-            <div
-                class="countdown"
-                id="countdown"
+            <video
+                id="modelVideo"
+                class="model-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="auto"
             >
 
-                <div class="time">
+                <source
+                    src="rivoland-model-360.mp4"
+                    type="video/mp4"
+                >
 
-                    <span
-                        class="number"
-                        id="days"
-                    >
-                        00
-                    </span>
+            </video>
 
-                    <span class="label">
-                        Days
-                    </span>
+
+
+            <!-- Temporary model if video is not uploaded -->
+
+            <div
+                class="model-placeholder"
+                id="modelPlaceholder"
+            >
+
+
+                <div class="model-head"></div>
+
+                <div class="model-body"></div>
+
+                <div class="model-arm-left"></div>
+
+                <div class="model-arm-right"></div>
+
+                <div class="model-leg-left"></div>
+
+                <div class="model-leg-right"></div>
+
+
+                <div class="model-brand">
+
+                    RIVOLAND
 
                 </div>
 
 
-                <div class="colon">
-                    :
-                </div>
+            </div>
 
 
-                <div class="time">
-
-                    <span
-                        class="number"
-                        id="hours"
-                    >
-                        00
-                    </span>
-
-                    <span class="label">
-                        Hours
-                    </span>
-
-                </div>
+        </div>
 
 
-                <div class="colon">
-                    :
-                </div>
+
+        <!-- =================================================
+             DESCRIPTION
+        ================================================== -->
+
+        <div class="description">
+
+            Sport. Street. Culture.
+
+            <br>
+
+            RIVOLAND® is coming.
+
+        </div>
 
 
-                <div class="time">
+
+        <!-- =================================================
+             COUNTDOWN
+        ================================================== -->
+
+        <div
+            class="countdown"
+            id="countdown"
+        >
+
+
+            <div class="time">
+
+                <span
+                    class="number"
+                    id="days"
+                >
+                    00
+                </span>
+
+                <span class="label">
+
+                    Days
+
+                </span>
+
+            </div>
+
+
+
+            <div class="colon">
+
+                :
+
+            </div>
+
+
+
+            <div class="time">
+
+                <span
+                    class="number"
+                    id="hours"
+                >
+                    00
+                </span>
+
+                <span class="label">
+
+                    Hours
+
+                </span>
+
+            </div>
+
+
+
+            <div class="colon">
+
+                :
+
+            </div>
+
+
+
+            <div class="time">
+
+                <span
+                    class="number"
+                    id="minutes"
+                >
+                    00
+                </span>
+
+                <span class="label">
+
+                    Minutes
+
+                </span>
+
+            </div>
+
+
+
+            <div class="colon">
+
+                :
+
+            </div>
+
+
+
+            <div class="time">
+
+                <span
+                    class="number"
+                    id="seconds"
+                >
+                    00
+                </span>
+
+                <span class="label">
+
+                    Seconds
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             LIVE MESSAGE
+        ================================================== -->
+
+        <div class="live">
+
+            WE ARE LIVE.
+
+        </div>
+
+
+
+        <!-- =================================================
+             LAUNCH DATE
+        ================================================== -->
+
+        <div class="launch">
+
+
+            <span class="launch-label">
+
+                LAUNCHING
+
+            </span>
+
+
+            <span class="launch-date">
+
+                11.09.2026
+
+            </span>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             CONTACT
+        ================================================== -->
+
+        <div class="contact">
+
+
+            <!-- WhatsApp -->
+
+            <a
+                href="https://wa.me/916392860701"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                WHATSAPP
+
+            </a>
+
+
+
+            <!-- Instagram -->
+
+            <a
+                href="https://www.instagram.com/rivo.land/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                INSTAGRAM @RIVO.LAND
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             SMALL ROTATING BRAND LOGO
+        ================================================== -->
+
+        <div class="bottom-brand">
+
+
+            <img
+                src="rivoland-logo.png"
+                alt="RIVOLAND logo"
+            >
+
+
+            <span>
+
+                RIVOLAND®
+
+            </span>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-text">
+
+            SPORT • STREET • CULTURE
+
+        </div>
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     COUNTDOWN JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/*
+    RIVOLAND® LAUNCH DATE
+
+    11 September 2026
+    12:00 AM
+    India Standard Time (IST)
+*/
+
+
+const launchDate =
+    new Date(
+        "2026-09-11T00:00:00+05:30"
+    ).getTime();
+
+
+
+/*
+    Get elements
+*/
+
+const daysElement =
+    document.getElementById("days");
+
+const hoursElement =
+    document.getElementById("hours");
+
+const minutesElement =
+    document.getElementById("minutes");
+
+const secondsElement =
+    document.getElementById("seconds");
+
+
+
+/*
+    Add leading zero
+*/
+
+function formatNumber(number) {
+
+    return String(number).padStart(2, "0");
+
+}
+
+
+
+/*
+    Countdown
+*/
+
+function updateCountdown() {
+
+
+    const now =
+        new Date().getTime();
+
+
+    const difference =
+        launchDate - now;
+
+
+
+    /*
+        Launch time reached
+    */
+
+    if (difference <= 0) {
+
+        document.body.classList.add(
+            "is-live"
+        );
+
+        daysElement.textContent = "00";
+
+        hoursElement.textContent = "00";
+
+        minutesElement.textContent = "00";
+
+        secondsElement.textContent = "00";
+
+        return;
+
+    }
+
+
+
+    /*
+        Calculate time
+    */
+
+    const days =
+        Math.floor(
+            difference /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    const hours =
+        Math.floor(
+            (difference %
+                (1000 * 60 * 60 * 24))
+            /
+            (1000 * 60 * 60)
+        );
+
+
+    const minutes =
+        Math.floor(
+            (difference %
+                (1000 * 60 * 60))
+            /
+            (1000 * 60)
+        );
+
+
+    const seconds =
+        Math.floor(
+            (difference %
+                (1000 * 60))
+            /
+            1000
+        );
+
+
+
+    /*
+        Display
+    */
+
+    daysElement.textContent =
+        formatNumber(days);
+
+
+    hoursElement.textContent =
+        formatNumber(hours);
+
+
+    minutesElement.textContent =
+        formatNumber(minutes);
+
+
+    secondsElement.textContent =
+        formatNumber(seconds);
+
+}
+
+
+
+/*
+    Start immediately
+*/
+
+updateCountdown();
+
+
+/*
+    Update every second
+*/
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+
+
+/* =====================================================
+   MODEL VIDEO DETECTION
+===================================================== */
+
+const modelVideo =
+    document.getElementById(
+        "modelVideo"
+    );
+
+const modelPlaceholder =
+    document.getElementById(
+        "modelPlaceholder"
+    );
+
+
+/*
+    If the real 360° model video
+    exists, show it.
+
+    If it doesn't exist,
+    keep the temporary model.
+*/
+
+modelVideo.addEventListener(
+    "loadeddata",
+    function () {
+
+        modelVideo.style.display =
+            "block";
+
+        modelPlaceholder.style.display =
+            "none";
+
+    }
+);
+
+
+modelVideo.addEventListener(
+    "error",
+    function () {
+
+        modelVideo.style.display =
+            "none";
+
+        modelPlaceholder.style.display =
+            "block";
+
+    }
+);
+
+
+/*
+    Try autoplay
+*/
+
+modelVideo.play().catch(
+    function () {
+
+        /* Browser blocked autoplay.
+           Muted video should normally
+           be allowed. */
+
+    }
+);
+
+
+</script>
+
+
+</body>
+
+</html>
