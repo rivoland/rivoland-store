@@ -254,7 +254,7 @@ main {
 
 
 /* =====================================================
-   ROTATING MODEL AREA
+   ROTATING VIDEO AREA
 ===================================================== */
 
 .model-area {
@@ -270,8 +270,6 @@ main {
     justify-content: center;
 
     align-items: center;
-
-    perspective: 1100px;
 
     position: relative;
 }
@@ -319,304 +317,30 @@ main {
 
 
 /* =====================================================
-   MODEL
+   MODEL VIDEO
 ===================================================== */
 
-.model {
+.model-video {
 
     width: 180px;
 
     height: 365px;
 
+    object-fit: contain;
+
+    display: block;
+
     position: relative;
 
-    transform-style: preserve-3d;
-
-    animation:
-        modelRotate 14s linear infinite;
-
     z-index: 3;
-}
 
+    background: transparent;
 
-@keyframes modelRotate {
+    border: none;
 
-    from {
-        transform: rotateY(0deg);
-    }
+    outline: none;
 
-    to {
-        transform: rotateY(360deg);
-    }
-
-}
-
-
-/* =====================================================
-   HEAD
-===================================================== */
-
-.head {
-
-    position: absolute;
-
-    width: 72px;
-
-    height: 85px;
-
-    left: 54px;
-
-    top: 0;
-
-    background:
-        linear-gradient(
-            90deg,
-            #8d8880,
-            #d0cbc1,
-            #8d8880
-        );
-
-    border-radius:
-        48% 48% 45% 45%;
-
-    transform:
-        translateZ(5px);
-
-    box-shadow:
-        inset -12px 0 15px rgba(0,0,0,0.25);
-}
-
-
-/* Hair */
-
-.head::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 76px;
-
-    height: 28px;
-
-    left: -2px;
-
-    top: -4px;
-
-    background: #090909;
-
-    border-radius:
-        50% 50% 20% 20%;
-}
-
-
-/* =====================================================
-   NECK
-===================================================== */
-
-.neck {
-
-    position: absolute;
-
-    width: 35px;
-
-    height: 35px;
-
-    left: 72px;
-
-    top: 72px;
-
-    background: #aaa59c;
-
-    transform: translateZ(4px);
-}
-
-
-/* =====================================================
-   JERSEY / TORSO
-===================================================== */
-
-.jersey {
-
-    position: absolute;
-
-    width: 150px;
-
-    height: 155px;
-
-    left: 15px;
-
-    top: 95px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #101010,
-            #202020,
-            #101010
-        );
-
-    clip-path:
-        polygon(
-            20% 0,
-            80% 0,
-            100% 25%,
-            88% 100%,
-            12% 100%,
-            0 25%
-        );
-
-    transform:
-        translateZ(10px);
-
-    box-shadow:
-        inset 0 0 30px rgba(255,255,255,0.025);
-}
-
-
-/* Jersey collar */
-
-.jersey::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 45px;
-
-    height: 18px;
-
-    left: 52px;
-
-    top: 2px;
-
-    border-bottom:
-        2px solid rgba(255,255,255,0.35);
-
-    border-radius: 50%;
-}
-
-
-/* RIVOLAND branding */
-
-.jersey::after {
-
-    content: "RIVOLAND";
-
-    position: absolute;
-
-    left: 0;
-
-    right: 0;
-
-    top: 62px;
-
-    text-align: center;
-
-    font-size: 13px;
-
-    font-weight: 800;
-
-    letter-spacing: 0.18em;
-
-    color: #f5f5f0;
-}
-
-
-/* =====================================================
-   ARMS
-===================================================== */
-
-.arm {
-
-    position: absolute;
-
-    width: 42px;
-
-    height: 145px;
-
-    top: 102px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #0b0b0b,
-            #222,
-            #0b0b0b
-        );
-
-    border-radius: 30px;
-
-    transform-origin: top center;
-}
-
-
-.arm.left {
-
-    left: -10px;
-
-    transform:
-        rotate(8deg)
-        translateZ(0);
-}
-
-
-.arm.right {
-
-    right: -10px;
-
-    transform:
-        rotate(-8deg)
-        translateZ(0);
-}
-
-
-/* =====================================================
-   BAGGY PANTS
-===================================================== */
-
-.pants {
-
-    position: absolute;
-
-    top: 242px;
-
-    left: 20px;
-
-    width: 140px;
-
-    height: 120px;
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 5px;
-
-    transform:
-        translateZ(5px);
-}
-
-
-.leg {
-
-    width: 67px;
-
-    height: 120px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #0c0c0c,
-            #1c1c1c,
-            #0b0b0b
-        );
-
-    border-radius:
-        5px 5px 20px 20px;
-
-    box-shadow:
-        inset 0 0 20px rgba(255,255,255,0.02);
+    mix-blend-mode: normal;
 }
 
 
@@ -997,6 +721,16 @@ footer {
     }
 
 
+    .model-video {
+
+        width: 180px;
+
+        height: 350px;
+
+        object-fit: contain;
+    }
+
+
     .description {
 
         font-size: 11px;
@@ -1083,7 +817,6 @@ footer {
 
 @media (prefers-reduced-motion: reduce) {
 
-    .model,
     .model-ring,
     body::after {
 
@@ -1139,7 +872,7 @@ footer {
 
 
 <!-- =================================================
-     ROTATING FASHION MODEL
+     ROTATING FASHION MODEL VIDEO
 ================================================== -->
 
 <div class="model-area">
@@ -1148,32 +881,23 @@ footer {
 
     <div class="model-shadow"></div>
 
-    <div class="model">
 
-        <!-- HEAD -->
-        <div class="head"></div>
+    <video
+        class="model-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto">
 
-        <!-- NECK -->
-        <div class="neck"></div>
+        <source
+            src="rivoland-model.mp4"
+            type="video/mp4">
 
-        <!-- ARMS -->
-        <div class="arm left"></div>
+        Your browser does not support the video tag.
 
-        <div class="arm right"></div>
+    </video>
 
-        <!-- JERSEY -->
-        <div class="jersey"></div>
-
-        <!-- BAGGY PANTS -->
-        <div class="pants">
-
-            <div class="leg"></div>
-
-            <div class="leg"></div>
-
-        </div>
-
-    </div>
 
 </div>
 
@@ -1350,7 +1074,7 @@ footer {
 
 <!-- =================================================
      COUNTDOWN JAVASCRIPT
-================================================== -->
+===================================================== -->
 
 <script>
 
