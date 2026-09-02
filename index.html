@@ -12,7 +12,1680 @@
 
 <meta name="theme-color"
       content="#080808">
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="RIVOLAND® — Sport. Street. Culture. Launching 11 September 2026.">
+
+<meta name="theme-color"
+      content="#080808">
+
+<title>RIVOLAND® — Coming Soon</title>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   BODY
+===================================================== */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: #080808;
+    color: #f5f5f0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   MAIN PAGE
+===================================================== */
+
+.page {
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #1c1c1c 0%,
+            #101010 30%,
+            #080808 70%
+        );
+}
+
+
+/* =====================================================
+   CINEMATIC LIGHT
+===================================================== */
+
+.page::before {
+    content: "";
+
+    position: absolute;
+
+    width: 900px;
+    height: 900px;
+
+    left: 50%;
+    top: 45%;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.07),
+            transparent 65%
+        );
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+.page::after {
+    content: "";
+
+    position: absolute;
+
+    inset: -50%;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 40%,
+            rgba(255,255,255,0.025),
+            transparent 60%
+        );
+
+    animation:
+        lightMove 12s ease-in-out infinite;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+@keyframes lightMove {
+
+    0% {
+        transform: translateX(-15%);
+    }
+
+    50% {
+        transform: translateX(15%);
+    }
+
+    100% {
+        transform: translateX(-15%);
+    }
+
+}
+
+
+/* =====================================================
+   FILM GRAIN
+===================================================== */
+
+.grain {
+    position: fixed;
+
+    inset: -50%;
+
+    width: 200%;
+    height: 200%;
+
+    pointer-events: none;
+
+    opacity: 0.025;
+
+    z-index: 30;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+
+    animation:
+        grainMove 0.3s steps(2) infinite;
+}
+
+
+@keyframes grainMove {
+
+    0% {
+        transform: translate(0,0);
+    }
+
+    25% {
+        transform: translate(2%,-1%);
+    }
+
+    50% {
+        transform: translate(-1%,2%);
+    }
+
+    75% {
+        transform: translate(1%,1%);
+    }
+
+    100% {
+        transform: translate(-2%,-1%);
+    }
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+
+    width: 100%;
+
+    padding:
+        28px 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    position: relative;
+
+    z-index: 10;
+}
+
+
+/* =====================================================
+   TOP LOGO
+===================================================== */
+
+.top-logo {
+
+    width: 58px;
+    height: 58px;
+
+    object-fit: contain;
+
+    display: block;
+
+    animation:
+        logo360 8s linear infinite;
+
+    filter:
+        brightness(1.1);
+}
+
+
+@keyframes logo360 {
+
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+
+}
+
+
+.established {
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.25em;
+
+    text-transform: uppercase;
+
+    opacity: 0.45;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main {
+
+    flex: 1;
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: relative;
+
+    z-index: 5;
+
+    padding:
+        20px 20px 60px;
+}
+
+
+.content {
+
+    width:
+        min(1100px, 100%);
+
+    text-align: center;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+
+/* =====================================================
+   EYEBROW
+===================================================== */
+
+.eyebrow {
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.38em;
+
+    text-transform: uppercase;
+
+    opacity: 0.45;
+
+    margin-bottom: 24px;
+
+    animation:
+        fadeUp 1s ease forwards;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.title {
+
+    font-size:
+        clamp(
+            60px,
+            13vw,
+            180px
+        );
+
+    line-height: 0.82;
+
+    font-weight: 900;
+
+    letter-spacing: -0.075em;
+
+    text-transform: uppercase;
+
+    animation:
+        fadeUp 1s ease 0.15s forwards;
+
+    opacity: 0;
+}
+
+
+.title span {
+    display: block;
+}
+
+
+.outline {
+
+    color: transparent;
+
+    -webkit-text-stroke:
+        1px rgba(
+            245,
+            245,
+            240,
+            0.72
+        );
+}
+
+
+/* =====================================================
+   MODEL AREA
+===================================================== */
+
+.model-stage {
+
+    width: 100%;
+
+    height: 360px;
+
+    margin:
+        35px auto 0;
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    perspective: 1000px;
+}
+
+
+/* circular light behind model */
+
+.model-ring {
+
+    position: absolute;
+
+    width: 310px;
+    height: 310px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.14);
+
+    box-shadow:
+        0 0 80px
+        rgba(255,255,255,0.035);
+
+}
+
+
+/* =====================================================
+   ROTATING MODEL
+===================================================== */
+
+.model {
+
+    width: 145px;
+
+    height: 300px;
+
+    position: relative;
+
+    transform-style: preserve-3d;
+
+    animation:
+        model360 12s linear infinite;
+
+    z-index: 3;
+}
+
+
+@keyframes model360 {
+
+    from {
+        transform:
+            rotateY(0deg);
+    }
+
+    to {
+        transform:
+            rotateY(360deg);
+    }
+
+}
+
+
+/* =====================================================
+   MODEL HEAD
+===================================================== */
+
+.model-head {
+
+    position: absolute;
+
+    width: 72px;
+    height: 82px;
+
+    left: 50%;
+
+    top: 0;
+
+    transform:
+        translateX(-50%);
+
+    border-radius:
+        45% 45% 48% 48%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #9b9389,
+            #d8d0c5,
+            #8d857c
+        );
+
+    box-shadow:
+        inset -8px 0 12px
+        rgba(0,0,0,0.35);
+}
+
+
+/* hair */
+
+.model-head::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -2px;
+
+    left: 4px;
+
+    width: 64px;
+    height: 24px;
+
+    border-radius:
+        50% 50% 25% 25%;
+
+    background:
+        #151515;
+}
+
+
+/* =====================================================
+   MODEL NECK
+===================================================== */
+
+.model-neck {
+
+    position: absolute;
+
+    width: 32px;
+    height: 32px;
+
+    top: 72px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        #aaa198;
+}
+
+
+/* =====================================================
+   FOOTBALL JERSEY
+===================================================== */
+
+.jersey {
+
+    position: absolute;
+
+    top: 92px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 112px;
+    height: 125px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #111111,
+            #292929,
+            #111111
+        );
+
+    clip-path:
+        polygon(
+            20% 0,
+            80% 0,
+            100% 18%,
+            86% 30%,
+            82% 100%,
+            18% 100%,
+            14% 30%,
+            0 18%
+        );
+
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,0.65);
+}
+
+
+/* jersey logo */
+
+.jersey::after {
+
+    content:
+        "RIVOLAND";
+
+    position: absolute;
+
+    top: 52px;
+
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    color: #f5f5f0;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.16em;
+}
+
+
+/* =====================================================
+   ARMS
+===================================================== */
+
+.arm {
+
+    position: absolute;
+
+    top: 100px;
+
+    width: 38px;
+    height: 115px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #111111,
+            #272727,
+            #101010
+        );
+
+    border-radius:
+        30px;
+
+    z-index: -1;
+}
+
+
+.arm-left {
+
+    left: 2px;
+
+    transform:
+        rotate(9deg);
+}
+
+
+.arm-right {
+
+    right: 2px;
+
+    transform:
+        rotate(-9deg);
+}
+
+
+/* =====================================================
+   BAGGY PANTS
+===================================================== */
+
+.pants {
+
+    position: absolute;
+
+    top: 208px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 106px;
+    height: 110px;
+
+    display: flex;
+
+    gap: 5px;
+}
+
+
+.leg {
+
+    width: 50%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #101010,
+            #222222,
+            #101010
+        );
+
+    border-radius:
+        0 0 20px 20px;
+}
+
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.description {
+
+    max-width: 520px;
+
+    margin:
+        15px auto 0;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    letter-spacing: 0.05em;
+
+    color:
+        rgba(
+            245,
+            245,
+            240,
+            0.62
+        );
+
+    animation:
+        fadeUp 1s ease 0.3s forwards;
+
+    opacity: 0;
+}
+
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
+
+.countdown {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    gap:
+        clamp(
+            10px,
+            4vw,
+            55px
+        );
+
+    margin-top: 48px;
+
+    animation:
+        fadeUp 1s ease 0.45s forwards;
+
+    opacity: 0;
+}
+
+
+.time {
+
+    min-width: 70px;
+}
+
+
+.number {
+
+    display: block;
+
+    font-size:
+        clamp(
+            35px,
+            6vw,
+            70px
+        );
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    letter-spacing: -0.05em;
+
+    font-variant-numeric:
+        tabular-nums;
+}
+
+
+.label {
+
+    display: block;
+
+    margin-top: 10px;
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.25em;
+
+    text-transform: uppercase;
+
+    opacity: 0.35;
+}
+
+
+.colon {
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    opacity: 0.18;
+
+    padding-top: 4px;
+}
+
+
+/* =====================================================
+   LAUNCH DATE
+===================================================== */
+
+.launch {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 38px;
+
+    padding:
+        13px 20px;
+
+    border:
+        1px solid
+        rgba(
+            245,
+            245,
+            240,
+            0.13
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+    animation:
+        fadeUp 1s ease 0.6s forwards;
+
+    opacity: 0;
+}
+
+
+.launch-label {
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.25em;
+
+    text-transform: uppercase;
+
+    opacity: 0.35;
+}
+
+
+.launch-date {
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.16em;
+}
+
+
+/* =====================================================
+   CONTACT BUTTONS
+===================================================== */
+
+.contact {
+
+    margin-top: 28px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+
+    animation:
+        fadeUp 1s ease 0.75s forwards;
+
+    opacity: 0;
+}
+
+
+.contact a {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 150px;
+
+    padding:
+        13px 20px;
+
+    border:
+        1px solid
+        rgba(
+            245,
+            245,
+            240,
+            0.16
+        );
+
+    color: #f5f5f0;
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.02
+        );
+
+    transition:
+        all 0.3s ease;
+}
+
+
+.contact a:hover {
+
+    background: #f5f5f0;
+
+    color: #080808;
+
+    transform:
+        translateY(-3px);
+}
+
+
+/* =====================================================
+   LIVE
+===================================================== */
+
+.live {
+
+    display: none;
+
+    margin-top: 45px;
+
+    font-size:
+        clamp(
+            40px,
+            7vw,
+            80px
+        );
+
+    font-weight: 900;
+
+    letter-spacing: -0.05em;
+}
+
+
+body.is-live .countdown,
+body.is-live .launch {
+
+    display: none;
+}
+
+
+body.is-live .live {
+
+    display: block;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    width: 100%;
+
+    padding:
+        20px 20px 28px;
+
+    display: flex;
+
+    justify-content: center;
+
+    position: relative;
+
+    z-index: 10;
+}
+
+
+.footer-text {
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.3em;
+
+    text-transform: uppercase;
+
+    opacity: 0.3;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   FADE ANIMATION
+===================================================== */
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 650px) {
+
+    header {
+
+        padding:
+            20px 20px;
+    }
+
+
+    .top-logo {
+
+        width: 48px;
+        height: 48px;
+    }
+
+
+    .established {
+
+        font-size: 7px;
+
+        letter-spacing: 0.18em;
+    }
+
+
+    main {
+
+        padding:
+            15px 15px 40px;
+    }
+
+
+    .eyebrow {
+
+        font-size: 8px;
+
+        letter-spacing: 0.25em;
+
+        margin-bottom: 20px;
+    }
+
+
+    .title {
+
+        font-size:
+            clamp(
+                55px,
+                17vw,
+                105px
+            );
+    }
+
+
+    .model-stage {
+
+        height: 300px;
+
+        margin-top: 25px;
+    }
+
+
+    .model-ring {
+
+        width: 260px;
+        height: 260px;
+    }
+
+
+    .model {
+
+        transform-origin:
+            center center;
+
+        transform:
+            scale(0.88);
+    }
+
+
+    .description {
+
+        font-size: 12px;
+
+        max-width: 330px;
+
+        margin-top: 8px;
+    }
+
+
+    .countdown {
+
+        gap: 5px;
+
+        margin-top: 38px;
+    }
+
+
+    .time {
+
+        min-width: 55px;
+    }
+
+
+    .number {
+
+        font-size:
+            clamp(
+                27px,
+                9vw,
+                45px
+            );
+    }
+
+
+    .label {
+
+        font-size: 6px;
+
+        letter-spacing: 0.12em;
+
+        margin-top: 8px;
+    }
+
+
+    .colon {
+
+        font-size: 20px;
+
+        padding-top: 2px;
+    }
+
+
+    .launch {
+
+        margin-top: 30px;
+
+        padding:
+            11px 14px;
+
+        gap: 10px;
+    }
+
+
+    .launch-label {
+
+        font-size: 6px;
+    }
+
+
+    .launch-date {
+
+        font-size: 9px;
+    }
+
+
+    .contact {
+
+        margin-top: 22px;
+
+        gap: 10px;
+    }
+
+
+    .contact a {
+
+        min-width: 130px;
+
+        padding:
+            12px 14px;
+
+        font-size: 8px;
+    }
+
+
+    footer {
+
+        padding:
+            18px 15px 24px;
+    }
+
+
+    .footer-text {
+
+        font-size: 6px;
+
+        letter-spacing: 0.2em;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="grain"></div>
+
+
+<div class="page">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <img
+        src="rivoland-logo.png"
+        alt="RIVOLAND Logo"
+        class="top-logo"
+    >
+
+    <div class="established">
+        EST. 2026
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+<section class="content">
+
+
+<div class="eyebrow">
+    A NEW ERA IS APPROACHING
+</div>
+
+
+<h1 class="title">
+
+    <span>
+        MOVE
+    </span>
+
+    <span class="outline">
+        BEYOND.
+    </span>
+
+</h1>
+
+
+<!-- =====================================================
+     ROTATING MODEL
+===================================================== -->
+
+<div class="model-stage">
+
+    <div class="model-ring"></div>
+
+
+    <div class="model">
+
+
+        <div class="model-head"></div>
+
+
+        <div class="model-neck"></div>
+
+
+        <div class="arm arm-left"></div>
+
+        <div class="arm arm-right"></div>
+
+
+        <div class="jersey"></div>
+
+
+        <div class="pants">
+
+            <div class="leg"></div>
+
+            <div class="leg"></div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     DESCRIPTION
+===================================================== -->
+
+<p class="description">
+
+    Sport. Street. Culture.
+
+    <br>
+
+    RIVOLAND® is coming.
+
+</p>
+
+
+<!-- =====================================================
+     COUNTDOWN
+===================================================== -->
+
+<div
+    class="countdown"
+    id="countdown"
+>
+
+    <div class="time">
+
+        <span
+            class="number"
+            id="days"
+        >
+            00
+        </span>
+
+        <span class="label">
+            Days
+        </span>
+
+    </div>
+
+
+    <div class="colon">
+        :
+    </div>
+
+
+    <div class="time">
+
+        <span
+            class="number"
+            id="hours"
+        >
+            00
+        </span>
+
+        <span class="label">
+            Hours
+        </span>
+
+    </div>
+
+
+    <div class="colon">
+        :
+    </div>
+
+
+    <div class="time">
+
+        <span
+            class="number"
+            id="minutes"
+        >
+            00
+        </span>
+
+        <span class="label">
+            Minutes
+        </span>
+
+    </div>
+
+
+    <div class="colon">
+        :
+    </div>
+
+
+    <div class="time">
+
+        <span
+            class="number"
+            id="seconds"
+        >
+            00
+        </span>
+
+        <span class="label">
+            Seconds
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LAUNCH DATE
+===================================================== -->
+
+<div class="launch">
+
+    <span class="launch-label">
+        LAUNCHING
+    </span>
+
+    <span class="launch-date">
+        11.09.2026
+    </span>
+
+</div>
+
+
+<!-- =====================================================
+     LIVE MESSAGE
+===================================================== -->
+
+<div class="live">
+    WE ARE LIVE.
+</div>
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<div class="contact">
+
+    <a
+        href="https://wa.me/916392860701"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        WHATSAPP
+    </a>
+
+
+    <a
+        href="https://www.instagram.com/rivo.land/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        INSTAGRAM @RIVO.LAND
+    </a>
+
+</div>
+
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-text">
+
+        RIVOLAND®
+        &nbsp; • &nbsp;
+        SPORT
+        &nbsp; • &nbsp;
+        STREET
+        &nbsp; • &nbsp;
+        CULTURE
+
+    </div>
+
+</footer>
+
+
+</div>
+
+
+<!-- =====================================================
+     COUNTDOWN JAVASCRIPT
+===================================================== -->
+
+<script>
+
+(function () {
+
+    /*
+       LAUNCH DATE
+
+       11 September 2026
+       12:00 AM
+       India Standard Time (IST)
+    */
+
+    const launchDate =
+        new Date(
+            "2026-09-11T00:00:00+05:30"
+        );
+
+
+    function updateCountdown() {
+
+        const now =
+            new Date();
+
+
+        let difference =
+            launchDate.getTime()
+            -
+            now.getTime();
+
+
+        /* -----------------------------------------
+           WHEN LAUNCH TIME ARRIVES
+        ----------------------------------------- */
+
+        if (difference <= 0) {
+
+            document.body
+                .classList
+                .add("is-live");
+
+            return;
+        }
+
+
+        /* -----------------------------------------
+           CALCULATE TIME
+        ----------------------------------------- */
+
+        const totalSeconds =
+            Math.floor(
+                difference / 1000
+            );
+
+
+        const days =
+            Math.floor(
+                totalSeconds / 86400
+            );
+
+
+        const hours =
+            Math.floor(
+                (totalSeconds % 86400)
+                / 3600
+            );
+
+
+        const minutes =
+            Math.floor(
+                (totalSeconds % 3600)
+                / 60
+            );
+
+
+        const seconds =
+            totalSeconds % 60;
+
+
+        /* -----------------------------------------
+           DISPLAY
+        ----------------------------------------- */
+
+        document.getElementById("days")
+            .textContent =
+            String(days)
+                .padStart(2, "0");
+
+
+        document.getElementById("hours")
+            .textContent =
+            String(hours)
+                .padStart(2, "0");
+
+
+        document.getElementById("minutes")
+            .textContent =
+            String(minutes)
+                .padStart(2, "0");
+
+
+        document.getElementById("seconds")
+            .textContent =
+            String(seconds)
+                .padStart(2, "0");
+
+    }
+
+
+    /* Run immediately */
+
+    updateCountdown();
+
+
+    /* Update every second */
+
+    setInterval(
+        updateCountdown,
+        1000
+    );
+
+})();
+
+</script>
+
+
+</body>
+</html>
 <title>RIVOLAND® — Coming Soon</title>
 
 
