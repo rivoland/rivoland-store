@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
@@ -12,18 +11,12 @@
       content="RIVOLAND® — Sport. Street. Culture. Launching 11 September 2026.">
 
 <meta name="theme-color"
-      content="#080808">
+      content="#070707">
 
 <title>RIVOLAND® — Coming Soon</title>
 
 
 <style>
-
-/* =====================================================
-   RIVOLAND® — COMING SOON
-   SPORT • STREET • CULTURE
-===================================================== */
-
 
 /* =====================================================
    RESET
@@ -42,124 +35,84 @@ body {
 }
 
 body {
-
-    background: #080808;
-
+    background: #070707;
     color: #f5f5f0;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+    font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
 }
 
 
 /* =====================================================
-   MAIN PAGE
+   BACKGROUND
 ===================================================== */
 
-.page {
-
-    position: relative;
-
-    width: 100%;
-
-    min-height: 100svh;
-
-    display: flex;
-
-    flex-direction: column;
-
-    overflow: hidden;
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
 
     background:
         radial-gradient(
-            circle at 50% 42%,
-            rgba(255,255,255,0.055),
-            transparent 38%
-        ),
-        #080808;
-}
-
-
-/* =====================================================
-   CINEMATIC LIGHT
-===================================================== */
-
-.light {
-
-    position: absolute;
-
-    width: 70vw;
-    height: 70vw;
-
-    max-width: 850px;
-    max-height: 850px;
-
-    left: 50%;
-    top: 45%;
-
-    transform:
-        translate(-50%, -50%);
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,0.045),
-            transparent 68%
+            circle at 50% 45%,
+            rgba(255,255,255,0.075),
+            transparent 35%
         );
 
     pointer-events: none;
-
-    z-index: 0;
-
-    animation:
-        breathing 7s ease-in-out infinite;
+    z-index: -3;
 }
 
 
-@keyframes breathing {
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 35%,
+            rgba(255,255,255,0.025),
+            transparent 65%
+        );
+
+    animation: backgroundMove 12s ease-in-out infinite;
+
+    pointer-events: none;
+    z-index: -2;
+}
+
+
+@keyframes backgroundMove {
 
     0% {
-        opacity: 0.65;
-        transform:
-            translate(-50%, -50%) scale(0.95);
+        transform: translateX(-15%);
     }
 
     50% {
-        opacity: 1;
-        transform:
-            translate(-50%, -50%) scale(1.05);
+        transform: translateX(15%);
     }
 
     100% {
-        opacity: 0.65;
-        transform:
-            translate(-50%, -50%) scale(0.95);
+        transform: translateX(-15%);
     }
+
 }
 
 
 /* =====================================================
-   SUBTLE GRAIN
+   PAGE
 ===================================================== */
 
-.grain {
+.page {
+    min-height: 100vh;
 
-    position: fixed;
+    display: flex;
+    flex-direction: column;
 
-    inset: 0;
+    position: relative;
 
-    pointer-events: none;
-
-    z-index: 50;
-
-    opacity: 0.025;
-
-    background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+    overflow: hidden;
 }
 
 
@@ -167,9 +120,11 @@ body {
    HEADER
 ===================================================== */
 
-.header {
+header {
 
     width: 100%;
+
+    padding: 28px 42px;
 
     display: flex;
 
@@ -177,57 +132,29 @@ body {
 
     align-items: center;
 
-    padding:
-        25px 34px;
-
     position: relative;
 
     z-index: 10;
-
-    flex-shrink: 0;
 }
 
 
-/* =====================================================
-   TOP LOGO
-===================================================== */
+.logo {
 
-.logo-wrap {
+    font-size: 21px;
 
-    display: flex;
+    font-weight: 900;
 
-    align-items: center;
-
-    gap: 10px;
+    letter-spacing: 0.22em;
 }
 
 
-.logo-image {
+.logo sup {
 
-    width: 48px;
+    font-size: 8px;
 
-    height: 48px;
+    margin-left: 2px;
 
-    object-fit: contain;
-
-    display: block;
-
-    animation:
-        logoRotate 8s linear infinite;
-}
-
-
-/* 360 DEGREE LOGO ROTATION */
-
-@keyframes logoRotate {
-
-    from {
-        transform: rotateY(0deg);
-    }
-
-    to {
-        transform: rotateY(360deg);
-    }
+    vertical-align: top;
 }
 
 
@@ -235,26 +162,17 @@ body {
 
     font-size: 9px;
 
-    font-weight: 700;
+    letter-spacing: 0.25em;
 
-    letter-spacing: 0.28em;
-
-    color:
-        rgba(245,245,240,0.42);
-
-    text-transform: uppercase;
+    opacity: 0.4;
 }
 
 
 /* =====================================================
-   MAIN CONTENT
+   MAIN
 ===================================================== */
 
-.main {
-
-    position: relative;
-
-    z-index: 5;
+main {
 
     flex: 1;
 
@@ -262,18 +180,19 @@ body {
 
     display: flex;
 
-    flex-direction: column;
+    justify-content: center;
 
     align-items: center;
 
-    justify-content: center;
+    padding: 30px 20px 60px;
+}
+
+
+.content {
+
+    width: min(1100px, 100%);
 
     text-align: center;
-
-    padding:
-        10px 20px 20px;
-
-    min-height: 0;
 }
 
 
@@ -285,19 +204,15 @@ body {
 
     font-size: 10px;
 
-    font-weight: 700;
+    font-weight: 600;
 
-    letter-spacing: 0.36em;
+    letter-spacing: 0.38em;
 
-    color:
-        rgba(245,245,240,0.55);
+    opacity: 0.45;
 
-    text-transform: uppercase;
+    margin-bottom: 25px;
 
-    margin-bottom: 18px;
-
-    animation:
-        fadeUp 0.9s ease forwards;
+    animation: fadeUp 1s ease forwards;
 }
 
 
@@ -307,371 +222,426 @@ body {
 
 .title {
 
-    width: 100%;
+    font-size: clamp(60px, 13vw, 175px);
 
-    line-height: 0.78;
-
-    text-transform: uppercase;
+    line-height: 0.82;
 
     font-weight: 900;
 
     letter-spacing: -0.075em;
 
-    margin: 0;
+    text-transform: uppercase;
 
-    animation:
-        fadeUp 0.9s ease 0.1s forwards;
+    animation: fadeUp 1s ease 0.15s forwards;
 
     opacity: 0;
 }
 
 
-.title .move {
+.title span {
 
     display: block;
-
-    font-size:
-        clamp(70px, 12vw, 160px);
-
-    color: #f5f5f0;
-
-    /* NO TEXTURE */
 }
 
 
-.title .beyond {
-
-    display: block;
-
-    font-size:
-        clamp(65px, 11vw, 145px);
+.outline {
 
     color: transparent;
 
     -webkit-text-stroke:
-        1px rgba(245,245,240,0.65);
-
-    text-stroke:
-        1px rgba(245,245,240,0.65);
+        1px rgba(245,245,240,0.7);
 }
 
 
 /* =====================================================
-   MODEL AREA
+   ROTATING MODEL AREA
 ===================================================== */
 
-.model-stage {
+.model-area {
 
-    position: relative;
+    width: 100%;
 
-    width: min(390px, 75vw);
+    height: 410px;
 
-    height: min(380px, 38vh);
-
-    margin:
-        5px auto 0;
+    margin-top: 35px;
 
     display: flex;
 
+    justify-content: center;
+
     align-items: center;
 
-    justify-content: center;
+    perspective: 1100px;
+
+    position: relative;
 }
 
 
-/* Circular cinematic ring */
+/* Circular studio ring */
 
 .model-ring {
 
     position: absolute;
 
-    width: 330px;
+    width: 350px;
+    height: 350px;
 
-    height: 330px;
-
-    max-width: 80vw;
-
-    max-height: 80vw;
+    border: 1px solid rgba(255,255,255,0.13);
 
     border-radius: 50%;
 
-    border:
-        1px solid
-        rgba(245,245,240,0.13);
-
     box-shadow:
-        0 0 80px rgba(255,255,255,0.025);
+        0 0 80px rgba(255,255,255,0.035);
 
     animation:
         ringPulse 5s ease-in-out infinite;
 }
 
 
-.model-ring::after {
+@keyframes ringPulse {
+
+    0% {
+        transform: scale(0.98);
+        opacity: 0.45;
+    }
+
+    50% {
+        transform: scale(1.03);
+        opacity: 0.75;
+    }
+
+    100% {
+        transform: scale(0.98);
+        opacity: 0.45;
+    }
+
+}
+
+
+/* =====================================================
+   MODEL
+===================================================== */
+
+.model {
+
+    width: 180px;
+
+    height: 365px;
+
+    position: relative;
+
+    transform-style: preserve-3d;
+
+    animation:
+        modelRotate 14s linear infinite;
+
+    z-index: 3;
+}
+
+
+@keyframes modelRotate {
+
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+
+}
+
+
+/* =====================================================
+   HEAD
+===================================================== */
+
+.head {
+
+    position: absolute;
+
+    width: 72px;
+
+    height: 85px;
+
+    left: 54px;
+
+    top: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8d8880,
+            #d0cbc1,
+            #8d8880
+        );
+
+    border-radius:
+        48% 48% 45% 45%;
+
+    transform:
+        translateZ(5px);
+
+    box-shadow:
+        inset -12px 0 15px rgba(0,0,0,0.25);
+}
+
+
+/* Hair */
+
+.head::before {
 
     content: "";
 
     position: absolute;
 
-    inset: 18px;
+    width: 76px;
 
-    border-radius: 50%;
+    height: 28px;
 
-    border:
-        1px solid
-        rgba(245,245,240,0.055);
-}
+    left: -2px;
 
+    top: -4px;
 
-@keyframes ringPulse {
+    background: #090909;
 
-    0%,
-    100% {
-        transform: scale(0.96);
-        opacity: 0.6;
-    }
-
-    50% {
-        transform: scale(1.02);
-        opacity: 1;
-    }
+    border-radius:
+        50% 50% 20% 20%;
 }
 
 
 /* =====================================================
-   360 MODEL VIDEO
+   NECK
 ===================================================== */
 
-.model-video {
+.neck {
 
-    position: relative;
+    position: absolute;
 
-    z-index: 3;
+    width: 35px;
 
-    width: 100%;
+    height: 35px;
 
-    height: 100%;
+    left: 72px;
 
-    object-fit: contain;
+    top: 72px;
 
-    display: none;
+    background: #aaa59c;
 
-    background: transparent;
-
-    mix-blend-mode: screen;
+    transform: translateZ(4px);
 }
-
-
-/*
-   When you add the model video,
-   JavaScript will automatically display it.
-*/
 
 
 /* =====================================================
-   MODEL PLACEHOLDER
+   JERSEY / TORSO
 ===================================================== */
 
-.model-placeholder {
-
-    position: relative;
-
-    z-index: 2;
-
-    width: 120px;
-
-    height: 250px;
-
-    opacity: 0.08;
-
-    filter: blur(0.2px);
-
-}
-
-
-/* Head */
-
-.model-head {
+.jersey {
 
     position: absolute;
 
-    top: 0;
+    width: 150px;
 
-    left: 50%;
+    height: 155px;
 
-    transform: translateX(-50%);
+    left: 15px;
 
-    width: 54px;
-
-    height: 70px;
-
-    border-radius:
-        48% 48% 45% 45%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #777,
-            #d4d0c7,
-            #777
-        );
-}
-
-
-/* Body */
-
-.model-body {
-
-    position: absolute;
-
-    top: 65px;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 95px;
-
-    height: 110px;
-
-    border-radius:
-        30px 30px 8px 8px;
+    top: 95px;
 
     background:
         linear-gradient(
             90deg,
             #101010,
-            #303030,
+            #202020,
             #101010
         );
-}
 
-
-/* Left arm */
-
-.model-arm-left {
-
-    position: absolute;
-
-    top: 72px;
-
-    left: 2px;
-
-    width: 25px;
-
-    height: 115px;
-
-    border-radius: 30px;
-
-    background: #181818;
+    clip-path:
+        polygon(
+            20% 0,
+            80% 0,
+            100% 25%,
+            88% 100%,
+            12% 100%,
+            0 25%
+        );
 
     transform:
-        rotate(7deg);
+        translateZ(10px);
+
+    box-shadow:
+        inset 0 0 30px rgba(255,255,255,0.025);
 }
 
 
-/* Right arm */
+/* Jersey collar */
 
-.model-arm-right {
+.jersey::before {
+
+    content: "";
 
     position: absolute;
 
-    top: 72px;
+    width: 45px;
 
-    right: 2px;
+    height: 18px;
 
-    width: 25px;
+    left: 52px;
 
-    height: 115px;
+    top: 2px;
 
-    border-radius: 30px;
+    border-bottom:
+        2px solid rgba(255,255,255,0.35);
 
-    background: #181818;
-
-    transform:
-        rotate(-7deg);
+    border-radius: 50%;
 }
 
 
-/* Left baggy pant */
+/* RIVOLAND branding */
 
-.model-leg-left {
+.jersey::after {
 
-    position: absolute;
-
-    top: 168px;
-
-    left: 25px;
-
-    width: 43px;
-
-    height: 125px;
-
-    border-radius:
-        4px 4px 20px 20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #0b0b0b,
-            #202020,
-            #0b0b0b
-        );
-}
-
-
-/* Right baggy pant */
-
-.model-leg-right {
+    content: "RIVOLAND";
 
     position: absolute;
 
-    top: 168px;
+    left: 0;
 
-    right: 25px;
+    right: 0;
 
-    width: 43px;
+    top: 62px;
 
-    height: 125px;
+    text-align: center;
 
-    border-radius:
-        4px 4px 20px 20px;
+    font-size: 13px;
 
-    background:
-        linear-gradient(
-            90deg,
-            #0b0b0b,
-            #202020,
-            #0b0b0b
-        );
+    font-weight: 800;
+
+    letter-spacing: 0.18em;
+
+    color: #f5f5f0;
 }
 
 
 /* =====================================================
-   BRANDING ON PLACEHOLDER
+   ARMS
 ===================================================== */
 
-.model-brand {
+.arm {
 
     position: absolute;
 
-    top: 112px;
+    width: 42px;
 
-    left: 50%;
+    height: 145px;
+
+    top: 102px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0b0b0b,
+            #222,
+            #0b0b0b
+        );
+
+    border-radius: 30px;
+
+    transform-origin: top center;
+}
+
+
+.arm.left {
+
+    left: -10px;
 
     transform:
-        translateX(-50%);
+        rotate(8deg)
+        translateZ(0);
+}
 
-    font-size: 9px;
 
-    font-weight: 800;
+.arm.right {
 
-    letter-spacing: 0.22em;
+    right: -10px;
 
-    color:
-        rgba(245,245,240,0.75);
+    transform:
+        rotate(-8deg)
+        translateZ(0);
+}
 
-    white-space: nowrap;
+
+/* =====================================================
+   BAGGY PANTS
+===================================================== */
+
+.pants {
+
+    position: absolute;
+
+    top: 242px;
+
+    left: 20px;
+
+    width: 140px;
+
+    height: 120px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    transform:
+        translateZ(5px);
+}
+
+
+.leg {
+
+    width: 67px;
+
+    height: 120px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0c0c0c,
+            #1c1c1c,
+            #0b0b0b
+        );
+
+    border-radius:
+        5px 5px 20px 20px;
+
+    box-shadow:
+        inset 0 0 20px rgba(255,255,255,0.02);
+}
+
+
+/* =====================================================
+   MODEL SHADOW
+===================================================== */
+
+.model-shadow {
+
+    position: absolute;
+
+    width: 190px;
+
+    height: 25px;
+
+    bottom: 5px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(0,0,0,0.8);
+
+    filter: blur(12px);
+
+    z-index: 1;
 }
 
 
@@ -681,19 +651,21 @@ body {
 
 .description {
 
-    margin-top: 0;
+    margin: 10px auto 0;
+
+    max-width: 500px;
 
     font-size: 13px;
 
     line-height: 1.7;
 
-    letter-spacing: 0.04em;
+    letter-spacing: 0.08em;
 
     color:
-        rgba(245,245,240,0.57);
+        rgba(245,245,240,0.58);
 
     animation:
-        fadeUp 0.9s ease 0.25s forwards;
+        fadeUp 1s ease 0.3s forwards;
 
     opacity: 0;
 }
@@ -711,13 +683,12 @@ body {
 
     align-items: flex-start;
 
-    gap:
-        clamp(10px, 3vw, 38px);
+    gap: clamp(10px,4vw,50px);
 
-    margin-top: 25px;
+    margin-top: 48px;
 
     animation:
-        fadeUp 0.9s ease 0.35s forwards;
+        fadeUp 1s ease 0.45s forwards;
 
     opacity: 0;
 }
@@ -725,8 +696,7 @@ body {
 
 .time {
 
-    min-width:
-        clamp(55px, 7vw, 90px);
+    min-width: 70px;
 }
 
 
@@ -735,13 +705,13 @@ body {
     display: block;
 
     font-size:
-        clamp(31px, 5vw, 62px);
-
-    font-weight: 800;
+        clamp(35px,6vw,70px);
 
     line-height: 1;
 
-    letter-spacing: -0.06em;
+    font-weight: 700;
+
+    letter-spacing: -0.05em;
 
     font-variant-numeric:
         tabular-nums;
@@ -752,32 +722,25 @@ body {
 
     display: block;
 
-    margin-top: 8px;
+    margin-top: 11px;
 
-    font-size: 7px;
+    font-size: 8px;
 
-    font-weight: 700;
-
-    letter-spacing: 0.22em;
-
-    color:
-        rgba(245,245,240,0.30);
+    letter-spacing: 0.25em;
 
     text-transform: uppercase;
+
+    opacity: 0.35;
 }
 
 
 .colon {
 
-    font-size:
-        clamp(20px, 3vw, 35px);
+    font-size: 28px;
 
-    color:
-        rgba(245,245,240,0.20);
+    opacity: 0.2;
 
-    line-height: 1;
-
-    padding-top: 3px;
+    padding-top: 5px;
 }
 
 
@@ -787,53 +750,39 @@ body {
 
 .launch {
 
-    margin-top: 20px;
-
     display: inline-flex;
 
     align-items: center;
 
-    justify-content: center;
+    gap: 15px;
 
-    gap: 18px;
+    margin-top: 35px;
 
-    padding:
-        10px 18px;
+    padding: 13px 20px;
 
     border:
-        1px solid
-        rgba(245,245,240,0.13);
+        1px solid rgba(245,245,240,0.13);
 
     background:
-        rgba(255,255,255,0.015);
-
-    animation:
-        fadeUp 0.9s ease 0.45s forwards;
-
-    opacity: 0;
+        rgba(255,255,255,0.025);
 }
 
 
 .launch-label {
 
-    font-size: 7px;
-
-    font-weight: 700;
+    font-size: 8px;
 
     letter-spacing: 0.25em;
 
-    color:
-        rgba(245,245,240,0.35);
-
-    text-transform: uppercase;
+    opacity: 0.35;
 }
 
 
 .launch-date {
 
-    font-size: 11px;
+    font-size: 12px;
 
-    font-weight: 800;
+    font-weight: 700;
 
     letter-spacing: 0.16em;
 }
@@ -849,164 +798,69 @@ body {
 
     justify-content: center;
 
-    align-items: center;
+    gap: 15px;
 
-    gap: 10px;
+    margin-top: 28px;
 
-    margin-top: 12px;
-
-    animation:
-        fadeUp 0.9s ease 0.55s forwards;
-
-    opacity: 0;
+    flex-wrap: wrap;
 }
 
 
 .contact a {
 
-    display: inline-flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    min-height: 38px;
-
-    padding:
-        0 18px;
-
-    border:
-        1px solid
-        rgba(245,245,240,0.14);
-
-    color:
-        rgba(245,245,240,0.75);
+    color: #f5f5f0;
 
     text-decoration: none;
 
-    font-size: 8px;
+    border:
+        1px solid rgba(245,245,240,0.15);
 
-    font-weight: 800;
+    padding: 13px 20px;
 
-    letter-spacing: 0.16em;
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.18em;
 
     text-transform: uppercase;
 
     transition:
-        0.3s ease;
+        background 0.3s,
+        border 0.3s,
+        transform 0.3s;
 }
 
 
 .contact a:hover {
 
-    background: #f5f5f0;
+    background:
+        rgba(255,255,255,0.08);
 
-    color: #080808;
+    border-color:
+        rgba(255,255,255,0.4);
 
-    border-color: #f5f5f0;
+    transform:
+        translateY(-2px);
 }
 
 
 /* =====================================================
-   BOTTOM LOGO
-===================================================== */
-
-.bottom-brand {
-
-    margin-top: 15px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 9px;
-}
-
-
-.bottom-brand img {
-
-    width: 25px;
-
-    height: 25px;
-
-    object-fit: contain;
-
-    animation:
-        logoRotate 8s linear infinite;
-}
-
-
-.bottom-brand span {
-
-    font-size: 7px;
-
-    font-weight: 700;
-
-    letter-spacing: 0.25em;
-
-    color:
-        rgba(245,245,240,0.28);
-
-    text-transform: uppercase;
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-.footer {
-
-    position: relative;
-
-    z-index: 10;
-
-    width: 100%;
-
-    text-align: center;
-
-    padding:
-        10px 20px 18px;
-
-    flex-shrink: 0;
-}
-
-
-.footer-text {
-
-    font-size: 7px;
-
-    font-weight: 700;
-
-    letter-spacing: 0.28em;
-
-    color:
-        rgba(245,245,240,0.22);
-
-    text-transform: uppercase;
-}
-
-
-/* =====================================================
-   LIVE STATE
+   LIVE
 ===================================================== */
 
 .live {
 
     display: none;
 
+    margin-top: 45px;
+
     font-size:
-        clamp(35px, 7vw, 75px);
+        clamp(40px,7vw,80px);
 
     font-weight: 900;
 
     letter-spacing: -0.05em;
-
-    text-transform: uppercase;
-
-    margin-top: 25px;
 }
 
 
@@ -1020,6 +874,33 @@ body.is-live .launch {
 body.is-live .live {
 
     display: block;
+
+    animation:
+        fadeUp 1s ease forwards;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    padding: 25px 20px 28px;
+
+    text-align: center;
+}
+
+
+.footer-text {
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.3em;
+
+    opacity: 0.28;
 }
 
 
@@ -1034,7 +915,7 @@ body.is-live .live {
         opacity: 0;
 
         transform:
-            translateY(18px);
+            translateY(25px);
     }
 
     to {
@@ -1044,6 +925,7 @@ body.is-live .live {
         transform:
             translateY(0);
     }
+
 }
 
 
@@ -1053,27 +935,17 @@ body.is-live .live {
 
 @media (max-width: 650px) {
 
+    header {
 
-    .page {
-
-        min-height: 100svh;
-
-        height: auto;
+        padding: 22px 20px;
     }
 
 
-    .header {
+    .logo {
 
-        padding:
-            18px 20px;
-    }
+        font-size: 17px;
 
-
-    .logo-image {
-
-        width: 42px;
-
-        height: 42px;
+        letter-spacing: 0.18em;
     }
 
 
@@ -1085,13 +957,10 @@ body.is-live .live {
     }
 
 
-    .main {
-
-        justify-content:
-            flex-start;
+    main {
 
         padding:
-            25px 15px 12px;
+            25px 15px 45px;
     }
 
 
@@ -1101,46 +970,30 @@ body.is-live .live {
 
         letter-spacing: 0.25em;
 
-        margin-bottom: 17px;
+        margin-bottom: 22px;
     }
 
 
-    .title .move {
+    .title {
 
         font-size:
-            clamp(62px, 18vw, 100px);
+            clamp(52px,17vw,105px);
     }
 
 
-    .title .beyond {
+    .model-area {
 
-        font-size:
-            clamp(57px, 16.5vw, 94px);
-    }
+        height: 360px;
 
-
-    .model-stage {
-
-        width: 270px;
-
-        height: 275px;
-
-        margin-top: 0;
+        margin-top: 25px;
     }
 
 
     .model-ring {
 
-        width: 245px;
+        width: 300px;
 
-        height: 245px;
-    }
-
-
-    .model-placeholder {
-
-        transform:
-            scale(0.86);
+        height: 300px;
     }
 
 
@@ -1148,9 +1001,7 @@ body.is-live .live {
 
         font-size: 11px;
 
-        margin-top: -3px;
-
-        line-height: 1.6;
+        max-width: 320px;
     }
 
 
@@ -1158,30 +1009,28 @@ body.is-live .live {
 
         gap: 5px;
 
-        margin-top: 20px;
+        margin-top: 40px;
     }
 
 
     .time {
 
-        min-width: 58px;
+        min-width: 55px;
     }
 
 
     .number {
 
         font-size:
-            clamp(28px, 9vw, 40px);
+            clamp(27px,9vw,43px);
     }
 
 
     .label {
 
-        font-size: 5px;
+        font-size: 6px;
 
-        letter-spacing: 0.13em;
-
-        margin-top: 7px;
+        letter-spacing: 0.12em;
     }
 
 
@@ -1189,159 +1038,56 @@ body.is-live .live {
 
         font-size: 20px;
 
-        padding-top: 1px;
+        padding-top: 3px;
     }
 
 
     .launch {
 
-        margin-top: 16px;
+        margin-top: 30px;
 
-        padding:
-            9px 13px;
+        padding: 11px 14px;
 
-        gap: 12px;
-    }
-
-
-    .launch-label {
-
-        font-size: 6px;
-    }
-
-
-    .launch-date {
-
-        font-size: 9px;
+        gap: 10px;
     }
 
 
     .contact {
 
-        margin-top: 10px;
+        margin-top: 22px;
 
-        gap: 7px;
+        gap: 10px;
     }
 
 
     .contact a {
 
-        min-height: 35px;
-
-        padding:
-            0 12px;
+        padding: 12px 14px;
 
         font-size: 7px;
-
-        letter-spacing: 0.11em;
     }
 
 
-    .bottom-brand {
-
-        margin-top: 10px;
-    }
-
-
-    .bottom-brand img {
-
-        width: 21px;
-
-        height: 21px;
-    }
-
-
-    .bottom-brand span {
-
-        font-size: 6px;
-    }
-
-
-    .footer {
+    footer {
 
         padding:
-            8px 15px 13px;
-    }
-
-
-    .footer-text {
-
-        font-size: 5px;
-
-        letter-spacing: 0.19em;
+            20px 15px 25px;
     }
 
 }
 
 
 /* =====================================================
-   VERY SMALL PHONES
-===================================================== */
-
-@media (max-height: 700px) and (max-width: 650px) {
-
-    .main {
-
-        padding-top: 15px;
-    }
-
-
-    .model-stage {
-
-        height: 220px;
-    }
-
-
-    .model-ring {
-
-        width: 200px;
-
-        height: 200px;
-    }
-
-
-    .model-placeholder {
-
-        transform:
-            scale(0.70);
-    }
-
-
-    .countdown {
-
-        margin-top: 13px;
-    }
-
-
-    .launch {
-
-        margin-top: 10px;
-    }
-
-
-    .contact {
-
-        margin-top: 7px;
-    }
-
-}
-
-
-/* =====================================================
-   REDUCE MOTION
+   ACCESSIBILITY
 ===================================================== */
 
 @media (prefers-reduced-motion: reduce) {
 
-    *,
-    *::before,
-    *::after {
+    .model,
+    .model-ring,
+    body::after {
 
-        animation-duration: 0.01ms !important;
-
-        animation-iteration-count: 1 !important;
-
-        scroll-behavior: auto !important;
+        animation: none;
     }
 
 }
@@ -1353,471 +1099,274 @@ body.is-live .live {
 
 <body>
 
-
 <div class="page">
 
 
-    <!-- Cinematic light -->
+<header>
 
-    <div class="light"></div>
+    <div class="logo">
+        RIVOLAND<sup>®</sup>
+    </div>
 
-    <div class="grain"></div>
+    <div class="established">
+        EST. 2026
+    </div>
+
+</header>
 
 
-    <!-- =================================================
-         HEADER
-    ================================================== -->
+<main>
 
-    <header class="header">
+<section class="content">
 
 
-        <div class="logo-wrap">
+<div class="eyebrow">
+    A NEW ERA IS APPROACHING
+</div>
 
-            <!-- YOUR LOGO -->
 
-            <img
-                src="rivoland-logo.png"
-                alt="RIVOLAND"
-                class="logo-image"
-            >
+<h1 class="title">
+
+    <span>
+        MOVE
+    </span>
+
+    <span class="outline">
+        BEYOND.
+    </span>
+
+</h1>
+
+
+<!-- =================================================
+     ROTATING FASHION MODEL
+================================================== -->
+
+<div class="model-area">
+
+    <div class="model-ring"></div>
+
+    <div class="model-shadow"></div>
+
+    <div class="model">
+
+        <!-- HEAD -->
+        <div class="head"></div>
+
+        <!-- NECK -->
+        <div class="neck"></div>
+
+        <!-- ARMS -->
+        <div class="arm left"></div>
+
+        <div class="arm right"></div>
+
+        <!-- JERSEY -->
+        <div class="jersey"></div>
+
+        <!-- BAGGY PANTS -->
+        <div class="pants">
+
+            <div class="leg"></div>
+
+            <div class="leg"></div>
 
         </div>
 
+    </div>
 
-        <div class="established">
+</div>
 
-            EST. 2026
 
-        </div>
+<p class="description">
 
+    SPORT. STREET. CULTURE.
 
-    </header>
+    <br>
 
+    RIVOLAND® IS COMING.
 
+</p>
 
-    <!-- =================================================
-         MAIN
-    ================================================== -->
 
-    <main class="main">
+<!-- =================================================
+     COUNTDOWN
+================================================== -->
 
+<div class="countdown">
 
-        <!-- Small heading -->
 
-        <div class="eyebrow">
+    <div class="time">
 
-            A NEW ERA IS APPROACHING
+        <span
+            class="number"
+            id="days">
+            00
+        </span>
 
-        </div>
+        <span class="label">
+            Days
+        </span>
 
+    </div>
 
 
-        <!-- Main title -->
+    <div class="colon">
+        :
+    </div>
 
-        <h1 class="title">
 
-            <span class="move">
+    <div class="time">
 
-                MOVE
+        <span
+            class="number"
+            id="hours">
+            00
+        </span>
 
-            </span>
+        <span class="label">
+            Hours
+        </span>
 
+    </div>
 
-            <span class="beyond">
 
-                BEYOND.
+    <div class="colon">
+        :
+    </div>
 
-            </span>
 
-        </h1>
+    <div class="time">
 
+        <span
+            class="number"
+            id="minutes">
+            00
+        </span>
 
+        <span class="label">
+            Minutes
+        </span>
 
-        <!-- =================================================
-             MODEL SECTION
-        ================================================== -->
+    </div>
 
-        <div class="model-stage">
 
+    <div class="colon">
+        :
+    </div>
 
-            <!-- Cinematic ring -->
 
-            <div class="model-ring"></div>
+    <div class="time">
 
+        <span
+            class="number"
+            id="seconds">
+            00
+        </span>
 
+        <span class="label">
+            Seconds
+        </span>
 
-            <!-- =================================================
-                 REAL MODEL VIDEO
+    </div>
 
-                 Later put:
-                 rivoland-model-360.mp4
+</div>
 
-                 in the same folder as index.html.
-            ================================================== -->
 
-            <video
-                id="modelVideo"
-                class="model-video"
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="auto"
-            >
+<!-- =================================================
+     LAUNCH DATE
+================================================== -->
 
-                <source
-                    src="rivoland-model-360.mp4"
-                    type="video/mp4"
-                >
+<div class="launch">
 
-            </video>
+    <span class="launch-label">
+        LAUNCHING
+    </span>
 
+    <span class="launch-date">
+        11.09.2026
+    </span>
 
+</div>
 
-            <!-- Temporary model if video is not uploaded -->
 
-            <div
-                class="model-placeholder"
-                id="modelPlaceholder"
-            >
+<!-- =================================================
+     CONTACT
+================================================== -->
 
+<div class="contact">
 
-                <div class="model-head"></div>
+    <a
+        href="https://wa.me/916392860701"
+        target="_blank"
+        rel="noopener noreferrer">
 
-                <div class="model-body"></div>
+        WHATSAPP
+        6392860701
 
-                <div class="model-arm-left"></div>
+    </a>
 
-                <div class="model-arm-right"></div>
 
-                <div class="model-leg-left"></div>
+    <a
+        href="https://www.instagram.com/rivo.land?igsi=MXc5Z3ZvNDBmYWt4aQ=="
+        target="_blank"
+        rel="noopener noreferrer">
 
-                <div class="model-leg-right"></div>
+        INSTAGRAM @RIVO.LAND
 
+    </a>
 
-                <div class="model-brand">
+</div>
 
-                    RIVOLAND
 
-                </div>
+<!-- =================================================
+     LIVE MESSAGE
+================================================== -->
 
+<div class="live">
+    WE ARE LIVE.
+</div>
 
-            </div>
 
+</section>
 
-        </div>
+</main>
 
 
+<footer>
 
-        <!-- =================================================
-             DESCRIPTION
-        ================================================== -->
+    <div class="footer-text">
 
-        <div class="description">
+        RIVOLAND® &nbsp; • &nbsp;
+        SPORT • STREET • CULTURE
 
-            Sport. Street. Culture.
+    </div>
 
-            <br>
-
-            RIVOLAND® is coming.
-
-        </div>
-
-
-
-        <!-- =================================================
-             COUNTDOWN
-        ================================================== -->
-
-        <div
-            class="countdown"
-            id="countdown"
-        >
-
-
-            <div class="time">
-
-                <span
-                    class="number"
-                    id="days"
-                >
-                    00
-                </span>
-
-                <span class="label">
-
-                    Days
-
-                </span>
-
-            </div>
-
-
-
-            <div class="colon">
-
-                :
-
-            </div>
-
-
-
-            <div class="time">
-
-                <span
-                    class="number"
-                    id="hours"
-                >
-                    00
-                </span>
-
-                <span class="label">
-
-                    Hours
-
-                </span>
-
-            </div>
-
-
-
-            <div class="colon">
-
-                :
-
-            </div>
-
-
-
-            <div class="time">
-
-                <span
-                    class="number"
-                    id="minutes"
-                >
-                    00
-                </span>
-
-                <span class="label">
-
-                    Minutes
-
-                </span>
-
-            </div>
-
-
-
-            <div class="colon">
-
-                :
-
-            </div>
-
-
-
-            <div class="time">
-
-                <span
-                    class="number"
-                    id="seconds"
-                >
-                    00
-                </span>
-
-                <span class="label">
-
-                    Seconds
-
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- =================================================
-             LIVE MESSAGE
-        ================================================== -->
-
-        <div class="live">
-
-            WE ARE LIVE.
-
-        </div>
-
-
-
-        <!-- =================================================
-             LAUNCH DATE
-        ================================================== -->
-
-        <div class="launch">
-
-
-            <span class="launch-label">
-
-                LAUNCHING
-
-            </span>
-
-
-            <span class="launch-date">
-
-                11.09.2026
-
-            </span>
-
-
-        </div>
-
-
-
-        <!-- =================================================
-             CONTACT
-        ================================================== -->
-
-        <div class="contact">
-
-
-            <!-- WhatsApp -->
-
-            <a
-                href="https://wa.me/916392860701"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-
-                WHATSAPP
-
-            </a>
-
-
-
-            <!-- Instagram -->
-
-            <a
-                href="https://www.instagram.com/rivo.land/"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-
-                INSTAGRAM @RIVO.LAND
-
-            </a>
-
-
-        </div>
-
-
-
-        <!-- =================================================
-             SMALL ROTATING BRAND LOGO
-        ================================================== -->
-
-        <div class="bottom-brand">
-
-
-            <img
-                src="rivoland-logo.png"
-                alt="RIVOLAND logo"
-            >
-
-
-            <span>
-
-                RIVOLAND®
-
-            </span>
-
-
-        </div>
-
-
-    </main>
-
-
-
-    <!-- =================================================
-         FOOTER
-    ================================================== -->
-
-    <footer class="footer">
-
-        <div class="footer-text">
-
-            SPORT • STREET • CULTURE
-
-        </div>
-
-    </footer>
+</footer>
 
 
 </div>
 
 
-
-<!-- =====================================================
+<!-- =================================================
      COUNTDOWN JAVASCRIPT
-===================================================== -->
+================================================== -->
 
 <script>
 
-
 /*
-    RIVOLAND® LAUNCH DATE
-
-    11 September 2026
-    12:00 AM
-    India Standard Time (IST)
+=======================================================
+RIVOLAND LAUNCH DATE
+11 SEPTEMBER 2026
+12:00 AM IST
+=======================================================
 */
-
 
 const launchDate =
-    new Date(
-        "2026-09-11T00:00:00+05:30"
-    ).getTime();
+    new Date("2026-09-11T00:00:00+05:30").getTime();
 
-
-
-/*
-    Get elements
-*/
-
-const daysElement =
-    document.getElementById("days");
-
-const hoursElement =
-    document.getElementById("hours");
-
-const minutesElement =
-    document.getElementById("minutes");
-
-const secondsElement =
-    document.getElementById("seconds");
-
-
-
-/*
-    Add leading zero
-*/
-
-function formatNumber(number) {
-
-    return String(number).padStart(2, "0");
-
-}
-
-
-
-/*
-    Countdown
-*/
 
 function updateCountdown() {
-
 
     const now =
         new Date().getTime();
@@ -1827,34 +1376,17 @@ function updateCountdown() {
         launchDate - now;
 
 
-
-    /*
-        Launch time reached
-    */
+    /* Launch time reached */
 
     if (difference <= 0) {
 
-        document.body.classList.add(
-            "is-live"
-        );
-
-        daysElement.textContent = "00";
-
-        hoursElement.textContent = "00";
-
-        minutesElement.textContent = "00";
-
-        secondsElement.textContent = "00";
+        document.body.classList.add("is-live");
 
         return;
-
     }
 
 
-
-    /*
-        Calculate time
-    */
+    /* Calculate time */
 
     const days =
         Math.floor(
@@ -1866,8 +1398,7 @@ function updateCountdown() {
     const hours =
         Math.floor(
             (difference %
-                (1000 * 60 * 60 * 24))
-            /
+            (1000 * 60 * 60 * 24)) /
             (1000 * 60 * 60)
         );
 
@@ -1875,8 +1406,7 @@ function updateCountdown() {
     const minutes =
         Math.floor(
             (difference %
-                (1000 * 60 * 60))
-            /
+            (1000 * 60 * 60)) /
             (1000 * 60)
         );
 
@@ -1884,123 +1414,49 @@ function updateCountdown() {
     const seconds =
         Math.floor(
             (difference %
-                (1000 * 60))
-            /
+            (1000 * 60)) /
             1000
         );
 
 
+    /* Display */
 
-    /*
-        Display
-    */
-
-    daysElement.textContent =
-        formatNumber(days);
+    document.getElementById("days")
+        .textContent =
+        String(days).padStart(2, "0");
 
 
-    hoursElement.textContent =
-        formatNumber(hours);
+    document.getElementById("hours")
+        .textContent =
+        String(hours).padStart(2, "0");
 
 
-    minutesElement.textContent =
-        formatNumber(minutes);
+    document.getElementById("minutes")
+        .textContent =
+        String(minutes).padStart(2, "0");
 
 
-    secondsElement.textContent =
-        formatNumber(seconds);
+    document.getElementById("seconds")
+        .textContent =
+        String(seconds).padStart(2, "0");
 
 }
 
 
-
-/*
-    Start immediately
-*/
+/* Run immediately */
 
 updateCountdown();
 
 
-/*
-    Update every second
-*/
+/* Update every second */
 
 setInterval(
     updateCountdown,
     1000
 );
 
-
-
-/* =====================================================
-   MODEL VIDEO DETECTION
-===================================================== */
-
-const modelVideo =
-    document.getElementById(
-        "modelVideo"
-    );
-
-const modelPlaceholder =
-    document.getElementById(
-        "modelPlaceholder"
-    );
-
-
-/*
-    If the real 360° model video
-    exists, show it.
-
-    If it doesn't exist,
-    keep the temporary model.
-*/
-
-modelVideo.addEventListener(
-    "loadeddata",
-    function () {
-
-        modelVideo.style.display =
-            "block";
-
-        modelPlaceholder.style.display =
-            "none";
-
-    }
-);
-
-
-modelVideo.addEventListener(
-    "error",
-    function () {
-
-        modelVideo.style.display =
-            "none";
-
-        modelPlaceholder.style.display =
-            "block";
-
-    }
-);
-
-
-/*
-    Try autoplay
-*/
-
-modelVideo.play().catch(
-    function () {
-
-        /* Browser blocked autoplay.
-           Muted video should normally
-           be allowed. */
-
-    }
-);
-
-
 </script>
 
 
 </body>
-
 </html>
